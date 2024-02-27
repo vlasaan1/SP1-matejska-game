@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &453812573 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6238474915037807658, guid: ae87e526d9e2f374abbd289605557fc6, type: 3}
+  m_PrefabInstance: {fileID: 6238474913641898935}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,6 +220,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &728562166 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6238474914427263398, guid: ae87e526d9e2f374abbd289605557fc6, type: 3}
+  m_PrefabInstance: {fileID: 6238474913641898935}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2114887202
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,6 +372,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Input
       objectReference: {fileID: 0}
+    - target: {fileID: 6238474914347051839, guid: ae87e526d9e2f374abbd289605557fc6, type: 3}
+      propertyPath: inputManagers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6238474914347051839, guid: ae87e526d9e2f374abbd289605557fc6, type: 3}
+      propertyPath: inputManagers.Array.data[0]
+      value: 
+      objectReference: {fileID: 453812573}
+    - target: {fileID: 6238474914347051839, guid: ae87e526d9e2f374abbd289605557fc6, type: 3}
+      propertyPath: inputManagers.Array.data[1]
+      value: 
+      objectReference: {fileID: 728562166}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
