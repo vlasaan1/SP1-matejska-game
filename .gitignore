@@ -6,6 +6,13 @@
 [Uu]ser[Ss]ettings/
 Assets/AssetStoreTools*
 
+# MemoryCaptures can get excessive in size.
+# They also could contain extremely sensitive data
+/[Mm]emoryCaptures/
+
+# Recordings can get excessive in size
+/[Rr]ecordings/
+
 # Visual Studio cache directory
 .vs/
 .vscode/
@@ -36,8 +43,9 @@ sysinfo.txt
 
 # Builds
 *.apk
+*.aab
 *.unitypackage
+*.app
 
 # Crashlytics generated file
 Assets/StreamingAssets/crashlytics-build.properties
-
