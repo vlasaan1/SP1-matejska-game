@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingThing : BaseHoldable
+public class ThrowingThing : BaseHoldable
 {
     [SerializeField] Collider2D baseCollider;
     [SerializeField, Tooltip("Increase size of this if object is often left behind during moving")] Collider2D movementCollider;
+    [SerializeField] Rigidbody2D rb;
+    [SerializeField] float throwMultiplier = 3;
+
+
     [HideInInspector] public bool isHeld = false;
 
     Vector3 moveDirection;
@@ -15,6 +19,7 @@ public class MovingThing : BaseHoldable
 
     public void Awake(){
         movementCollider.enabled = false;
+        maxTimeBetweenClicks = 0.2f;
     }
     protected override void OnHold(Vector2 hitPosition)
     {
@@ -34,10 +39,13 @@ public class MovingThing : BaseHoldable
             }
             //Start holding
             isHeld = true;
-            //baseCollider.enabled = false;
             movementCollider.enabled = true;
             lastFrameCount = Time.frameCount;
-        //Do not set movement variables twice in same frame for hits that hit both colliders
+            //Stop all physics based movement
+            rb.bodyType = RigidbodyType2D.Kinematic;
+            rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0;
+            //Do not set movement variables twice in same frame for hits that hit both colliders
         } else if(lastFrameCount != Time.frameCount) {
             //Is already holding -> move 
             moveDirection = (Vector3)hitPosition - transform.position;
@@ -49,11 +57,16 @@ public class MovingThing : BaseHoldable
 
     protected override void OnRelease(Vector2 hitPosition)
     {
-        isHeld = false;
-        moveDirection = Vector3.zero;
-        movementCollider.enabled = false;
-        baseCollider.enabled = true;
+        if(isHeld){
+            isHeld = false;
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            rb.AddForce(moveDirection*throwMultiplier,ForceMode2D.Impulse);
+            moveDirection = Vector3.zero;
+            movementCollider.enabled = false;
+            baseCollider.enabled = true;
+        }
     }
+
 
     public void Update(){
         if(currentMovingFrame<=deltaFrame){

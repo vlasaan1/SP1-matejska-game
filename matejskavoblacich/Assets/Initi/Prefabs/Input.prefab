@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6238474913530258250}
   - component: {fileID: 6238474913530258249}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Touch
-  m_TagString: Untagged
+  m_TagString: MissEffectCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
