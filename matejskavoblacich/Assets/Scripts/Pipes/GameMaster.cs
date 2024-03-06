@@ -9,7 +9,7 @@ public class GameMaster : MonoBehaviour
 
     [SerializeField] int numberOfBombs = 3;
 
-    [SerializeField] int filedSize = 6;
+    [SerializeField] int fieldSize = 6;
 
     [SerializeField] int numberOfPlayers = 4;
 
@@ -17,10 +17,15 @@ public class GameMaster : MonoBehaviour
 
     void Start()
     {
+        InstantiatePlayers();
+    }
+
+    void InstantiatePlayers(){
         for(int i = 0; i < numberOfPlayers; i++){
             var spawnedOnePlayerField = Instantiate(onePlayerGrid, new Vector3(i, 0, 0), Quaternion.identity, transform);
             spawnedOnePlayerField.name = "Player" + i;
             playersHolder.Add(spawnedOnePlayerField);
+            spawnedOnePlayerField.GenerateGrid(fieldSize);
         }
     }
 

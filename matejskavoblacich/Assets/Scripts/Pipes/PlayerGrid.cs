@@ -13,10 +13,10 @@ public class PlayerGrid : MonoBehaviour
     private Dictionary<Vector2, Tile> grid;
 
     void Start(){
-        GenerateGrid();
+        
     }
 
-    void GenerateGrid(){
+    public void GenerateGrid(int size){
         grid = new Dictionary<Vector2, Tile>();
         for(int y = 0; y < size; y++){
             for(int x = 0; x < size; x++){
