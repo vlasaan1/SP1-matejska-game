@@ -606,8 +606,9 @@ GameObject:
   - component: {fileID: 1915407468}
   - component: {fileID: 1915407467}
   - component: {fileID: 1915407466}
+  - component: {fileID: 1915407469}
   m_Layer: 5
-  m_Name: OnePlayerHolder
+  m_Name: PlayersHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -697,6 +698,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1915407464}
   m_CullTransparentMesh: 1
+--- !u!114 &1915407469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915407464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e763a62eb02d5343acde24391e9c5c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onePlayerGrid: {fileID: 3598842311452937924, guid: dc7ad13d4dcc69d41b11306e166ab2fa, type: 3}
+  numberOfBombs: 3
+  filedSize: 6
 --- !u!1 &2025556838
 GameObject:
   m_ObjectHideFlags: 0
