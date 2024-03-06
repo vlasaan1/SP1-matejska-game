@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class PlayerGrid : MonoBehaviour
 {
@@ -10,13 +11,18 @@ public class PlayerGrid : MonoBehaviour
 
     [SerializeField] Tile tilePrefab;
 
+    GridLayoutGroup gridLayoutGroup;
+
     private Dictionary<Vector2, Tile> grid;
 
-    void Start(){
-        
+    void Awake(){
+        gridLayoutGroup = GetComponent<GridLayoutGroup>();
     }
 
     public void GenerateGrid(int size){
+
+        gridLayoutGroup.constraintCount = size;
+
         grid = new Dictionary<Vector2, Tile>();
         for(int y = 0; y < size; y++){
             for(int x = 0; x < size; x++){
