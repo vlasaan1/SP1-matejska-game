@@ -33,8 +33,8 @@ public class GameMaster : MonoBehaviour
             var spawnedOnePlayerField = Instantiate(onePlayerGrid, new Vector3(i, 0, 0), Quaternion.identity, transform);
             spawnedOnePlayerField.name = "Player" + i;
             playersHolder.Add(spawnedOnePlayerField);
-            spawnedOnePlayerField.GenerateGrid(fieldSize);
         }
+        ChangeState(GameState.GenerateGrid);
     }
 
     public void ChangeState(GameState newState){
@@ -44,7 +44,11 @@ public class GameMaster : MonoBehaviour
                 instance.InstantiatePlayers();
                 break;
             case GameState.GenerateGrid:
-                PlayerGrid.instance.GenerateGrid(fieldSize);
+                PlayerGrid[] instances = FindObjectsOfType<PlayerGrid>();
+                foreach(var inst in instances){
+                    inst.GenerateGrid(fieldSize);
+                }
+                ChangeState(GameState.Algorithm);
                 break;
             case GameState.Algorithm:
                 GeneratingAlgo.instance.GenerateMap(fieldSize, numberOfBombs);

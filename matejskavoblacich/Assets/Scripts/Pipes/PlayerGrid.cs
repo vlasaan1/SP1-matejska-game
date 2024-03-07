@@ -32,8 +32,6 @@ public class PlayerGrid : MonoBehaviour
                 grid[new Vector2(y,x)] = spawnedTile;
             }
         }
-
-        GameMaster.instance.ChangeState(GameMaster.GameState.Algorithm);
     }
 
     public Tile GetTileAtPosition(Vector2 pos){
