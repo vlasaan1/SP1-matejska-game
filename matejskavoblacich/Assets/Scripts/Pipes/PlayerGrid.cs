@@ -6,17 +6,17 @@ using UnityEngine.UI;
 
 public class PlayerGrid : MonoBehaviour
 {
-
-    [SerializeField] int size;
-
     [SerializeField] Tile tilePrefab;
 
     GridLayoutGroup gridLayoutGroup;
+
+    public static PlayerGrid instance;
 
     private Dictionary<Vector2, Tile> grid;
 
     void Awake(){
         gridLayoutGroup = GetComponent<GridLayoutGroup>();
+        instance = this;
     }
 
     public void GenerateGrid(int size){
@@ -32,6 +32,8 @@ public class PlayerGrid : MonoBehaviour
                 grid[new Vector2(y,x)] = spawnedTile;
             }
         }
+
+        GameMaster.instance.ChangeState(GameMaster.GameState.Algorithm);
     }
 
     public Tile GetTileAtPosition(Vector2 pos){

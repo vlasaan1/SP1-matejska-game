@@ -5,6 +5,10 @@ using UnityEngine;
 public class GameMaster : MonoBehaviour
 {
 
+    public static GameMaster instance;
+
+    public GameState gameState;
+
     [SerializeField] PlayerGrid onePlayerGrid;
 
     [SerializeField] int numberOfBombs = 3;
@@ -15,9 +19,13 @@ public class GameMaster : MonoBehaviour
 
     private List<PlayerGrid> playersHolder = new List<PlayerGrid>();
 
+    void Awake(){
+        instance = this;
+    }
+
     void Start()
     {
-        InstantiatePlayers();
+        ChangeState(GameState.InstantiatePlayers);
     }
 
     void InstantiatePlayers(){
@@ -27,6 +35,43 @@ public class GameMaster : MonoBehaviour
             playersHolder.Add(spawnedOnePlayerField);
             spawnedOnePlayerField.GenerateGrid(fieldSize);
         }
+    }
+
+    public void ChangeState(GameState newState){
+        gameState = newState;
+        switch(newState){
+            case GameState.InstantiatePlayers:
+                instance.InstantiatePlayers();
+                break;
+            case GameState.GenerateGrid:
+                PlayerGrid.instance.GenerateGrid(fieldSize);
+                break;
+            case GameState.Algorithm:
+                GeneratingAlgo.instance.GenerateMap(fieldSize, numberOfBombs);
+                break;
+            case GameState.SpawnTiles:
+                break;
+            case GameState.PlayerTurn:
+                break;
+            case GameState.CheckState:
+                break;
+            case GameState.FailEnd:
+                break;
+            case GameState.GoodEnd:
+                break;
+        }
+        
+    }
+
+    public enum GameState{
+        InstantiatePlayers = 0,
+        GenerateGrid = 1,
+        Algorithm = 2,
+        SpawnTiles = 3,
+        PlayerTurn = 4,
+        CheckState = 5,
+        FailEnd = 6,
+        GoodEnd = 7
     }
 
 }
