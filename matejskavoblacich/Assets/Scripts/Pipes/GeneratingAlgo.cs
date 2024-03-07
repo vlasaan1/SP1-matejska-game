@@ -36,6 +36,10 @@ public class GeneratingAlgo : MonoBehaviour
         Debug.Log(matrixString);
     }
 
+    private bool ValidateCoords(Vector2 coords)
+    {
+        return coords.x >= 0 && coords.y >= 0 && coords.x < size && coords.y < size;
+    }
     private void PlaceString(Dictionary<Vector2, string> board, Vector2 pos, string str){
         board[pos] = str;
     }
@@ -114,12 +118,78 @@ public class GeneratingAlgo : MonoBehaviour
         }
     }
 
+    private void ShowPath(Dictionary<Vector2, string> board, Vector2 start, Vector2 end, Dictionary<Vector2, Vector2> P)
+    {
+        List<Vector2> path = new List<Vector2>();
+        path.Add(end);
+        Vector2 curr = end;
+        while (curr != start)
+        {
+            curr = P[curr];
+            path.Add(curr);
+        }
+        path.Reverse();
+        SymbolsPrint(board, start, end, path);
+    }
+
+    private void SymbolsPrint(Dictionary<Vector2, string> board, Vector2 start, Vector2 end, List<Vector2> path)
+    {
+        for (int i = 1; i < path.Count - 1; i++)
+        {
+            board[path[i]] = "#";
+        }
+    }
+    private void ProcessNeigh(Vector2 next, Vector2 prev, Dictionary<Vector2, string> board, Dictionary<Vector2, Vector2> P, Queue<Vector2> q, HashSet<Vector2> visited)
+    {
+        if (ValidateCoords(next) && !visited.Contains(next) && (board[next] == "V" || board[next] == "E"))
+        {
+            P[next] = prev;
+            q.Enqueue(next);
+            visited.Add(next);
+        }
+    }
+    private (bool, Dictionary<Vector2, string>) BFS (Dictionary<Vector2, string> board, Vector2 start, Vector2 end){
+        HashSet<Vector2> visited = new HashSet<Vector2>();
+        Dictionary<Vector2, Vector2> P = new Dictionary<Vector2, Vector2>();
+        Queue<Vector2> q = new Queue<Vector2>();
+        bool found = false;
+
+        q.Enqueue(start);
+        visited.Add(start);
+
+        while (q.Count > 0)
+        {
+            Vector2 curr = q.Dequeue();
+            if (curr == end)
+            {
+                found = true;
+                ShowPath(board, start, end, P);
+                break;
+            }
+            else
+            {
+                ProcessNeigh(new Vector2(curr.x + 1, curr.y), curr, board, P, q, visited);
+                ProcessNeigh(new Vector2(curr.x - 1, curr.y), curr, board, P, q, visited);
+                ProcessNeigh(new Vector2(curr.x, curr.y + 1), curr, board, P, q, visited);
+                ProcessNeigh(new Vector2(curr.x, curr.y - 1), curr, board, P, q, visited);
+            }
+        }
+
+        return (found, board);
+    }
+
     private Dictionary<Vector2, string> ObstaclesAndPath(Dictionary<Vector2, string> board, Vector2 start, Vector2 end){
         Dictionary<Vector2, string> copy = MakeDeepCopy(board);
         for(int i = 0; i < obstacles; i++){
             PlaceObstacles(copy);
         }
-        return copy;
+        (bool found, Dictionary<Vector2, string> nboard) = BFS(copy, start, end);
+        if(found){
+            return copy;
+        }
+        else{
+            return ObstaclesAndPath(board, start, end);
+        }
     }
 
     public void GenerateMap(int ssize, int oobstacles)
