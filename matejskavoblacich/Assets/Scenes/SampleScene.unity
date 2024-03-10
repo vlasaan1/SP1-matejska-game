@@ -1510,7 +1510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
   minTimeBeforeHold: 0.3
-  maxTimeBetweenClicks: 0.3
+  maxTimeBetweenClicks: 0.5
   baseCollider: {fileID: 1429301450}
   movementCollider: {fileID: 1429301452}
   rb: {fileID: 1429301454}
