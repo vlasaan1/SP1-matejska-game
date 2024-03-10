@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class MovingThing : BaseHoldable
@@ -13,6 +14,9 @@ public class MovingThing : BaseHoldable
     int lastFrameCount = 0;
     int currentMovingFrame = 0;
 
+
+    [SerializeField] TextMeshPro colliderSizeText;
+
     public void Awake(){
         movementCollider.enabled = false;
     }
@@ -22,7 +26,7 @@ public class MovingThing : BaseHoldable
         if(!isHeld){
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position,transform.localScale.x/2);
             foreach(Collider2D coll in colliders){
-                if(coll.gameObject.GetInstanceID()==gameObject.GetInstanceID() && coll.gameObject.CompareTag("MissEffectCollider"))
+                if(coll.gameObject.GetInstanceID()==gameObject.GetInstanceID() || coll.gameObject.CompareTag("MissEffectCollider"))
                 {
                     continue;
                 }
@@ -60,5 +64,8 @@ public class MovingThing : BaseHoldable
             transform.Translate(moveDirection/deltaFrame);
             currentMovingFrame++;
         }
+
+
+        colliderSizeText.text = gameObject.GetComponent<BoxCollider2D>().size.x.ToString();
     }
 }

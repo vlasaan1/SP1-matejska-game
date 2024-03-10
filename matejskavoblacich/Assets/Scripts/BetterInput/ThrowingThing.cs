@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ThrowingThing : BaseHoldable
@@ -7,7 +8,7 @@ public class ThrowingThing : BaseHoldable
     [SerializeField] Collider2D baseCollider;
     [SerializeField, Tooltip("Increase size of this if object is often left behind during moving")] Collider2D movementCollider;
     [SerializeField] Rigidbody2D rb;
-    [SerializeField] float throwMultiplier = 3;
+    [SerializeField] public float throwMultiplier = 3;
 
 
     [HideInInspector] public bool isHeld = false;
@@ -17,9 +18,21 @@ public class ThrowingThing : BaseHoldable
     int lastFrameCount = 0;
     int currentMovingFrame = 0;
 
+
+
+    //TMP FOR TESTING
+    [Header("Temporary for testing")]
+    [SerializeField] TextMeshPro colliderSizeText;
+    [SerializeField] TextMeshPro objectSizeText;
+    [SerializeField] GameObject colliderVisualization;
+    [SerializeField] TextMeshPro throwMultiplierText;
+    [SerializeField] TextMeshPro maxTimeBetweenClicksText;
+    CapsuleCollider2D capsuleColl;
+
     public void Awake(){
         movementCollider.enabled = false;
-        maxTimeBetweenClicks = 0.2f;
+        capsuleColl = GetComponent<CapsuleCollider2D>();
+        //maxTimeBetweenClicks = 0.2f;
     }
     protected override void OnHold(Vector2 hitPosition)
     {
@@ -45,6 +58,7 @@ public class ThrowingThing : BaseHoldable
             rb.bodyType = RigidbodyType2D.Kinematic;
             rb.velocity = Vector2.zero;
             rb.angularVelocity = 0;
+            rb.rotation = 0;
             //Do not set movement variables twice in same frame for hits that hit both colliders
         } else if(lastFrameCount != Time.frameCount) {
             //Is already holding -> move 
@@ -73,5 +87,11 @@ public class ThrowingThing : BaseHoldable
             transform.Translate(moveDirection/deltaFrame);
             currentMovingFrame++;
         }
+
+        maxTimeBetweenClicksText.text = maxTimeBetweenClicks.ToString();
+        colliderSizeText.text = capsuleColl.size.x.ToString();
+        colliderVisualization.transform.localScale = new Vector3(1,1,1)*capsuleColl.size.x;
+        objectSizeText.text = transform.localScale.x.ToString();
+        throwMultiplierText.text = throwMultiplier.ToString();
     }
 }

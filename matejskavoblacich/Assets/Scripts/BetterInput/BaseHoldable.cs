@@ -3,8 +3,9 @@ using UnityEngine;
 using initi.prefabScripts;
 public class BaseHoldable : BaseHittable
 {
-    protected float minTimeBeforeHold = 0.3f;
-    protected float maxTimeBetweenClicks = 0.5f;
+    //Public for testing - edit later
+    [SerializeField] public float minTimeBeforeHold = 0.3f;
+    [SerializeField] public float maxTimeBetweenClicks = 0.5f;
     float firstHitTime = 0;
     float lastHitTime = 0;
 
