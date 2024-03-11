@@ -40,12 +40,16 @@ public class ThrowingThing : BaseHoldable
         if(!isHeld){
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position,transform.localScale.x/2);
             foreach(Collider2D coll in colliders){
-                if(coll.gameObject.GetInstanceID()==gameObject.GetInstanceID() && coll.gameObject.CompareTag("MissEffectCollider"))
+                if(coll.gameObject.GetInstanceID()==gameObject.GetInstanceID() || coll.gameObject.CompareTag("MissEffectCollider"))
                 {
                     continue;
                 }
                 if(coll.gameObject.TryGetComponent<MovingThing>(out MovingThing other)){
                     if(other.isHeld){
+                        return;
+                    }
+                } else if(coll.gameObject.TryGetComponent<ThrowingThing>(out ThrowingThing other2)){
+                    if(other2.isHeld){
                         return;
                     }
                 }

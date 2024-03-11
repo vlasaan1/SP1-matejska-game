@@ -16,8 +16,6 @@ public class Button : BaseHoldable
 
     bool clickedThisHold = false;
     public void Start(){
-        minTimeBeforeHold = 0.3f;
-        maxTimeBetweenClicks = 0.4f;
         sprite.color = baseColor;
     }
 
