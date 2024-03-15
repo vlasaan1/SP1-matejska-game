@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6238474913530258250}
   - component: {fileID: 6238474913530258249}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Touch
   m_TagString: MissEffectCollider
   m_Icon: {fileID: 0}
@@ -88,9 +88,9 @@ GameObject:
   - component: {fileID: 6238474914347051825}
   - component: {fileID: 6238474914347051839}
   - component: {fileID: 6238474914347051824}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Input
-  m_TagString: Untagged
+  m_TagString: MissEffectCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,6 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputManagers:
   - {fileID: 6238474915037807658}
+  - {fileID: 6238474914427263398}
   missEffect: {fileID: 0}
   hitSound: {fileID: 0}
 --- !u!114 &6238474914347051824
@@ -152,7 +153,7 @@ GameObject:
   - component: {fileID: 6238474914427263397}
   - component: {fileID: 6238474914427263395}
   - component: {fileID: 6238474914427263396}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TuioInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6238474915037807657}
   - component: {fileID: 6238474915037807656}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MouseInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
