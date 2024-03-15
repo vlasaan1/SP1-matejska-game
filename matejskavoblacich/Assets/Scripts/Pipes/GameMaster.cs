@@ -15,6 +15,8 @@ public class GameMaster : MonoBehaviour
 
     [SerializeField] int fieldSize = 6;
 
+    [SerializeField] int scaler = 5;
+
     [SerializeField] int numberOfPlayers = 4;
 
     private List<PlayerGrid> playersHolder = new List<PlayerGrid>();
@@ -32,6 +34,7 @@ public class GameMaster : MonoBehaviour
         for(int i = 0; i < numberOfPlayers; i++){
             var spawnedOnePlayerField = Instantiate(onePlayerGrid, new Vector3(i, 0, 0), Quaternion.identity, transform);
             spawnedOnePlayerField.name = "Player" + i;
+            spawnedOnePlayerField.transform.localScale = new Vector3(scaler / transform.localScale.x, scaler/ transform.localScale.y, 1);
             playersHolder.Add(spawnedOnePlayerField);
         }
         ChangeState(GameState.GenerateGrid);
@@ -46,7 +49,7 @@ public class GameMaster : MonoBehaviour
             case GameState.GenerateGrid:
                 PlayerGrid[] instances = FindObjectsOfType<PlayerGrid>();
                 foreach(var inst in instances){
-                    inst.GenerateGrid(fieldSize);
+                    inst.GenerateGrid(fieldSize, scaler);
                 }
                 ChangeState(GameState.Algorithm);
                 break;
