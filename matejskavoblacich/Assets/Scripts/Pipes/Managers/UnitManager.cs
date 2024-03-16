@@ -23,4 +23,10 @@ public class UnitManager : MonoBehaviour
         return units.Where( u=> u.type == t).OrderBy( o => Random.value).First().unitPrefab;
     }
 
+    public void spawnUnits(Dictionary<Vector2, string> board, List<PathTile> path){
+        for(int i = 0; i < path.Count; i++){
+            
+        }
+    }
+
 }

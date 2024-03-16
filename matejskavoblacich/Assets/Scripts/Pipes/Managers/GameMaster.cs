@@ -21,6 +21,10 @@ public class GameMaster : MonoBehaviour
 
     private List<PlayerGrid> playersHolder = new List<PlayerGrid>();
 
+    private Dictionary<Vector2, string> board;
+
+    private List<PathTile> path;
+
     void Awake(){
         instance = this;
     }
@@ -54,9 +58,11 @@ public class GameMaster : MonoBehaviour
                 ChangeState(GameState.Algorithm);
                 break;
             case GameState.Algorithm:
-                GeneratingAlgo.instance.GenerateMap(fieldSize, numberOfBombs);
+                (board, path) = GeneratingAlgo.instance.GenerateMap(fieldSize, numberOfBombs);
+                ChangeState(GameState.SpawnTiles);
                 break;
             case GameState.SpawnTiles:
+                UnitManager.instance.spawnUnits(board, path);
                 break;
             case GameState.PlayerTurn:
                 break;

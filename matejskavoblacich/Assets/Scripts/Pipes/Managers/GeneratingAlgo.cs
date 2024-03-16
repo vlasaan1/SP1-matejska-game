@@ -225,7 +225,7 @@ public class GeneratingAlgo : MonoBehaviour
         path[path.Count - 1].outDir = new Vector2(0,0);
     }
 
-    public void GenerateMap(int ssize, int oobstacles)
+    public (Dictionary<Vector2, string>, List<PathTile>) GenerateMap(int ssize, int oobstacles)
     {
         size = ssize;
         obstacles = oobstacles;
@@ -250,6 +250,7 @@ public class GeneratingAlgo : MonoBehaviour
         PrintBoard(board);
         ManagePath(path);
         PrintPath(path);
+        return (board, path);
     }
     
 }

@@ -33,8 +33,8 @@ public class PlayerGrid : MonoBehaviour
             for(int x = 0; x < size; x++){
                 var spawnedTile = Instantiate(tilePrefab, getPos(x, y), Quaternion.identity, transform);
                 spawnedTile.transform.localScale = new Vector3(tileSize, tileSize, 1);
-                spawnedTile.name = "Tile_" + y + "_" + x;
-                grid[new Vector2(y,x)] = spawnedTile;
+                spawnedTile.name = "Tile_" + x + "_" + y;
+                grid[new Vector2(x,y)] = spawnedTile;
             }
         }
     }

@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class BaseUnit : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float rotation;
+    public Vector2 direction1;
+    public Vector2 direction2;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
