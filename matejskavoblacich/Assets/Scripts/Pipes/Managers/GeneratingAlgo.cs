@@ -49,7 +49,7 @@ public class GeneratingAlgo : MonoBehaviour
 
     private void PrintPath(List<PathTile> path){
         for(int i = 0; i < path.Count; i++){
-            Debug.Log(path[i].position.x + " " + path[i].position.y + " ,inDir: " + path[i].inDir + " ,outDir: " + path[i].outDir + '\n');
+            Debug.Log("Pos: " + path[i].position + " ,inDir: " + path[i].inDir + " ,outDir: " + path[i].outDir + '\n');
         }
     }
 
@@ -73,36 +73,36 @@ public class GeneratingAlgo : MonoBehaviour
         {
             row = 0;
             col = random.Next(1, size - 1);
-            start = new Vector2(col, row);
+            start = new Vector2(row, col);
             PlaceString(board, start, "S");
-            end = new Vector2(random.Next(1, size - 1), size - 1);
+            end = new Vector2(size - 1, random.Next(1, size - 1));
             PlaceString(board, end, "E");
         }
         else if (side == "bottom")
         {
             row = size - 1;
             col = random.Next(1, size - 1);
-            start = new Vector2(col, row);
+            start = new Vector2(row, col);
             PlaceString(board, start, "S");
-            end = new Vector2(random.Next(1, size - 1), 0);
+            end = new Vector2(0, random.Next(1, size - 1));
             PlaceString(board, end, "E");
         }
         else if (side == "left")
         {
             col = 0;
             row = random.Next(1, size - 1);
-            start = new Vector2(col, row);
+            start = new Vector2(row, col);
             PlaceString(board, start, "S");
-            end = new Vector2(size - 1, random.Next(1, size - 1));
+            end = new Vector2(random.Next(1, size - 1), size - 1);
             PlaceString(board, end, "E");
         }
         else // "right"
         {
             col = size - 1;
             row = random.Next(1, size - 1);
-            start = new Vector2(col, row);
+            start = new Vector2(row, col);
             PlaceString(board, start, "S");
-            end = new Vector2(0, random.Next(1, size - 1));
+            end = new Vector2(random.Next(1, size - 1), 0);
             PlaceString(board, end, "E");
         }
 
@@ -215,13 +215,13 @@ public class GeneratingAlgo : MonoBehaviour
 
     private void ManagePath(List<PathTile> path){
         for(int i = 1; i < path.Count - 1; i++){
-            path[i].inDir = new Vector2(path[i].position.x - path[i-1].position.x, path[i].position.y - path[i-1].position.y);
-            path[i].outDir = new Vector2(path[i].position.x - path[i+1].position.x, path[i].position.y - path[i+1].position.y);
+            path[i].inDir = new Vector2(-(path[i].position.x - path[i-1].position.x), -(path[i].position.y - path[i-1].position.y));
+            path[i].outDir = new Vector2(-(path[i].position.x - path[i+1].position.x), -(path[i].position.y - path[i+1].position.y));
         }
 
         path[0].inDir = new Vector2(0,0);
-        path[0].outDir = new Vector2(path[0].position.x - path[1].position.x, path[0].position.y - path[1].position.y);
-        path[path.Count - 1].inDir = new Vector2(path[path.Count - 1].position.x - path[path.Count - 2].position.x, path[path.Count - 1].position.y - path[path.Count - 2].position.y);
+        path[0].outDir = new Vector2(-(path[0].position.x - path[1].position.x), -(path[0].position.y - path[1].position.y));
+        path[path.Count - 1].inDir = new Vector2(-(path[path.Count - 1].position.x - path[path.Count - 2].position.x), -(path[path.Count - 1].position.y - path[path.Count - 2].position.y));
         path[path.Count - 1].outDir = new Vector2(0,0);
     }
 
