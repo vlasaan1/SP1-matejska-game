@@ -4,15 +4,7 @@ using UnityEngine;
 
 public class BasePipe : BaseUnit
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    protected Vector2 direction1;
+    protected Vector2 direction2;
+    protected int rotation;
 }
