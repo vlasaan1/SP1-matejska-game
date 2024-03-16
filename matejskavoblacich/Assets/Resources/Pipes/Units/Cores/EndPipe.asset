@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: EndPipe
   m_EditorClassIdentifier: 
   type: 2
+  unitPrefab: {fileID: 0}
+  uName: 0

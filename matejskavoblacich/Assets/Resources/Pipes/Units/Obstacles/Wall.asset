@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Wall
   m_EditorClassIdentifier: 
   type: 1
+  unitPrefab: {fileID: 5103849371534515103, guid: a8001fcc325e52145b8cefab9c5a4efd, type: 3}
+  uName: 0

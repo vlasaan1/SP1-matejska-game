@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Bomb
   m_EditorClassIdentifier: 
   type: 1
+  unitPrefab: {fileID: 0}
+  uName: 0

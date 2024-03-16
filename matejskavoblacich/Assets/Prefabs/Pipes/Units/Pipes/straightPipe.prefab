@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: straightPipe
       objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: 568cd4447b761254f8c769b485c14e34, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 568cd4447b761254f8c769b485c14e34, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
