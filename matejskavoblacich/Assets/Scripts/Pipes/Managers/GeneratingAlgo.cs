@@ -36,6 +36,12 @@ public class GeneratingAlgo : MonoBehaviour
         Debug.Log(matrixString);
     }
 
+    private void PrintPath(List<Vector2> path){
+        for(int i = 0; i < path.Count; i++){
+            Debug.Log(path[i].y + " " + path[i].x + '\n');
+        }
+    }
+
     private bool ValidateCoords(Vector2 coords)
     {
         return coords.x >= 0 && coords.y >= 0 && coords.x < size && coords.y < size;
@@ -118,7 +124,7 @@ public class GeneratingAlgo : MonoBehaviour
         }
     }
 
-    private void ShowPath(Dictionary<Vector2, string> board, Vector2 start, Vector2 end, Dictionary<Vector2, Vector2> P)
+    private List<Vector2> ShowPath(Dictionary<Vector2, string> board, Vector2 start, Vector2 end, Dictionary<Vector2, Vector2> P)
     {
         List<Vector2> path = new List<Vector2>();
         path.Add(end);
@@ -130,6 +136,7 @@ public class GeneratingAlgo : MonoBehaviour
         }
         path.Reverse();
         SymbolsPrint(board, start, end, path);
+        return path;
     }
 
     private void SymbolsPrint(Dictionary<Vector2, string> board, Vector2 start, Vector2 end, List<Vector2> path)
@@ -148,10 +155,11 @@ public class GeneratingAlgo : MonoBehaviour
             visited.Add(next);
         }
     }
-    private (bool, Dictionary<Vector2, string>) BFS (Dictionary<Vector2, string> board, Vector2 start, Vector2 end){
+    private (bool, Dictionary<Vector2, string>, List<Vector2>) BFS (Dictionary<Vector2, string> board, Vector2 start, Vector2 end){
         HashSet<Vector2> visited = new HashSet<Vector2>();
         Dictionary<Vector2, Vector2> P = new Dictionary<Vector2, Vector2>();
         Queue<Vector2> q = new Queue<Vector2>();
+        List<Vector2> path = new List<Vector2>();
         bool found = false;
 
         q.Enqueue(start);
@@ -163,7 +171,7 @@ public class GeneratingAlgo : MonoBehaviour
             if (curr == end)
             {
                 found = true;
-                ShowPath(board, start, end, P);
+                path = ShowPath(board, start, end, P);
                 break;
             }
             else
@@ -175,17 +183,17 @@ public class GeneratingAlgo : MonoBehaviour
             }
         }
 
-        return (found, board);
+        return (found, board, path);
     }
 
-    private Dictionary<Vector2, string> ObstaclesAndPath(Dictionary<Vector2, string> board, Vector2 start, Vector2 end){
+    private (Dictionary<Vector2, string>, List<Vector2>) ObstaclesAndPath(Dictionary<Vector2, string> board, Vector2 start, Vector2 end){
         Dictionary<Vector2, string> copy = MakeDeepCopy(board);
         for(int i = 0; i < obstacles; i++){
             PlaceObstacles(copy);
         }
-        (bool found, Dictionary<Vector2, string> nboard) = BFS(copy, start, end);
+        (bool found, Dictionary<Vector2, string> nboard, List<Vector2> path) = BFS(copy, start, end);
         if(found){
-            return copy;
+            return (copy, path);
         }
         else{
             return ObstaclesAndPath(board, start, end);
@@ -197,6 +205,7 @@ public class GeneratingAlgo : MonoBehaviour
         size = ssize;
         obstacles = oobstacles;
         Dictionary<Vector2, string> board = new Dictionary<Vector2, string>();
+        List<Vector2> path;
 
         for (int i = 0; i < size; i++)
         {
@@ -212,8 +221,9 @@ public class GeneratingAlgo : MonoBehaviour
         }
 
         (Vector2 start, Vector2 end) = InitializeStart(board, size);
-        board = ObstaclesAndPath(board, start, end);
+        (board, path) = ObstaclesAndPath(board, start, end);
         PrintBoard(board);
+        PrintPath(path);
     }
     
 }
