@@ -18,7 +18,7 @@ public class PlayerGrid : MonoBehaviour
 
     public static PlayerGrid instance;
 
-    private Dictionary<Vector2, Tile> grid;
+    public Dictionary<Vector2, Tile> grid;
 
     void Awake(){
         instance = this;

@@ -1,18 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class RoundPipe : BasePipe
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void CalculateRotation()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        base.CalculateRotation();
+        Vector2 vec = new Vector2(direction1.x + direction2.x, direction1.y + direction2.y);
     }
 }

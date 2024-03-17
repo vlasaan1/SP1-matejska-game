@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: roundPipe
       objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: a1057a7abf8278742a7f77f2a11ccde2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: a1057a7abf8278742a7f77f2a11ccde2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -77,3 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10def609eba0d254e8e490cda3c580c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotation: 0
+  direction1: {x: 0, y: 0}
+  direction2: {x: 0, y: 0}
+  occupiedTile: {fileID: 0}

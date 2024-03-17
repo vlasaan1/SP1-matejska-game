@@ -62,7 +62,9 @@ public class GameMaster : MonoBehaviour
                 ChangeState(GameState.SpawnTiles);
                 break;
             case GameState.SpawnTiles:
-                UnitManager.instance.spawnUnits(board, path);
+                for(int i = 0; i < playersHolder.Count; i++){
+                    UnitManager.instance.spawnUnits(board, path, playersHolder[i]);
+                }
                 break;
             case GameState.PlayerTurn:
                 break;

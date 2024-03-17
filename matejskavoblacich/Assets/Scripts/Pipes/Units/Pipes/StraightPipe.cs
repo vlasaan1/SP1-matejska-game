@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class StraightPipe : BasePipe
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void CalculateRotation()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        base.CalculateRotation();
     }
 }

@@ -7,5 +7,8 @@ public class BaseUnit : MonoBehaviour
     public float rotation;
     public Vector2 direction1;
     public Vector2 direction2;
+    public Tile occupiedTile;
+
+    public virtual void CalculateRotation(){}
 
 }

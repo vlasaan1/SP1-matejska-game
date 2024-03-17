@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public BaseUnit occupiedUnit;
+    bool isOccupied = false;
+    public void setUnit(BaseUnit unit){
+        if(unit.occupiedTile != null) unit.occupiedTile.occupiedUnit = null;
+        unit.transform.position = transform.position;
+        unit.transform.localScale = transform.localScale;
+        unit.occupiedTile = this;
+        isOccupied = true;
     }
 }
