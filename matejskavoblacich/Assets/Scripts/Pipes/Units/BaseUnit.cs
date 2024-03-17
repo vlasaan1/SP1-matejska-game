@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class BaseUnit : MonoBehaviour
 {
-    public float rotation;
-    public Vector2 direction1;
-    public Vector2 direction2;
+    public Vector2 inDir;
+    public Vector2 outDir;
     public Tile occupiedTile;
 
     public virtual void CalculateRotation(){}

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEngine;
 
@@ -25,19 +26,20 @@ public class UnitManager : MonoBehaviour
 
     public void spawnUnits(Dictionary<Vector2, string> board, List<PathTile> path, PlayerGrid playerHolder){
         for(int i = 1; i < path.Count - 1; i++){
-            var unit = getUnit<BasePipe>(getPipeType(path[i].inDir, path[i].outDir));
-            var spawnedUnit = Instantiate(unit, playerHolder.transform);
-            var spawnUnitOnTile = playerHolder.grid[path[i].position];
-            spawnUnitOnTile.setUnit(spawnedUnit);
+            SpawnAndSetUnit(path[i], playerHolder, getPipeType(path[i].inDir, path[i].outDir));
         }
-        var start = getUnit<BaseCore>(Name.StartPipe);
-        var spawnedStart = Instantiate(start, playerHolder.transform);
-        var startTile = playerHolder.grid[path[0].position];
-        startTile.setUnit(spawnedStart);
-        var end = getUnit<BaseCore>(Name.StartPipe);
-        var spawnedEnd = Instantiate(end, playerHolder.transform);
-        var endTile = playerHolder.grid[path[path.Count-1].position];
-        endTile.setUnit(spawnedEnd);
+        SpawnAndSetUnit(path[0], playerHolder, Name.StartPipe);
+        SpawnAndSetUnit(path[path.Count-1], playerHolder, Name.EndPipe);
+    }
+
+    private void SpawnAndSetUnit(PathTile info, PlayerGrid playerHolder, Name name){
+        var unit = getUnit<BaseUnit>(name);
+        unit.inDir = info.inDir;
+        unit.outDir = info.outDir;
+        var spawnedUnit = Instantiate(unit, playerHolder.transform);
+        var spawnUnitOnTile = playerHolder.grid[info.position];
+        spawnedUnit.CalculateRotation();
+        spawnUnitOnTile.setUnit(spawnedUnit);
     }
 
     private Name getPipeType(Vector2 first, Vector2 second){
