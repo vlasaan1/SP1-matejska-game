@@ -15,24 +15,28 @@ public class menu : MonoBehaviour
     
     //ThrowingThings
 
-    public void IncreseThrowngThingObjectSize(){
+    public void IncreseThrowngThingThrowSize(){
         foreach(ThrowingThing throwingThing in throwingThings){
-            throwingThing.transform.localScale += new Vector3(0.2f,0.2f,0); 
+            throwingThing.movingColliderZoneSize += 0.1f;
+            throwingThing.updateMaxMovement();  
         }
     }
-    public void DecreaseThrowingThingObjectSize(){
+    public void DecreaseThrowingThingThrowSize(){
         foreach(ThrowingThing throwingThing in throwingThings){
-            throwingThing.transform.localScale -= new Vector3(0.2f,0.2f,0); 
+            throwingThing.movingColliderZoneSize -= 0.1f;
+            throwingThing.updateMaxMovement();  
         }
     }
     public void IncreseThrowngThingColliderSize(){
         foreach(ThrowingThing throwingThing in throwingThings){
-            throwingThing.GetComponent<CapsuleCollider2D>().size += new Vector2(0.2f,0.2f); 
+            throwingThing.GetComponent<CapsuleCollider2D>().size += new Vector2(0.2f,0.2f);
+            throwingThing.updateMaxMovement(); 
         }
     }
     public void DecreaseThrowingThingColliderSize(){
         foreach(ThrowingThing throwingThing in throwingThings){
             throwingThing.GetComponent<CapsuleCollider2D>().size -= new Vector2(0.2f,0.2f); 
+            throwingThing.updateMaxMovement();
         }
     }
     public void IncreseThrowingThingMaxTimeBetweenClicks(){

@@ -11,7 +11,7 @@ public class ThrowingThing : BaseHoldable
     [SerializeField] Rigidbody2D rb;
     [SerializeField] public float throwMultiplier = 3;
     [SerializeField, Tooltip("Size in % of collider used for moving, the rest only calls Throw function")] 
-    float movingColliderZoneSize = 0.5f;
+    public float movingColliderZoneSize = 0.5f;
 
 
     [HideInInspector] public bool isHeld = false;
@@ -28,8 +28,9 @@ public class ThrowingThing : BaseHoldable
     //TMP FOR TESTING
     [Header("Temporary for testing")]
     [SerializeField] TextMeshPro colliderSizeText;
-    [SerializeField] TextMeshPro objectSizeText;
+    [SerializeField] TextMeshPro throwSizeText;
     [SerializeField] GameObject colliderVisualization;
+    [SerializeField] GameObject throwVisualization;
     [SerializeField] TextMeshPro throwMultiplierText;
     [SerializeField] TextMeshPro maxTimeBetweenClicksText;
 
@@ -104,8 +105,14 @@ public class ThrowingThing : BaseHoldable
         
         maxTimeBetweenClicksText.text = maxTimeBetweenClicks.ToString();
         colliderSizeText.text = movementCollider.size.x.ToString();
-        colliderVisualization.transform.localScale = new Vector3(1,1,1)*movementCollider.size.x;
-        objectSizeText.text = transform.localScale.x.ToString();
+        throwVisualization.transform.localScale = new Vector3(1,1,1)*movementCollider.size.x;
+        throwSizeText.text = movingColliderZoneSize.ToString();
         throwMultiplierText.text = throwMultiplier.ToString();
+        colliderVisualization.transform.localScale = movementCollider.size.x * movingColliderZoneSize * new Vector3(1,1,1);
+    }
+
+    //used for test, delete later
+    public void updateMaxMovement(){
+        maxMovement = transform.localScale.x * movementCollider.size.x * movingColliderZoneSize * 0.5f;
     }
 }
