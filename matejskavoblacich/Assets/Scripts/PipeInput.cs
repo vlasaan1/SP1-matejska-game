@@ -5,6 +5,7 @@ using UnityEngine;
 public class PipeInput : BaseHoldable
 {
     [SerializeField] int numberOfTiles = 8;
+    [SerializeField] PlayerGrid grid;
 
     bool isHeld = false;
     GameObject heldObject;
@@ -27,8 +28,8 @@ public class PipeInput : BaseHoldable
         if(!isHeld){
             //Start holding
             heldObjectArrayPos = GetArrayPos(hitPosition);
-            //if(!CanHold(heldObjectArrayPos)) return;
-            //heldObject = GetObject(heldObjectArrayPos);
+            if(!grid.CanGetTileAtPosition(heldObjectArrayPos)) return;
+            heldObject = grid.GetTileAtPosition(heldObjectArrayPos).gameObject;
             originalPosition = heldObject.transform.position;
             isHeld = true;
         } else {
@@ -50,7 +51,7 @@ public class PipeInput : BaseHoldable
         isHeld = false;
         moveDirection = Vector3.zero;
         heldObject.transform.position = originalPosition;
-        //swap(heldObjectArrayPos,GetArrayPos(hitPosition));
+        grid.SwapTiles(heldObjectArrayPos,GetArrayPos(hitPosition));
     }
 
     public void Update(){

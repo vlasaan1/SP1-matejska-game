@@ -59,4 +59,15 @@ public class PlayerGrid : MonoBehaviour
         }
         return null;
     }
+
+    //Pripraveny jenom at to muzu volat z inputu
+    public bool CanGetTileAtPosition(Vector2 pos){
+        //Muzu tenhle tile presouvat??? 
+        return true;
+    }
+
+    public void SwapTiles(Vector2 first, Vector2 second){
+        //Drzel jsem first a pustil jsem ho na second, jestli se daji swapnout tak to udelej, jestli ne
+        // tak nemusis delat nic a vsechno by melo byt v poradku
+    }
 }
