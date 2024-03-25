@@ -8,6 +8,8 @@ public class BaseUnit : MonoBehaviour
     public Vector2 outDir;
     public Tile occupiedTile;
 
+    public bool isMoveable;
+
     public virtual void CalculateRotation(){}
 
 }

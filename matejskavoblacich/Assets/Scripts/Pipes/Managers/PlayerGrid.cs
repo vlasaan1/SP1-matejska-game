@@ -53,10 +53,22 @@ public class PlayerGrid : MonoBehaviour
 
 
 
-    public Tile GetTileAtPosition(Vector2 pos){
+    public Tile GetTileAtPosition(Vector2Int pos){
         if(grid.TryGetValue(pos, out var tile)){
             return tile;
         }
         return null;
+    }
+
+    public bool CanGetTileAtPosition(Vector2Int pos){
+        return grid[pos].isOccupied && grid[pos].occupiedUnit.isMoveable;
+    }
+
+    public void SwapTiles(Vector2Int first, Vector2Int second){
+        if(CanGetTileAtPosition(first) && CanGetTileAtPosition(second)){
+            grid[first].SwapUnits(grid[second]);
+            grid[first].occupiedUnit.transform.position = getPos(first.x, first.y);
+            grid[second].occupiedUnit.transform.position = getPos(second.x, second.y);
+        }
     }
 }
