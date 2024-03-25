@@ -5,6 +5,8 @@ using UnityEngine;
 using initi.prefabScripts;
 using System.Globalization;
 
+using UnityEngine.SceneManagement;
+
 
 public class HoleActivation : BaseHittable
 {
@@ -24,6 +26,7 @@ public class HoleActivation : BaseHittable
     Lives playerhealth;
     ScoreKeeper score;
     int changed = 0;
+    bool end = false;
 
 
     void Awake()
@@ -37,6 +40,10 @@ public class HoleActivation : BaseHittable
 
     void Update()
     {
+        if(!playerhealth.GetState()){
+            end = true;
+            //EndGameNextScene();
+        }
         if(onShowBeaver!=0){
             if(activeBeaver==null && changed==0){
                 onShowBeaver = 3;
@@ -113,6 +120,10 @@ public class HoleActivation : BaseHittable
             onShowBeaver = 0;
             Destroy(activeBeaver);
         }
+    }
+
+    void EndGameNextScene(){
+        SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex+1)%3);
     }
 
 }
