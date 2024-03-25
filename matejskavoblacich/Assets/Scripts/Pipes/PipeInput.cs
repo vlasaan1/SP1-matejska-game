@@ -39,6 +39,17 @@ public class PipeInput : BaseHoldable
             if(moveDirection.magnitude < minMovement){
                 moveDirection = Vector3.zero;
             }
+            //Swap instantly
+            Vector2Int currentArrayPos = GetArrayPos(hitPosition);
+            if(currentArrayPos != heldObjectArrayPos){
+                if(grid.CanGetTileAtPosition(currentArrayPos)){
+                    originalPosition = grid.GetTileAtPosition(currentArrayPos).occupiedUnit.gameObject.transform.position;
+                    Vector3 currentPosition = heldObject.transform.position;
+                    grid.SwapTiles(heldObjectArrayPos,currentArrayPos);
+                    heldObjectArrayPos = currentArrayPos;
+                    heldObject.transform.position = currentPosition;
+                }
+            }
         }
 
         deltaFrame = Time.frameCount - lastFrameCount;
@@ -52,7 +63,6 @@ public class PipeInput : BaseHoldable
         isHeld = false;
         moveDirection = Vector3.zero;
         heldObject.transform.position = originalPosition;
-        grid.SwapTiles(heldObjectArrayPos,GetArrayPos(hitPosition));
     }
 
     public void Update(){
