@@ -10,8 +10,8 @@ using UnityEngine.Rendering;
 
 public class PathTile{
     public Vector2 position;
-    public Vector2 inDir;
-    public Vector2 outDir;
+    public Vector2 inDir = new Vector2(0,0);
+    public Vector2 outDir = new Vector2(0,0);
 
     public PathTile(Vector2 pos){
         position = pos;
@@ -44,7 +44,7 @@ public class GeneratingAlgo : MonoBehaviour
             }
             matrixString += "\n";
         }
-        Debug.Log(matrixString);
+        // Debug.Log(matrixString);
     }
 
     private void PrintPath(List<PathTile> path){
@@ -75,7 +75,12 @@ public class GeneratingAlgo : MonoBehaviour
             col = random.Next(1, size - 1);
             start = new Vector2(row, col);
             PlaceString(board, start, "S");
-            end = new Vector2(size - 1, random.Next(1, size - 1));
+            while(true){
+                end = new Vector2(size - 1, random.Next(1, size - 1));
+                if(end.y != col){
+                    break;
+                }
+            }
             PlaceString(board, end, "E");
         }
         else if (side == "bottom")
@@ -85,6 +90,12 @@ public class GeneratingAlgo : MonoBehaviour
             start = new Vector2(row, col);
             PlaceString(board, start, "S");
             end = new Vector2(0, random.Next(1, size - 1));
+            while(true){
+                end = new Vector2(0, random.Next(1, size - 1));
+                if(end.y != col){
+                    break;
+                }
+            }
             PlaceString(board, end, "E");
         }
         else if (side == "left")
@@ -93,7 +104,12 @@ public class GeneratingAlgo : MonoBehaviour
             row = random.Next(1, size - 1);
             start = new Vector2(row, col);
             PlaceString(board, start, "S");
-            end = new Vector2(random.Next(1, size - 1), size - 1);
+            while(true){
+                end = new Vector2(random.Next(1, size - 1), size - 1);
+                if(end.x != row){
+                    break;
+                }
+            }
             PlaceString(board, end, "E");
         }
         else // "right"
@@ -102,7 +118,12 @@ public class GeneratingAlgo : MonoBehaviour
             row = random.Next(1, size - 1);
             start = new Vector2(row, col);
             PlaceString(board, start, "S");
-            end = new Vector2(random.Next(1, size - 1), 0);
+            while(true){
+                end = new Vector2(random.Next(1, size - 1), 0);
+                if(end.x != row){
+                    break;
+                }
+            }
             PlaceString(board, end, "E");
         }
 
@@ -249,7 +270,7 @@ public class GeneratingAlgo : MonoBehaviour
         (board, path) = ObstaclesAndPath(board, start, end);
         PrintBoard(board);
         ManagePath(path);
-        PrintPath(path);
+        // PrintPath(path);
         return (board, path);
     }
     

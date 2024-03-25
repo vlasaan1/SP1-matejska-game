@@ -24,6 +24,16 @@ public class PlayerGrid : MonoBehaviour
         instance = this;
     }
 
+    void Start(){
+        baseXPos += transform.position.x;
+        baseYPos += transform.position.y;
+    }
+
+    /// <summary>
+    /// Function that is called from GameMaster, generating and spawning tiles to its right places
+    /// </summary>
+    /// <param name="size"></param>
+    /// <param name="s"></param>
     public void GenerateGrid(int size, int s){
         tileSize = 1f/size;
         scaler = s;
@@ -47,12 +57,22 @@ public class PlayerGrid : MonoBehaviour
         return scaler*(baseYPos - (tileSize/2) - y*tileSize);
     }
 
+    /// <summary>
+    /// callculating position
+    /// </summary>
+    /// <param name="x">x param in grid</param>
+    /// <param name="y">y param in grid</param>
+    /// <returns>position of the tile.transform</returns>
     private Vector3 getPos (int x, int y){
         return new Vector3(getXPos(x), getYPos(y), 1);
     }
 
 
-
+    /// <summary>
+    /// returns tile at given Position
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <returns></returns>
     public Tile GetTileAtPosition(Vector2Int pos){
         if(grid.TryGetValue(pos, out var tile)){
             return tile;
@@ -60,10 +80,20 @@ public class PlayerGrid : MonoBehaviour
         return null;
     }
 
+    /// <summary>
+    /// Moving method
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <returns>true if tile is occupied and unit is moveable</returns>
     public bool CanGetTileAtPosition(Vector2Int pos){
         return grid[pos].isOccupied && grid[pos].occupiedUnit.isMoveable;
     }
 
+    /// <summary>
+    /// swaping units and given Tiles, tiles are given by Vector2 position board[y][x]
+    /// </summary>
+    /// <param name="first"></param>
+    /// <param name="second"></param>
     public void SwapTiles(Vector2Int first, Vector2Int second){
         if(CanGetTileAtPosition(first) && CanGetTileAtPosition(second)){
             grid[first].SwapUnits(grid[second]);
