@@ -48,17 +48,16 @@ public class PipeInput : BaseHoldable
 
     protected override void OnRelease(Vector2 hitPosition)
     {
+        if(!isHeld) return;
         isHeld = false;
         moveDirection = Vector3.zero;
-        if(heldObject){
-            heldObject.transform.position = originalPosition;
-            grid.SwapTiles(heldObjectArrayPos,GetArrayPos(hitPosition));
-        }
+        heldObject.transform.position = originalPosition;
+        grid.SwapTiles(heldObjectArrayPos,GetArrayPos(hitPosition));
     }
 
     public void Update(){
         if(isHeld && currentMovingFrame<=deltaFrame){
-            heldObject.transform.Translate(moveDirection/deltaFrame);
+            heldObject.transform.position = heldObject.transform.position + (moveDirection/deltaFrame);
             currentMovingFrame++;
         }
     }

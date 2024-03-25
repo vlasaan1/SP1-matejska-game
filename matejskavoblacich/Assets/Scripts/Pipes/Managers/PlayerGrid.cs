@@ -60,14 +60,11 @@ public class PlayerGrid : MonoBehaviour
         return null;
     }
 
-    //Pripraveny jenom at to muzu volat z inputu
     public bool CanGetTileAtPosition(Vector2Int pos){
         return grid[pos].isOccupied && grid[pos].occupiedUnit.isMoveable;
     }
 
     public void SwapTiles(Vector2Int first, Vector2Int second){
-        //Drzel jsem first a pustil jsem ho na second, jestli se daji swapnout tak to udelej, jestli ne
-        // tak nemusis delat nic a vsechno by melo byt v poradku
         if(CanGetTileAtPosition(first) && CanGetTileAtPosition(second)){
             grid[first].SwapUnits(grid[second]);
             grid[first].occupiedUnit.transform.position = getPos(first.x, first.y);
