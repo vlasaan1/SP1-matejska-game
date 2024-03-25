@@ -10,8 +10,8 @@ public class menu : MonoBehaviour
     [SerializeField] MovingThing[] movingThings;
     [SerializeField] Button[] buttons;
 
-    [SerializeField] TextMeshPro minTimeText;
-    [SerializeField] TextMeshPro maxTimeText;
+    //[SerializeField] TextMeshPro minTimeText;
+    //[SerializeField] TextMeshPro maxTimeText;
     
     //ThrowingThings
 
@@ -93,11 +93,5 @@ public class menu : MonoBehaviour
         foreach(Button b in buttons){
             b.minTimeBeforeHold -= 0.1f;
         }
-    }
-
-
-    public void Update(){
-        minTimeText.text = buttons[0].minTimeBeforeHold.ToString();
-        maxTimeText.text = buttons[0].maxTimeBetweenClicks.ToString();
     }
 }

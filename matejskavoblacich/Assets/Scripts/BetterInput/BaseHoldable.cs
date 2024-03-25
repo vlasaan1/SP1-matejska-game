@@ -23,7 +23,9 @@ public class BaseHoldable : BaseHittable
             firstHitTime = timeNow;
         }
         lastHitTime = timeNow;
-        StartCoroutine(TestRelease(hitPosition));
+        if(gameObject.activeInHierarchy){
+            StartCoroutine(TestRelease(hitPosition));
+        }
     }
 
     private IEnumerator TestRelease(Vector2 hitPosition)

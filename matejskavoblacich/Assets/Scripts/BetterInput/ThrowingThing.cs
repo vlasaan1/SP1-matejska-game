@@ -10,6 +10,7 @@ public class ThrowingThing : BaseHoldable
     CapsuleCollider2D movementCollider;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] public float throwMultiplier = 3;
+    
     [SerializeField, Tooltip("Size in % of collider used for moving, the rest only calls Throw function")] 
     public float movingColliderZoneSize = 0.5f;
 
@@ -71,6 +72,8 @@ public class ThrowingThing : BaseHoldable
         } else if(lastFrameCount != Time.frameCount) {
             //Is already holding -> move 
             moveDirection = (Vector3)hitPosition - transform.position;
+            //TODO - Clicked outside of minigame area - prevent ball from escaping
+            
             //Stop jittering due to input accuracy
             float moveMagnitude = moveDirection.magnitude;
             if(moveMagnitude < minMovement){
