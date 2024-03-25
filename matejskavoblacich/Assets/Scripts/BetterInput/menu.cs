@@ -15,6 +15,18 @@ public class menu : MonoBehaviour
     
     //ThrowingThings
 
+    public void IncreaseThrowinThingSize(){
+        foreach(ThrowingThing throwingThing in throwingThings){
+            throwingThing.transform.localScale += new Vector3(.1f,.1f,0);  
+        }
+    }
+
+    public void DecreaseThrowinThingSize(){
+        foreach(ThrowingThing throwingThing in throwingThings){
+            throwingThing.transform.localScale -= new Vector3(.1f,.1f,0);  
+        }
+    }
+
     public void IncreseThrowngThingThrowSize(){
         foreach(ThrowingThing throwingThing in throwingThings){
             throwingThing.movingColliderZoneSize += 0.1f;

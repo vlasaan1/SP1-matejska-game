@@ -28,6 +28,7 @@ public class ThrowingThing : BaseHoldable
 
     //TMP FOR TESTING
     [Header("Temporary for testing")]
+    [SerializeField] TextMeshPro objectSize;
     [SerializeField] TextMeshPro colliderSizeText;
     [SerializeField] TextMeshPro throwSizeText;
     [SerializeField] GameObject colliderVisualization;
@@ -111,6 +112,7 @@ public class ThrowingThing : BaseHoldable
         throwVisualization.transform.localScale = new Vector3(1,1,1)*movementCollider.size.x;
         throwSizeText.text = movingColliderZoneSize.ToString();
         throwMultiplierText.text = throwMultiplier.ToString();
+        objectSize.text = transform.localScale.x.ToString();
         colliderVisualization.transform.localScale = movementCollider.size.x * movingColliderZoneSize * new Vector3(1,1,1);
     }
 
