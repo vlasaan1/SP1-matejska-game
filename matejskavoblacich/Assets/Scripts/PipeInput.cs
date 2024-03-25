@@ -29,7 +29,7 @@ public class PipeInput : BaseHoldable
             //Start holding
             heldObjectArrayPos = GetArrayPos(hitPosition);
             if(!grid.CanGetTileAtPosition(heldObjectArrayPos)) return;
-            heldObject = grid.GetTileAtPosition(heldObjectArrayPos).gameObject;
+            heldObject = grid.GetTileAtPosition(heldObjectArrayPos).occupiedUnit.gameObject;
             originalPosition = heldObject.transform.position;
             isHeld = true;
         } else {
@@ -50,8 +50,10 @@ public class PipeInput : BaseHoldable
     {
         isHeld = false;
         moveDirection = Vector3.zero;
-        heldObject.transform.position = originalPosition;
-        grid.SwapTiles(heldObjectArrayPos,GetArrayPos(hitPosition));
+        if(heldObject){
+            heldObject.transform.position = originalPosition;
+            grid.SwapTiles(heldObjectArrayPos,GetArrayPos(hitPosition));
+        }
     }
 
     public void Update(){

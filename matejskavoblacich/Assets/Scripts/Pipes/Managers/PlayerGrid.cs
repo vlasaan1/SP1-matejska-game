@@ -53,7 +53,7 @@ public class PlayerGrid : MonoBehaviour
 
 
 
-    public Tile GetTileAtPosition(Vector2 pos){
+    public Tile GetTileAtPosition(Vector2Int pos){
         if(grid.TryGetValue(pos, out var tile)){
             return tile;
         }
@@ -61,13 +61,17 @@ public class PlayerGrid : MonoBehaviour
     }
 
     //Pripraveny jenom at to muzu volat z inputu
-    public bool CanGetTileAtPosition(Vector2 pos){
-        //Muzu tenhle tile presouvat??? 
-        return true;
+    public bool CanGetTileAtPosition(Vector2Int pos){
+        return grid[pos].isOccupied && grid[pos].occupiedUnit.isMoveable;
     }
 
-    public void SwapTiles(Vector2 first, Vector2 second){
+    public void SwapTiles(Vector2Int first, Vector2Int second){
         //Drzel jsem first a pustil jsem ho na second, jestli se daji swapnout tak to udelej, jestli ne
         // tak nemusis delat nic a vsechno by melo byt v poradku
+        if(CanGetTileAtPosition(first) && CanGetTileAtPosition(second)){
+            grid[first].SwapUnits(grid[second]);
+            grid[first].occupiedUnit.transform.position = getPos(first.x, first.y);
+            grid[second].occupiedUnit.transform.position = getPos(second.x, second.y);
+        }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     public BaseUnit occupiedUnit;
-    bool isOccupied = false;
+    public bool isOccupied = false;
     public void setUnit(BaseUnit unit){
         if(unit.occupiedTile != null) unit.occupiedTile.occupiedUnit = null;
         unit.transform.position = transform.position;
@@ -13,5 +13,11 @@ public class Tile : MonoBehaviour
         occupiedUnit = unit;
         unit.occupiedTile = this;
         isOccupied = true;
+    }
+
+    public void SwapUnits(Tile other){
+        BaseUnit temp = occupiedUnit;
+        occupiedUnit = other.occupiedUnit;
+        other.occupiedUnit = temp;
     }
 }
