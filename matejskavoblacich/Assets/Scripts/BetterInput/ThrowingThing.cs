@@ -6,14 +6,20 @@ using UnityEngine;
 public class ThrowingThing : BaseHoldable
 {
     [SerializeField] Collider2D baseCollider;
-    [SerializeField, Tooltip("Increase size of this if object is often left behind during moving")] Collider2D movementCollider;
+    [SerializeField, Tooltip("Increase size of this if object is often left behind during moving")] 
+    CapsuleCollider2D movementCollider;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] public float throwMultiplier = 3;
+    
+    [SerializeField, Tooltip("Size in % of collider used for moving, the rest only calls Throw function")] 
+    public float movingColliderZoneSize = 0.5f;
 
 
     [HideInInspector] public bool isHeld = false;
 
     Vector3 moveDirection;
+    float minMovement = 0.2f;
+    float maxMovement;
     int deltaFrame = 1;
     int lastFrameCount = 0;
     int currentMovingFrame = 0;
@@ -22,17 +28,17 @@ public class ThrowingThing : BaseHoldable
 
     //TMP FOR TESTING
     [Header("Temporary for testing")]
+    [SerializeField] TextMeshPro objectSize;
     [SerializeField] TextMeshPro colliderSizeText;
-    [SerializeField] TextMeshPro objectSizeText;
+    [SerializeField] TextMeshPro throwSizeText;
     [SerializeField] GameObject colliderVisualization;
+    [SerializeField] GameObject throwVisualization;
     [SerializeField] TextMeshPro throwMultiplierText;
     [SerializeField] TextMeshPro maxTimeBetweenClicksText;
-    CapsuleCollider2D capsuleColl;
 
     public void Awake(){
         movementCollider.enabled = false;
-        capsuleColl = GetComponent<CapsuleCollider2D>();
-        //maxTimeBetweenClicks = 0.2f;
+        maxMovement = transform.localScale.x * movementCollider.size.x * movingColliderZoneSize * 0.5f;
     }
     protected override void OnHold(Vector2 hitPosition)
     {
@@ -67,6 +73,15 @@ public class ThrowingThing : BaseHoldable
         } else if(lastFrameCount != Time.frameCount) {
             //Is already holding -> move 
             moveDirection = (Vector3)hitPosition - transform.position;
+            //TODO - Clicked outside of minigame area - prevent ball from escaping
+            
+            //Stop jittering due to input accuracy
+            float moveMagnitude = moveDirection.magnitude;
+            if(moveMagnitude < minMovement){
+                moveDirection = Vector3.zero;
+            } else if(moveMagnitude > maxMovement){
+                OnRelease(hitPosition);
+            }
             deltaFrame = Time.frameCount - lastFrameCount;
             lastFrameCount = Time.frameCount;
             currentMovingFrame = 0;
@@ -91,11 +106,18 @@ public class ThrowingThing : BaseHoldable
             transform.Translate(moveDirection/deltaFrame);
             currentMovingFrame++;
         }
-
+        
         maxTimeBetweenClicksText.text = maxTimeBetweenClicks.ToString();
-        colliderSizeText.text = capsuleColl.size.x.ToString();
-        colliderVisualization.transform.localScale = new Vector3(1,1,1)*capsuleColl.size.x;
-        objectSizeText.text = transform.localScale.x.ToString();
+        colliderSizeText.text = movementCollider.size.x.ToString();
+        throwVisualization.transform.localScale = new Vector3(1,1,1)*movementCollider.size.x;
+        throwSizeText.text = movingColliderZoneSize.ToString();
         throwMultiplierText.text = throwMultiplier.ToString();
+        objectSize.text = transform.localScale.x.ToString();
+        colliderVisualization.transform.localScale = movementCollider.size.x * movingColliderZoneSize * new Vector3(1,1,1);
+    }
+
+    //used for test, delete later
+    public void updateMaxMovement(){
+        maxMovement = transform.localScale.x * movementCollider.size.x * movingColliderZoneSize * 0.5f;
     }
 }
