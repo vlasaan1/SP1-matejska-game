@@ -11,6 +11,9 @@ public class BeaverSpawner : BaseHittable
     [SerializeField] bool isLooping;
     [SerializeField] List<HoleActivation> holes;
 
+   // [SerializeField] int health = 30;
+
+
     void Start(){
         StartCoroutine(SpawnRandomBeaver());
     }
