@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 568cd4447b761254f8c769b485c14e34
+guid: 7bd0536359571874abae154f84b16975
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -35,7 +35,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 30
+    spritePixelsToUnits: 35
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638462717747375448
+  platformSettingsDirtyTick: 638469679246497943
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -121,7 +121,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: straightPipe
+  - name: wall
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
@@ -130,9 +130,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 18
+      width: 32
       height: 32
-    spriteID: a86f30d7df4ab3642af598146327b2a2
+    spriteID: be7aa119107184b4fae5cc9041a2e8ad
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,20 +144,20 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 629699088
-    name: straightPipe
+    guid: -2064485746
+    name: wall
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: straightPipe
+    - name: wall
       frameIndex: 0
       cellRect:
-        x: 7
+        x: 0
         y: 0
-        width: 18
+        width: 32
         height: 32
-      spriteId: a86f30d7df4ab3642af598146327b2a2
+      spriteId: be7aa119107184b4fae5cc9041a2e8ad
     linkedCells: []
     parentIndex: -1
   platformSettings:
