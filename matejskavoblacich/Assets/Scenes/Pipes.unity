@@ -505,7 +505,7 @@ MonoBehaviour:
   gameState: 0
   onePlayerGrid: {fileID: 4718234072105761404, guid: e227f99872d916d478fcd8424b02f28b, type: 3}
   numberOfBombs: 3
-  fieldSize: 6
+  fieldSize: 7
   scaler: 5
   numberOfPlayers: 1
 --- !u!212 &1902021514

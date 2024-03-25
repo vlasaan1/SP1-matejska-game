@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a1057a7abf8278742a7f77f2a11ccde2
+guid: 7bd0536359571874abae154f84b16975
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -35,7 +35,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 25
+    spritePixelsToUnits: 35
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -74,9 +74,9 @@ ScriptedImporter:
     fileImportMode: 1
     importHiddenLayers: 0
     layerImportMode: 1
-    defaultPivotSpace: 1
+    defaultPivotSpace: 0
     defaultPivotAlignment: 0
-    customPivotPosition: {x: 5, y: 0.5}
+    customPivotPosition: {x: 0.5, y: 0.5}
     mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
@@ -87,9 +87,9 @@ ScriptedImporter:
     fileImportMode: 1
     importHiddenLayers: 0
     layerImportMode: 1
-    defaultPivotSpace: 1
+    defaultPivotSpace: 0
     defaultPivotAlignment: 0
-    customPivotPosition: {x: 5, y: 0.5}
+    customPivotPosition: {x: 0.5, y: 0.5}
     mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638462705864578630
+  platformSettingsDirtyTick: 638469679246497943
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -121,18 +121,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: roundPipe
+  - name: wall
     originalName: 
-    pivot: {x: 5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 25
-      height: 24
-    spriteID: 5909a4d0f4065e248aa8d7a64e421057
+      width: 32
+      height: 32
+    spriteID: be7aa119107184b4fae5cc9041a2e8ad
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,20 +144,20 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1202611322
-    name: roundPipe
+    guid: -2064485746
+    name: wall
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: roundPipe
+    - name: wall
       frameIndex: 0
       cellRect:
-        x: 7
+        x: 0
         y: 0
-        width: 25
-        height: 24
-      spriteId: 5909a4d0f4065e248aa8d7a64e421057
+        width: 32
+        height: 32
+      spriteId: be7aa119107184b4fae5cc9041a2e8ad
     linkedCells: []
     parentIndex: -1
   platformSettings:

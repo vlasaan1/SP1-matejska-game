@@ -16,6 +16,8 @@ public class PlayerGrid : MonoBehaviour
 
     private int scaler = 0;
 
+    private int fieldSize = 0;
+
     public static PlayerGrid instance;
 
     public Dictionary<Vector2, Tile> grid;
@@ -35,6 +37,7 @@ public class PlayerGrid : MonoBehaviour
     /// <param name="size"></param>
     /// <param name="s"></param>
     public void GenerateGrid(int size, int s){
+        fieldSize = size;
         tileSize = 1f/size;
         scaler = s;
 
@@ -70,6 +73,7 @@ public class PlayerGrid : MonoBehaviour
 
     /// <summary>
     /// returns tile at given Position
+    /// Strictly bound to PipeInput
     /// </summary>
     /// <param name="pos"></param>
     /// <returns></returns>
@@ -82,6 +86,7 @@ public class PlayerGrid : MonoBehaviour
 
     /// <summary>
     /// Moving method
+    /// Strictly bound to PipeInput
     /// </summary>
     /// <param name="pos"></param>
     /// <returns>true if tile is occupied and unit is moveable</returns>
@@ -91,6 +96,7 @@ public class PlayerGrid : MonoBehaviour
 
     /// <summary>
     /// swaping units and given Tiles, tiles are given by Vector2 position board[y][x]
+    /// Strictly bound to PipeInput
     /// </summary>
     /// <param name="first"></param>
     /// <param name="second"></param>
@@ -99,6 +105,27 @@ public class PlayerGrid : MonoBehaviour
             grid[first].SwapUnits(grid[second]);
             grid[first].occupiedUnit.transform.position = getPos(first.x, first.y);
             grid[second].occupiedUnit.transform.position = getPos(second.x, second.y);
+        }
+    }
+
+    /// <summary>
+    /// randomly shuffle grid
+    /// </summary>
+    public void Shuffle(){
+        System.Random rnd = new System.Random();
+        for(int y = 1; y < fieldSize - 1; y++){
+            for(int x = 1; x < fieldSize - 1; x++){
+                Vector2Int ovec = new Vector2Int(x, y);
+                int i = 0;
+                while(i < 5){
+                    Vector2Int nvec = new Vector2Int(rnd.Next(1, fieldSize - 1), rnd.Next(1, fieldSize - 1));
+                    if(CanGetTileAtPosition(ovec) && CanGetTileAtPosition(nvec)){
+                        SwapTiles(ovec, nvec);
+                        break;
+                    }
+                    i++;
+                }
+            }
         }
     }
 }

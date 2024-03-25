@@ -55,6 +55,7 @@ public class UnitManager : MonoBehaviour
         fieldSize = fs;
         SpawnMainPath(path, playerHolder);
         SpawnRestUnits(board, playerHolder);
+        playerHolder.Shuffle();
     }
 
     /// <summary>

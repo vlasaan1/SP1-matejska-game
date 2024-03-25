@@ -115,7 +115,7 @@ MonoBehaviour:
   shareColliderWithHierarchy: 0
   minTimeBeforeHold: 0.3
   maxTimeBetweenClicks: 0.5
-  numberOfTiles: 6
+  numberOfTiles: 7
   grid: {fileID: 4718234072105761404}
 --- !u!61 &7331341981035644245
 BoxCollider2D:
