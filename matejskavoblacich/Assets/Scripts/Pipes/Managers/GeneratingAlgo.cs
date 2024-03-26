@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.IO;
 using System.Net.WebSockets;
@@ -19,7 +20,11 @@ public class PathTile{
 
 public class GeneratingAlgo : MonoBehaviour
 {
-    [SerializeField, Range(1, 3), Tooltip("including walls")] int bombPaddingFromEdge = 1;
+    [SerializeField, Range(1, 3), Tooltip("including walls")] int bombPaddingFromEdgeXAxis = 1;
+
+    [SerializeField, Range(1, 3), Tooltip("including walls")] int bombPaddingFromEdgeYAxis = 1;
+
+    [SerializeField, Range(1,3)] int distaceBetweenEndingPipes = 1;
 
     public static GeneratingAlgo instance;
 
@@ -77,7 +82,7 @@ public class GeneratingAlgo : MonoBehaviour
             PlaceString(board, start, "S");
             while(true){
                 end = new Vector2(size - 1, random.Next(1, size - 1));
-                if(Math.Abs(end.y - col) > 1){
+                if(Math.Abs(end.y - col) > distaceBetweenEndingPipes){
                     break;
                 }
             }
@@ -92,7 +97,7 @@ public class GeneratingAlgo : MonoBehaviour
             end = new Vector2(0, random.Next(1, size - 1));
             while(true){
                 end = new Vector2(0, random.Next(1, size - 1));
-                if(Math.Abs(end.y - col) > 1){
+                if(Math.Abs(end.y - col) > distaceBetweenEndingPipes){
                     break;
                 }
             }
@@ -106,7 +111,7 @@ public class GeneratingAlgo : MonoBehaviour
             PlaceString(board, start, "S");
             while(true){
                 end = new Vector2(random.Next(1, size - 1), size - 1);
-                if(Math.Abs(end.x - row) > 1){
+                if(Math.Abs(end.x - row) > distaceBetweenEndingPipes){
                     break;
                 }
             }
@@ -120,7 +125,7 @@ public class GeneratingAlgo : MonoBehaviour
             PlaceString(board, start, "S");
             while(true){
                 end = new Vector2(random.Next(1, size - 1), 0);
-                if(Math.Abs(end.x - row) > 1){
+                if(Math.Abs(end.x - row) > distaceBetweenEndingPipes){
                     break;
                 }
             }
@@ -142,7 +147,7 @@ public class GeneratingAlgo : MonoBehaviour
     }
 
     private void PlaceObstacles(Dictionary<Vector2, string> board){
-        int rx = random.Next(2, size - 2);
+        int rx = random.Next(bombPaddingFromEdgeXAxis, size - bombPaddingFromEdgeXAxis);
         int ry = random.Next(2, size - 2);
         Vector2 pos = new Vector2(rx, ry);
 
