@@ -19,6 +19,7 @@ public class PathTile{
 
 public class GeneratingAlgo : MonoBehaviour
 {
+    [SerializeField, Range(1, 3), Tooltip("including walls")] int bombPaddingFromEdge = 1;
 
     public static GeneratingAlgo instance;
 
@@ -76,7 +77,7 @@ public class GeneratingAlgo : MonoBehaviour
             PlaceString(board, start, "S");
             while(true){
                 end = new Vector2(size - 1, random.Next(1, size - 1));
-                if(end.y != col){
+                if(Math.Abs(end.y - col) > 1){
                     break;
                 }
             }
@@ -91,7 +92,7 @@ public class GeneratingAlgo : MonoBehaviour
             end = new Vector2(0, random.Next(1, size - 1));
             while(true){
                 end = new Vector2(0, random.Next(1, size - 1));
-                if(end.y != col){
+                if(Math.Abs(end.y - col) > 1){
                     break;
                 }
             }
@@ -105,7 +106,7 @@ public class GeneratingAlgo : MonoBehaviour
             PlaceString(board, start, "S");
             while(true){
                 end = new Vector2(random.Next(1, size - 1), size - 1);
-                if(end.x != row){
+                if(Math.Abs(end.x - row) > 1){
                     break;
                 }
             }
@@ -119,7 +120,7 @@ public class GeneratingAlgo : MonoBehaviour
             PlaceString(board, start, "S");
             while(true){
                 end = new Vector2(random.Next(1, size - 1), 0);
-                if(end.x != row){
+                if(Math.Abs(end.x - row) > 1){
                     break;
                 }
             }
@@ -141,8 +142,8 @@ public class GeneratingAlgo : MonoBehaviour
     }
 
     private void PlaceObstacles(Dictionary<Vector2, string> board){
-        int rx = random.Next(1, size - 1);
-        int ry = random.Next(1, size - 1);
+        int rx = random.Next(2, size - 2);
+        int ry = random.Next(2, size - 2);
         Vector2 pos = new Vector2(rx, ry);
 
         if (board[pos] == "V")
