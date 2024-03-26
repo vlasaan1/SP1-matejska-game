@@ -5,7 +5,7 @@ public class BaseHoldable : BaseHittable
 {
     //Public for testing - edit later
     [SerializeField] public float minTimeBeforeHold = 0.3f;
-    [SerializeField] public float maxTimeBetweenClicks = 0.5f;
+    [SerializeField] public float maxTimeBetweenClicks = 0.4f;
     float firstHitTime = 0;
     float lastHitTime = 0;
 

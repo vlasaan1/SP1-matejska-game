@@ -7,7 +7,7 @@ public class MovingThing : BaseHoldable
     [HideInInspector] public bool isHeld = false;
 
     Vector3 moveDirection;
-    float minMovement = 0.2f;
+    float minMovement = 0.1f;
     int deltaFrame = 1;
     int lastFrameCount = 0;
     int currentMovingFrame = 0;
