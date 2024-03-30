@@ -45,9 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initiInput: {fileID: 6238474914347051826, guid: ae87e526d9e2f374abbd289605557fc6, type: 3}
-  minigamePrefabs:
-  - {fileID: 1722949611427784547, guid: c1eef56637bb4b04ea87834753938a16, type: 3}
-  emptyGamePrefab: {fileID: 0}
-  player1Pos: {x: -5.5, y: 0, z: 0}
-  player2Pos: {x: 0, y: 0, z: 0}
-  player3Pos: {x: 5.5, y: 0, z: 0}
+  minigamesPrefabs:
+  - {fileID: 3454440548605698619, guid: 0dfd4548a8839434b9149070a568be4f, type: 3}
+  playerPositions:
+  - {x: -5.38, y: 0.5, z: 0}
+  - {x: 0.12, y: 0.5, z: 0}
+  - {x: 5.62, y: 0.5, z: 0}
+  waitTimeBeforeMinigameStart: 3
+  maxMinigamePlayTimeSeconds: 5

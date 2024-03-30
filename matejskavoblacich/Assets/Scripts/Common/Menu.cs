@@ -9,7 +9,7 @@ public class Menu : MonoBehaviour
     [SerializeField] GameObject chooseNumberOfPlayers;
 
     void Start(){
-        gameMaster = GameObject.FindObjectOfType<MainGameMaster>();
+        gameMaster = FindObjectOfType<MainGameMaster>();
         mainMenu.SetActive(true);
         chooseNumberOfPlayers.SetActive(false);
     }
@@ -21,7 +21,7 @@ public class Menu : MonoBehaviour
 
     public void SetNumberOfPlayers(int numberOfPlayers){
         gameMaster.SetNumberOfPlayers(numberOfPlayers);
-        gameMaster.StartGame();
+        gameMaster.LoadGame();
     }
 
     public void QuitGame(){
