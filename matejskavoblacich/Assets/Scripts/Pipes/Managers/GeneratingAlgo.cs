@@ -77,7 +77,6 @@ public class GeneratingAlgo : MonoBehaviour
         int max_iter_ending_pipes = 1000000;
 
         Vector2 start, end;
-        int row, col;
         
         if (side == "top")
         {

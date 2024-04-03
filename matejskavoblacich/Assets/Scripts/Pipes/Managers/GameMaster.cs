@@ -17,7 +17,7 @@ public class GameMaster : MonoBehaviour
 
     [SerializeField] int scaler = 5;
 
-    private List<PlayerGrid> playersHolder = new List<PlayerGrid>();
+    private PlayerGrid playersHolder;
 
     private Dictionary<Vector2, string> board;
 
@@ -32,11 +32,11 @@ public class GameMaster : MonoBehaviour
         ChangeState(GameState.InstantiatePlayers);
     }
 
-    void InstantiatePlayers(){
+    void InstantiatePlayer(){
         var spawnedOnePlayerField = Instantiate(onePlayerGrid, new Vector3(0, 0, 0), Quaternion.identity, transform);
         spawnedOnePlayerField.name = "Player";
         spawnedOnePlayerField.transform.localScale = new Vector3(scaler / transform.localScale.x, scaler/ transform.localScale.y, 1);
-        playersHolder.Add(spawnedOnePlayerField);
+        playersHolder = spawnedOnePlayerField;
         ChangeState(GameState.GenerateGrid);
     }
 
@@ -44,13 +44,14 @@ public class GameMaster : MonoBehaviour
         gameState = newState;
         switch(newState){
             case GameState.InstantiatePlayers:
-                instance.InstantiatePlayers();
+                instance.InstantiatePlayer();
                 break;
             case GameState.GenerateGrid:
                 PlayerGrid[] instances = FindObjectsOfType<PlayerGrid>();
                 foreach(var inst in instances){
                     inst.GenerateGrid(fieldSize, scaler);
                 }
+                PlayerGrid.instance.GenerateGrid(fieldSize, scaler);
                 ChangeState(GameState.Algorithm);
                 break;
             case GameState.Algorithm:
@@ -58,11 +59,11 @@ public class GameMaster : MonoBehaviour
                 ChangeState(GameState.SpawnTiles);
                 break;
             case GameState.SpawnTiles:
-                for(int i = 0; i < playersHolder.Count; i++){
-                    UnitManager.instance.spawnUnits(board, path, playersHolder[i], fieldSize);
-                }
+                UnitManager.instance.spawnUnits(board, path, playersHolder, fieldSize);
+                ChangeState(GameState.Gameplay);
                 break;
             case GameState.Gameplay:
+                FillingLogic.instance.startFilling();
                 break;
             case GameState.FailEnd:
                 break;
