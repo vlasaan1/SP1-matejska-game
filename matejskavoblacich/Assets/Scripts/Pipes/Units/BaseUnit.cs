@@ -20,4 +20,10 @@ public class BaseUnit : MonoBehaviour
         spriteRenderer.color = color;
     }
 
+    public void swapDirections(){
+        Vector2 temp = inDir;
+        inDir = outDir;
+        outDir = temp;
+    }
+
 }

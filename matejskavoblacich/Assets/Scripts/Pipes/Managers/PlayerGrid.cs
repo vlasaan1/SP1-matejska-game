@@ -48,6 +48,7 @@ public class PlayerGrid : MonoBehaviour
                 spawnedTile.transform.localScale = new Vector3(tileSize, tileSize, 1);
                 spawnedTile.name = "Tile_" + x + "_" + y;
                 grid[new Vector2(x,y)] = spawnedTile;
+                spawnedTile.possitionOnGrid = new Vector2(x,y);
             }
         }
     }

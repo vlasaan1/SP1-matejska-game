@@ -6,6 +6,7 @@ public class FillingLogic : MonoBehaviour
 {
     [SerializeField] float waitingTime = 3f;
     public static FillingLogic instance;
+    private bool finished = false;
 
     void Awake(){
         instance = this;
