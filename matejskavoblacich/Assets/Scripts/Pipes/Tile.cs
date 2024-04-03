@@ -6,6 +6,7 @@ public class Tile : MonoBehaviour
 {
     public BaseUnit occupiedUnit;
     public bool isOccupied = false;
+    public Vector2 possitionOnGrid;
     public void setUnit(BaseUnit unit){
         if(unit.occupiedTile != null) unit.occupiedTile.occupiedUnit = null;
         unit.transform.position = transform.position;
@@ -20,4 +21,5 @@ public class Tile : MonoBehaviour
         occupiedUnit = other.occupiedUnit;
         other.occupiedUnit = temp;
     }
+
 }
