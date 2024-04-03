@@ -23,6 +23,9 @@ public class GameMaster : MonoBehaviour
 
     private List<PathTile> path;
 
+    private BaseUnit start;
+    private BaseUnit end;
+
     void Awake(){
         instance = this;
     }
@@ -47,10 +50,6 @@ public class GameMaster : MonoBehaviour
                 instance.InstantiatePlayer();
                 break;
             case GameState.GenerateGrid:
-                PlayerGrid[] instances = FindObjectsOfType<PlayerGrid>();
-                foreach(var inst in instances){
-                    inst.GenerateGrid(fieldSize, scaler);
-                }
                 PlayerGrid.instance.GenerateGrid(fieldSize, scaler);
                 ChangeState(GameState.Algorithm);
                 break;
@@ -59,11 +58,11 @@ public class GameMaster : MonoBehaviour
                 ChangeState(GameState.SpawnTiles);
                 break;
             case GameState.SpawnTiles:
-                UnitManager.instance.spawnUnits(board, path, playersHolder, fieldSize);
+                (start, end) = UnitManager.instance.spawnUnits(board, path, playersHolder, fieldSize);
                 ChangeState(GameState.Gameplay);
                 break;
             case GameState.Gameplay:
-                FillingLogic.instance.startFilling();
+                FillingLogic.instance.startFilling(start, end);
                 break;
             case GameState.FailEnd:
                 break;

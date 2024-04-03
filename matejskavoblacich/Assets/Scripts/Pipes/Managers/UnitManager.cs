@@ -14,6 +14,9 @@ public class UnitManager : MonoBehaviour
 
     private List<Vector2> directions;
 
+    private BaseUnit start;
+    private BaseUnit end;
+
     void Awake(){
         instance = this;
 
@@ -50,12 +53,13 @@ public class UnitManager : MonoBehaviour
     /// <param name="path"></param>
     /// <param name="playerHolder"></param>
     /// <param name="fs"></param>
-    public void spawnUnits(Dictionary<Vector2, string> board, List<PathTile> path, PlayerGrid playerHolder, int fs)
+    public (BaseUnit, BaseUnit) spawnUnits(Dictionary<Vector2, string> board, List<PathTile> path, PlayerGrid playerHolder, int fs)
     {
         fieldSize = fs;
         SpawnMainPath(path, playerHolder);
         SpawnRestUnits(board, playerHolder);
         playerHolder.Shuffle();
+        return (start, end);
     }
 
     /// <summary>
@@ -113,8 +117,8 @@ public class UnitManager : MonoBehaviour
         for(int i = 1; i < path.Count - 1; i++){
             SpawnAndSetUnit(path[i], playerHolder, getPipeType(path[i].inDir, path[i].outDir));
         }
-        SpawnAndSetUnit(path[0], playerHolder, Name.StartPipe);
-        SpawnAndSetUnit(path[path.Count-1], playerHolder, Name.EndPipe);
+        start = SpawnAndSetUnit(path[0], playerHolder, Name.StartPipe);
+        end = SpawnAndSetUnit(path[path.Count-1], playerHolder, Name.EndPipe);
     }
 
     /// <summary>
@@ -123,7 +127,7 @@ public class UnitManager : MonoBehaviour
     /// <param name="info">Path tile to be spawned</param>
     /// <param name="playerHolder">current Player</param>
     /// <param name="name">name of the spawning Unit</param>
-    private void SpawnAndSetUnit(PathTile info, PlayerGrid playerHolder, Name name){
+    private BaseUnit SpawnAndSetUnit(PathTile info, PlayerGrid playerHolder, Name name){
         var unit = getUnit<BaseUnit>(name);
         unit.inDir = info.inDir;
         unit.outDir = info.outDir;
@@ -131,6 +135,7 @@ public class UnitManager : MonoBehaviour
         var spawnUnitOnTile = playerHolder.grid[info.position];
         spawnedUnit.CalculateRotation();
         spawnUnitOnTile.setUnit(spawnedUnit);
+        return spawnedUnit;
     }
 
     /// <summary>
