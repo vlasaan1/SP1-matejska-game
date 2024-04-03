@@ -17,8 +17,6 @@ public class GameMaster : MonoBehaviour
 
     [SerializeField] int scaler = 5;
 
-    [SerializeField] int numberOfPlayers = 4;
-
     private List<PlayerGrid> playersHolder = new List<PlayerGrid>();
 
     private Dictionary<Vector2, string> board;
@@ -35,12 +33,10 @@ public class GameMaster : MonoBehaviour
     }
 
     void InstantiatePlayers(){
-        for(int i = 0; i < numberOfPlayers; i++){
-            var spawnedOnePlayerField = Instantiate(onePlayerGrid, new Vector3(i, 0, 0), Quaternion.identity, transform);
-            spawnedOnePlayerField.name = "Player" + i;
-            spawnedOnePlayerField.transform.localScale = new Vector3(scaler / transform.localScale.x, scaler/ transform.localScale.y, 1);
-            playersHolder.Add(spawnedOnePlayerField);
-        }
+        var spawnedOnePlayerField = Instantiate(onePlayerGrid, new Vector3(0, 0, 0), Quaternion.identity, transform);
+        spawnedOnePlayerField.name = "Player";
+        spawnedOnePlayerField.transform.localScale = new Vector3(scaler / transform.localScale.x, scaler/ transform.localScale.y, 1);
+        playersHolder.Add(spawnedOnePlayerField);
         ChangeState(GameState.GenerateGrid);
     }
 
@@ -66,9 +62,7 @@ public class GameMaster : MonoBehaviour
                     UnitManager.instance.spawnUnits(board, path, playersHolder[i], fieldSize);
                 }
                 break;
-            case GameState.PlayerTurn:
-                break;
-            case GameState.CheckState:
+            case GameState.Gameplay:
                 break;
             case GameState.FailEnd:
                 break;
@@ -83,10 +77,9 @@ public class GameMaster : MonoBehaviour
         GenerateGrid = 1,
         Algorithm = 2,
         SpawnTiles = 3,
-        PlayerTurn = 4,
-        CheckState = 5,
-        FailEnd = 6,
-        GoodEnd = 7
+        Gameplay = 4,
+        FailEnd = 5,
+        GoodEnd = 6
     }
 
 }
