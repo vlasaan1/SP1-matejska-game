@@ -17,9 +17,12 @@ public class Tile : MonoBehaviour
     }
 
     public void SwapUnits(Tile other){
-        BaseUnit temp = occupiedUnit;
+        BaseUnit thisUnit = occupiedUnit;
+        BaseUnit otherUnit = other.occupiedUnit;
         occupiedUnit = other.occupiedUnit;
-        other.occupiedUnit = temp;
+        other.occupiedUnit = thisUnit;
+        thisUnit.occupiedTile = other;
+        otherUnit.occupiedTile = this;
     }
 
 }

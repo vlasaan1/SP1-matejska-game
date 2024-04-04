@@ -22,7 +22,7 @@ public class UkazkovyScript : BaseHittable
    //Override metody Hit - zavolá se pokud se na tento objekt klikne na stěně
    public override void Hit(Vector2 hitPosition){
         //hitPosition jsou globální souřadnice doteku
-        Debug.Log(hitPosition);
+     //    Debug.Log(hitPosition);
    }
 
 

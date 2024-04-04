@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class FillingLogic : MonoBehaviour
 {
-    [SerializeField] float waitingTime = 5f;
+    [SerializeField] float waitingTime = 2f;
     public static FillingLogic instance;
     [SerializeField] PlayerGrid playerGrid;
 
@@ -19,17 +19,25 @@ public class FillingLogic : MonoBehaviour
         BaseUnit previous = start;
         bool finisedOut = false;
         StartCoroutine(fillingHelper(previous, current, finisedOut));
+        if(finisedOut){
+            Debug.Log("Good finish");
+        }
+        else{
+            Debug.Log("Bad finish");
+        }
     }
 
     private IEnumerator fillingHelper(BaseUnit previous, BaseUnit current, bool finisedOut){
         while(true){
-            current.IsMoveable = false;
-            if(endCheck(current))
+            if(endCheck(current)){
                 finisedOut = true;
+                yield break;
+            }
             if(!controlInput(previous, current)){
                 finisedOut =  false;
+                yield break;
             }
-
+            current.IsMoveable = false;
             current.changeColor(Color.green);
             yield return new WaitForSeconds(waitingTime);
             current.changeColor(Color.red);
