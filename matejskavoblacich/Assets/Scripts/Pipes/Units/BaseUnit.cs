@@ -8,7 +8,10 @@ public class BaseUnit : MonoBehaviour
     public Vector2 outDir;
     public Tile occupiedTile;
     private SpriteRenderer spriteRenderer;
-    public bool isMoveable;
+    private bool isMoveable;
+    public bool IsMoveable {get; set;}
+    private bool reversedFilling = false;
+    public bool ReversedFilling { get; }
 
     public virtual void CalculateRotation(){}
 
@@ -24,6 +27,7 @@ public class BaseUnit : MonoBehaviour
         Vector2 temp = inDir;
         inDir = outDir;
         outDir = temp;
+        reversedFilling = true;
     }
 
 }

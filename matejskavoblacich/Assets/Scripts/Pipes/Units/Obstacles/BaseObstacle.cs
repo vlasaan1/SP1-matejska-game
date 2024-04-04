@@ -5,6 +5,6 @@ using UnityEngine;
 public class BaseObstacle : BaseUnit
 {
     public BaseObstacle(){
-        isMoveable = false;
+        IsMoveable = false;
     }
 }

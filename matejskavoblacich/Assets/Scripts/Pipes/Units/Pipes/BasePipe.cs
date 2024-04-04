@@ -5,6 +5,6 @@ using UnityEngine;
 public class BasePipe : BaseUnit
 {
     public BasePipe(){
-        isMoveable = true;
+        IsMoveable = true;
     }
 }

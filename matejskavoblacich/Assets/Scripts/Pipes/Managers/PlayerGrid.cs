@@ -92,7 +92,7 @@ public class PlayerGrid : MonoBehaviour
     /// <param name="pos"></param>
     /// <returns>true if tile is occupied and unit is moveable</returns>
     public bool CanGetTileAtPosition(Vector2Int pos){
-        return grid[pos].isOccupied && grid[pos].occupiedUnit.isMoveable;
+        return grid[pos].isOccupied && grid[pos].occupiedUnit.IsMoveable;
     }
 
     /// <summary>
