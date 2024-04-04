@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14fe08dabdc71bf4089e78e8cbb024c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitingTime: 3
+  waitingTime: 5
   playerGrid: {fileID: 4718234072105761404}
 --- !u!61 &7331341981035644245
 BoxCollider2D:

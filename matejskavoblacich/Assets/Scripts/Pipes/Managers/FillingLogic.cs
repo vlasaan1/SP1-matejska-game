@@ -9,6 +9,9 @@ public class FillingLogic : MonoBehaviour
     [SerializeField] float waitingTime = 2f;
     public static FillingLogic instance;
     [SerializeField] PlayerGrid playerGrid;
+    private bool finishState = false;
+    private bool finishedCoroutine = false;
+
 
     void Awake(){
         instance = this;
@@ -17,25 +20,18 @@ public class FillingLogic : MonoBehaviour
     public void startFilling(BaseUnit start, BaseUnit end){
         BaseUnit current = start;
         BaseUnit previous = start;
-        bool finisedOut = false;
-        StartCoroutine(fillingHelper(previous, current, finisedOut));
-        if(finisedOut){
-            Debug.Log("Good finish");
-        }
-        else{
-            Debug.Log("Bad finish");
-        }
+        StartCoroutine(fillingHelper(previous, current));
     }
 
-    private IEnumerator fillingHelper(BaseUnit previous, BaseUnit current, bool finisedOut){
+    private IEnumerator fillingHelper(BaseUnit previous, BaseUnit current){
         while(true){
             if(endCheck(current)){
-                finisedOut = true;
-                yield break;
+                finishState = true;
+                break;
             }
             if(!controlInput(previous, current)){
-                finisedOut =  false;
-                yield break;
+                finishState =  false;
+                break;
             }
             current.IsMoveable = false;
             current.changeColor(Color.green);
@@ -45,6 +41,15 @@ public class FillingLogic : MonoBehaviour
             previous = current;
             current = sendSignalToNextPipe(current);
         }
+
+        if(finishState){
+            Debug.Log("Good finish");
+        }
+        else{
+            Debug.Log("Bad finish");
+        }
+        finishedCoroutine = true;
+        yield break;
     }
 
     private bool controlInput(BaseUnit previous, BaseUnit current){
