@@ -17,29 +17,23 @@ public class FillingLogic : MonoBehaviour
     public void startFilling(BaseUnit start, BaseUnit end){
         BaseUnit current = start;
         BaseUnit previous = start;
-        if(fillingHelper(previous, current)){
-            Debug.Log("Good ending");
-        }
-        else{
-            Debug.Log("Bad Ending");
-        }
+        bool finisedOut = false;
+        StartCoroutine(fillingHelper(previous, current, finisedOut));
     }
 
-    IEnumerator fillingCoroutine(BaseUnit unit){
-        unit.changeColor(Color.green);
-        yield return new WaitForSeconds(waitingTime);
-        unit.changeColor(Color.red);
-    }
-
-    private bool fillingHelper(BaseUnit previous, BaseUnit current){
+    private IEnumerator fillingHelper(BaseUnit previous, BaseUnit current, bool finisedOut){
         while(true){
             current.IsMoveable = false;
             if(endCheck(current))
-                return true;
+                finisedOut = true;
             if(!controlInput(previous, current)){
-                return false;
+                finisedOut =  false;
             }
-            StartCoroutine(fillingCoroutine(current));
+
+            current.changeColor(Color.green);
+            yield return new WaitForSeconds(waitingTime);
+            current.changeColor(Color.red);
+
             previous = current;
             current = sendSignalToNextPipe(current);
         }
