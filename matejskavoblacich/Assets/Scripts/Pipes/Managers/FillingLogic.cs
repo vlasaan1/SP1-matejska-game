@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class FillingLogic : MonoBehaviour
 {
-    [SerializeField] float waitingTime = 3f;
+    [SerializeField] float waitingTime = 5f;
     public static FillingLogic instance;
     [SerializeField] PlayerGrid playerGrid;
 
@@ -16,7 +16,8 @@ public class FillingLogic : MonoBehaviour
 
     public void startFilling(BaseUnit start, BaseUnit end){
         BaseUnit current = start;
-        if(fillingHelper(start.occupiedTile.possitionOnGrid, current)){
+        BaseUnit previous = start;
+        if(fillingHelper(previous, current)){
             Debug.Log("Good ending");
         }
         else{
@@ -30,23 +31,24 @@ public class FillingLogic : MonoBehaviour
         unit.changeColor(Color.red);
     }
 
-    private bool fillingHelper(Vector2 previousPosition, BaseUnit current){
+    private bool fillingHelper(BaseUnit previous, BaseUnit current){
         while(true){
             current.IsMoveable = false;
             if(endCheck(current))
                 return true;
-            if(!controlInput(previousPosition, current)){
+            if(!controlInput(previous, current)){
                 return false;
             }
             StartCoroutine(fillingCoroutine(current));
+            previous = current;
             current = sendSignalToNextPipe(current);
         }
     }
 
-    private bool controlInput(Vector2 previousPosition, BaseUnit current){
-        if(current.occupiedTile.possitionOnGrid.x + current.inDir.x == previousPosition.x && current.occupiedTile.possitionOnGrid.y + current.inDir.y == previousPosition.y)
+    private bool controlInput(BaseUnit previous, BaseUnit current){
+        if(current.occupiedTile.possitionOnGrid.x + current.inDir.x == previous.occupiedTile.possitionOnGrid.x && current.occupiedTile.possitionOnGrid.y + current.inDir.y == previous.occupiedTile.possitionOnGrid.y)
             return true;
-        if(current.occupiedTile.possitionOnGrid.x + current.outDir.x == previousPosition.x && current.occupiedTile.possitionOnGrid.y + current.outDir.y == previousPosition.y){
+        if(current.occupiedTile.possitionOnGrid.x + current.outDir.x == previous.occupiedTile.possitionOnGrid.x && current.occupiedTile.possitionOnGrid.y + current.outDir.y == previous.occupiedTile.possitionOnGrid.y){
             current.swapDirections();
             return true;
         }
