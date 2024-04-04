@@ -10,7 +10,6 @@ public class FillingLogic : MonoBehaviour
     public static FillingLogic instance;
     [SerializeField] PlayerGrid playerGrid;
     private bool finishState = false;
-    private bool finishedCoroutine = false;
 
 
     void Awake(){
@@ -41,15 +40,13 @@ public class FillingLogic : MonoBehaviour
             previous = current;
             current = sendSignalToNextPipe(current);
         }
-
+        
         if(finishState){
             Debug.Log("Good finish");
         }
         else{
             Debug.Log("Bad finish");
         }
-        finishedCoroutine = true;
-        yield break;
     }
 
     private bool controlInput(BaseUnit previous, BaseUnit current){
