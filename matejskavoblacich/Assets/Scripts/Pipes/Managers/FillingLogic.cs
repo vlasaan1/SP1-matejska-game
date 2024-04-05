@@ -11,6 +11,7 @@ public class FillingLogic : MonoBehaviour
     [SerializeField] float speedWaitingTime = 0.25f;
     [SerializeField] PlayerGrid playerGrid;
     [SerializeField] GameMaster gameMaster;
+    [SerializeField] Minigame minigame;
     private bool finishState = false;
 
     /// <summary>
@@ -105,7 +106,8 @@ public class FillingLogic : MonoBehaviour
     }
 
     public void setSpeedToFilling(){
-        waitingTime = speedWaitingTime;
+        if(!minigame.isFinished)
+            waitingTime = speedWaitingTime;
     }
 
 }

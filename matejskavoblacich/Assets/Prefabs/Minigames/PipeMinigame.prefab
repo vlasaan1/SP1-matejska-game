@@ -49,6 +49,7 @@ MonoBehaviour:
   speedWaitingTime: 0.2
   playerGrid: {fileID: 3697292984579429712}
   gameMaster: {fileID: 8731848156127098241}
+  minigame: {fileID: 959447931716666956}
 --- !u!1 &3719506904249715775
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,6 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 644183176295447991, guid: 214fe4631a8231745a3d828b25a367c5, type: 3}
+  minigame: {fileID: 959447931716666956}
 --- !u!114 &8430654809220443195
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PlayerGrid : MonoBehaviour
 {
     [SerializeField] Tile tilePrefab;
+    [SerializeField] Minigame minigame;
 
     private SpriteRenderer spriteRenderer;
     private float tileSize = 0f;
@@ -84,7 +85,7 @@ public class PlayerGrid : MonoBehaviour
     /// <param name="pos"></param>
     /// <returns>true if tile is occupied and unit is moveable</returns>
     public bool CanGetTileAtPosition(Vector2Int pos){
-        return grid[pos].isOccupied && grid[pos].occupiedUnit.IsMoveable;
+        return grid[pos].isOccupied && grid[pos].occupiedUnit.IsMoveable && !minigame.isFinished;
     }
 
     /// <summary>
