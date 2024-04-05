@@ -4,89 +4,86 @@ using UnityEngine;
 
 public class GameMaster : MonoBehaviour
 {
-
-    public static GameMaster instance;
-
     public GameState gameState;
-
-    [SerializeField] PlayerGrid onePlayerGrid;
-
+    [SerializeField] Minigame minigame;
+    [SerializeField] PlayerGrid playerGrid;
+    [SerializeField] GeneratingAlgo generatingAlgo;
+    [SerializeField] UnitManager unitManager;
+    [SerializeField] FillingLogic fillingLogic;
     [SerializeField] int numberOfBombs = 3;
-
     [SerializeField] int fieldSize = 6;
-
     [SerializeField] int scaler = 5;
-
-    [SerializeField] int numberOfPlayers = 4;
-
-    private List<PlayerGrid> playersHolder = new List<PlayerGrid>();
+    [SerializeField] bool useSeed = false;
 
     private Dictionary<Vector2, string> board;
-
     private List<PathTile> path;
-
-    void Awake(){
-        instance = this;
-    }
+    private BaseUnit start;
+    private BaseUnit end;
+    private int seed;
 
     void Start()
     {
-        ChangeState(GameState.InstantiatePlayers);
+        ChangeState(GameState.Instantiate);
     }
 
-    void InstantiatePlayers(){
-        for(int i = 0; i < numberOfPlayers; i++){
-            var spawnedOnePlayerField = Instantiate(onePlayerGrid, new Vector3(i, 0, 0), Quaternion.identity, transform);
-            spawnedOnePlayerField.name = "Player" + i;
-            spawnedOnePlayerField.transform.localScale = new Vector3(scaler / transform.localScale.x, scaler/ transform.localScale.y, 1);
-            playersHolder.Add(spawnedOnePlayerField);
+    private void StartUp(){
+        if(useSeed){
+            seed = minigame.seed;
         }
-        ChangeState(GameState.GenerateGrid);
+        else{
+            seed = Random.Range(0, int.MaxValue);
+        }
+    }
+
+    private void FailedFunction(){
+        minigame.isFinished = true;
+    }
+
+    private void SuccessedFunction(){
+        minigame.score = (int) ((minigame.endTime - Time.time) * 100);
+        minigame.isFinished = true;
     }
 
     public void ChangeState(GameState newState){
         gameState = newState;
         switch(newState){
-            case GameState.InstantiatePlayers:
-                instance.InstantiatePlayers();
+            case GameState.Instantiate:
+                StartUp();
+                ChangeState(GameState.GenerateGrid);
                 break;
             case GameState.GenerateGrid:
-                PlayerGrid[] instances = FindObjectsOfType<PlayerGrid>();
-                foreach(var inst in instances){
-                    inst.GenerateGrid(fieldSize, scaler);
-                }
+                playerGrid.GenerateGrid(fieldSize, scaler, seed);
                 ChangeState(GameState.Algorithm);
                 break;
             case GameState.Algorithm:
-                (board, path) = GeneratingAlgo.instance.GenerateMap(fieldSize, numberOfBombs);
+                (board, path) = generatingAlgo.GenerateMap(fieldSize, numberOfBombs, seed);
                 ChangeState(GameState.SpawnTiles);
                 break;
             case GameState.SpawnTiles:
-                for(int i = 0; i < playersHolder.Count; i++){
-                    UnitManager.instance.spawnUnits(board, path, playersHolder[i], fieldSize);
-                }
+                (start, end) = unitManager.spawnUnits(board, path, playerGrid, fieldSize, seed);
+                ChangeState(GameState.Gameplay);
                 break;
-            case GameState.PlayerTurn:
-                break;
-            case GameState.CheckState:
+            case GameState.Gameplay:
+                fillingLogic.startFilling(start, end);
                 break;
             case GameState.FailEnd:
+                FailedFunction();
                 break;
             case GameState.GoodEnd:
+                SuccessedFunction();
                 break;
         }
         
     }
 
     public enum GameState{
-        InstantiatePlayers = 0,
+        Instantiate = 0,
         GenerateGrid = 1,
         Algorithm = 2,
         SpawnTiles = 3,
-        PlayerTurn = 4,
-        CheckState = 5,
-        FailEnd = 6,
-        GoodEnd = 7
+        Gameplay = 4,
+        FailEnd = 5,
+        GoodEnd = 6
     }
 
 }

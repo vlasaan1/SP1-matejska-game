@@ -5,6 +5,6 @@ using UnityEngine;
 public class BaseCore : BaseUnit
 {
     public BaseCore(){
-        isMoveable = false;
+        IsMoveable = false;
     }
 }
