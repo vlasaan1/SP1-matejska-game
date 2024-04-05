@@ -5,22 +5,28 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 5e467cca6f424f3429e5cb7bc56ded15
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Minigame.unity
-    guid: d377117e50b930f4792d1214f71d13d4
+    guid: 8fdef9a43911b2c4097bbc33659cd560
+  - enabled: 1
+    path: Assets/Scenes/BetweenMinigames.unity
+    guid: 4c2a467115c177140873a00826d95eb7
+  - enabled: 1
+    path: Assets/Scenes/FinalScene.unity
+    guid: aad0fd01d275a1e4ea7fefa4ca149831
   - enabled: 0
     path: Assets/Scenes/TargetShootingScene.unity
     guid: f5ce5880a24829d4b9f4aabdae662073
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Pipes.unity
     guid: 587c8b5b2bbd867488d589f6f17bb5bb
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BetterInput.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/HitTheBeaver.unity
     guid: 39aafd32f3c70b1468dee027d559078d
   m_configObjects: {}
