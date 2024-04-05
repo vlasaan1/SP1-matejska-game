@@ -18,13 +18,7 @@ public class PlayerGrid : MonoBehaviour
 
     private int fieldSize = 0;
 
-    public static PlayerGrid instance;
-
     public Dictionary<Vector2, Tile> grid;
-
-    void Awake(){
-        instance = this;
-    }
 
     void Start(){
         baseXPos += transform.position.x;
@@ -40,6 +34,7 @@ public class PlayerGrid : MonoBehaviour
         fieldSize = size;
         tileSize = 1f/size;
         scaler = s;
+        transform.localScale = new Vector3(scaler,scaler, 1);
 
         grid = new Dictionary<Vector2, Tile>();
         for(int y = 0; y < size; y++){

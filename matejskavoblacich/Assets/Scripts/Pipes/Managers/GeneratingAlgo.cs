@@ -26,17 +26,11 @@ public class GeneratingAlgo : MonoBehaviour
 
     [SerializeField, Range(1,2)] int distaceBetweenEndingPipes = 1;
 
-    public static GeneratingAlgo instance;
-
     private int size = 0;
 
     private int obstacles = 0;
 
     private static System.Random random = new System.Random();
-
-    void Awake(){
-        instance = this;
-    }
 
     private void exceptionThrower (string arg) {
         throw new InvalidOperationException(arg);

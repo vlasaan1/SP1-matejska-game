@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class UnitManager : MonoBehaviour
 {
-    public static UnitManager instance;
-
     private List<ScriptableUnit> units;
 
     private int fieldSize;
@@ -18,8 +16,6 @@ public class UnitManager : MonoBehaviour
     private BaseUnit end;
 
     void Awake(){
-        instance = this;
-
         units = Resources.LoadAll<ScriptableUnit>("Pipes/Units").ToList();
     }
 

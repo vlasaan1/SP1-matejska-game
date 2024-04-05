@@ -7,14 +7,8 @@ using UnityEngine;
 public class FillingLogic : MonoBehaviour
 {
     [SerializeField] float waitingTime = 2f;
-    public static FillingLogic instance;
     [SerializeField] PlayerGrid playerGrid;
     private bool finishState = false;
-
-
-    void Awake(){
-        instance = this;
-    }
 
     /// <summary>
     /// outer method that is called from game master to manage gameplay

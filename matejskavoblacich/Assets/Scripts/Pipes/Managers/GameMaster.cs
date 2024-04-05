@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class GameMaster : MonoBehaviour
 {
-
-    public static GameMaster instance;
-
     public GameState gameState;
 
-    [SerializeField] PlayerGrid onePlayerGrid;
-
+    [SerializeField] PlayerGrid playerGrid;
+    [SerializeField] GeneratingAlgo generatingAlgo;
+    [SerializeField] UnitManager unitManager;
+    [SerializeField] FillingLogic fillingLogic;
     [SerializeField] int numberOfBombs = 3;
 
     [SerializeField] int fieldSize = 6;
 
     [SerializeField] int scaler = 5;
-
-    private PlayerGrid playersHolder;
 
     private Dictionary<Vector2, string> board;
 
@@ -26,43 +23,31 @@ public class GameMaster : MonoBehaviour
     private BaseUnit start;
     private BaseUnit end;
 
-    void Awake(){
-        instance = this;
-    }
-
     void Start()
     {
         ChangeState(GameState.InstantiatePlayers);
-    }
-
-    void InstantiatePlayer(){
-        var spawnedOnePlayerField = Instantiate(onePlayerGrid, new Vector3(0, 0, 0), Quaternion.identity, transform);
-        spawnedOnePlayerField.name = "Player";
-        spawnedOnePlayerField.transform.localScale = new Vector3(scaler / transform.localScale.x, scaler/ transform.localScale.y, 1);
-        playersHolder = spawnedOnePlayerField;
-        ChangeState(GameState.GenerateGrid);
     }
 
     public void ChangeState(GameState newState){
         gameState = newState;
         switch(newState){
             case GameState.InstantiatePlayers:
-                instance.InstantiatePlayer();
+                ChangeState(GameState.GenerateGrid);
                 break;
             case GameState.GenerateGrid:
-                PlayerGrid.instance.GenerateGrid(fieldSize, scaler);
+                playerGrid.GenerateGrid(fieldSize, scaler);
                 ChangeState(GameState.Algorithm);
                 break;
             case GameState.Algorithm:
-                (board, path) = GeneratingAlgo.instance.GenerateMap(fieldSize, numberOfBombs);
+                (board, path) = generatingAlgo.GenerateMap(fieldSize, numberOfBombs);
                 ChangeState(GameState.SpawnTiles);
                 break;
             case GameState.SpawnTiles:
-                (start, end) = UnitManager.instance.spawnUnits(board, path, playersHolder, fieldSize);
+                (start, end) = unitManager.spawnUnits(board, path, playerGrid, fieldSize);
                 ChangeState(GameState.Gameplay);
                 break;
             case GameState.Gameplay:
-                FillingLogic.instance.startFilling(start, end);
+                fillingLogic.startFilling(start, end);
                 break;
             case GameState.FailEnd:
                 break;
