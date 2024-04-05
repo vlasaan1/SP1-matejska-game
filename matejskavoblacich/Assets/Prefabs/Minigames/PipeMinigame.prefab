@@ -47,6 +47,7 @@ MonoBehaviour:
   waitingTime: 5
   speedWaitingTime: 0.25
   playerGrid: {fileID: 3697292984579429712}
+  gameMaster: {fileID: 8731848156127098241}
 --- !u!1 &3719506904249715775
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,6 +154,7 @@ MonoBehaviour:
   numberOfBombs: 3
   fieldSize: 7
   scaler: 5
+  useSeed: 1
 --- !u!1 &3999076347102905764
 GameObject:
   m_ObjectHideFlags: 0

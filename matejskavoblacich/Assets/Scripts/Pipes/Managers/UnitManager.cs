@@ -8,22 +8,18 @@ public class UnitManager : MonoBehaviour
 {
     private List<ScriptableUnit> units;
     private int fieldSize;
-    private List<Vector2> directions;
+    private List<Vector2> directions = new List<Vector2>{
+            new Vector2(1,0),
+            new Vector2(-1,0),
+            new Vector2(0,1),
+            new Vector2(0,-1)
+        };
     private BaseUnit start;
     private BaseUnit end;
     private System.Random random;
 
     void Awake(){
         units = Resources.LoadAll<ScriptableUnit>("Pipes/Units").ToList();
-    }
-
-    void Start(){
-        directions = new List<Vector2>{
-            new Vector2(1,0),
-            new Vector2(-1,0),
-            new Vector2(0,1),
-            new Vector2(0,-1)
-        };
     }
 
     /// <summary>

@@ -35,6 +35,15 @@ public class GameMaster : MonoBehaviour
         }
     }
 
+    private void FailedFunction(){
+        minigame.isFinished = true;
+    }
+
+    private void SuccessedFunction(){
+        minigame.score = (int) ((minigame.endTime - Time.time) * 100);
+        minigame.isFinished = true;
+    }
+
     public void ChangeState(GameState newState){
         gameState = newState;
         switch(newState){
@@ -58,8 +67,10 @@ public class GameMaster : MonoBehaviour
                 fillingLogic.startFilling(start, end);
                 break;
             case GameState.FailEnd:
+                FailedFunction();
                 break;
             case GameState.GoodEnd:
+                SuccessedFunction();
                 break;
         }
         

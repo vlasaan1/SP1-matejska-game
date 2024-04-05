@@ -9,6 +9,7 @@ public class FillingLogic : MonoBehaviour
     [SerializeField] float waitingTime = 2f;
     [SerializeField] float speedWaitingTime = 0.25f;
     [SerializeField] PlayerGrid playerGrid;
+    [SerializeField] GameMaster gameMaster;
     private bool finishState = false;
 
     /// <summary>
@@ -49,9 +50,11 @@ public class FillingLogic : MonoBehaviour
         
         if(finishState){
             Debug.Log("Good finish");
+            gameMaster.ChangeState(GameMaster.GameState.GoodEnd);
         }
         else{
             Debug.Log("Bad finish");
+            gameMaster.ChangeState(GameMaster.GameState.FailEnd);
         }
     }
 
