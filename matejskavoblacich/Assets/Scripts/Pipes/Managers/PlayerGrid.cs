@@ -8,10 +8,6 @@ public class PlayerGrid : MonoBehaviour
 {
     [SerializeField] Tile tilePrefab;
 
-    private float baseXPos = -0.5f;
-
-    private float baseYPos = 0.5f;
-
     private float tileSize = 0f;
 
     private int scaler = 0;
@@ -19,22 +15,20 @@ public class PlayerGrid : MonoBehaviour
     private int fieldSize = 0;
 
     public Dictionary<Vector2, Tile> grid;
-
-    void Start(){
-        baseXPos += transform.position.x;
-        baseYPos += transform.position.y;
-    }
+    private System.Random random;
+    private float MAGIC_CONSTANT = 0.75f;
 
     /// <summary>
     /// Function that is called from GameMaster, generating and spawning tiles to its right places
     /// </summary>
     /// <param name="size"></param>
     /// <param name="s"></param>
-    public void GenerateGrid(int size, int s){
+    public void GenerateGrid(int size, int s, int seed){
         fieldSize = size;
         tileSize = 1f/size;
         scaler = s;
         transform.localScale = new Vector3(scaler,scaler, 1);
+        random = new System.Random(seed);
 
         grid = new Dictionary<Vector2, Tile>();
         for(int y = 0; y < size; y++){
@@ -49,11 +43,11 @@ public class PlayerGrid : MonoBehaviour
     }
 
     private float getXPos(int x){
-        return scaler*(baseXPos + (tileSize/2) + x*tileSize);
+        return scaler*((tileSize/2) + x*tileSize - 0.5f) + transform.position.x;
     }
 
     private float getYPos(int y){
-        return scaler*(baseYPos - (tileSize/2) - y*tileSize);
+        return scaler*((tileSize/2) - y*tileSize + 0.5f) + transform.position.y - MAGIC_CONSTANT;
     }
 
     /// <summary>
@@ -108,13 +102,12 @@ public class PlayerGrid : MonoBehaviour
     /// randomly shuffle grid
     /// </summary>
     public void Shuffle(){
-        System.Random rnd = new System.Random();
         for(int y = 1; y < fieldSize - 1; y++){
             for(int x = 1; x < fieldSize - 1; x++){
                 Vector2Int ovec = new Vector2Int(x, y);
                 int i = 0;
                 while(i < 5){
-                    Vector2Int nvec = new Vector2Int(rnd.Next(1, fieldSize - 1), rnd.Next(1, fieldSize - 1));
+                    Vector2Int nvec = new Vector2Int(random.Next(1, fieldSize - 1), random.Next(1, fieldSize - 1));
                     if(CanGetTileAtPosition(ovec) && CanGetTileAtPosition(nvec)){
                         SwapTiles(ovec, nvec);
                         break;

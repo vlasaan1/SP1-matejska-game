@@ -7,13 +7,11 @@ using UnityEngine;
 public class UnitManager : MonoBehaviour
 {
     private List<ScriptableUnit> units;
-
     private int fieldSize;
-
     private List<Vector2> directions;
-
     private BaseUnit start;
     private BaseUnit end;
+    private System.Random random;
 
     void Awake(){
         units = Resources.LoadAll<ScriptableUnit>("Pipes/Units").ToList();
@@ -38,10 +36,6 @@ public class UnitManager : MonoBehaviour
         return (T) units.FirstOrDefault(u=>u.uName == n).unitPrefab;
     }
 
-    private T getRandomPipe<T>(Type t) where T : BaseUnit{
-        return (T) units.Where( u=> u.type == t).OrderBy( o => Random.value).First().unitPrefab;
-    }
-
     /// <summary>
     /// function that is called from GameMaster to spawn Units on a Tiles
     /// </summary>
@@ -49,8 +43,9 @@ public class UnitManager : MonoBehaviour
     /// <param name="path"></param>
     /// <param name="playerHolder"></param>
     /// <param name="fs"></param>
-    public (BaseUnit, BaseUnit) spawnUnits(Dictionary<Vector2, string> board, List<PathTile> path, PlayerGrid playerHolder, int fs)
+    public (BaseUnit, BaseUnit) spawnUnits(Dictionary<Vector2, string> board, List<PathTile> path, PlayerGrid playerHolder, int fs, int seed)
     {
+        random = new System.Random(seed);
         fieldSize = fs;
         SpawnMainPath(path, playerHolder);
         SpawnRestUnits(board, playerHolder);
@@ -91,11 +86,10 @@ public class UnitManager : MonoBehaviour
     /// <returns></returns>
     private PathTile generateRandomPipePathTile(Vector2 pos){
         PathTile ret = new PathTile(pos);
-        System.Random rng = new System.Random();
-        int firstIdx = rng.Next(0, directions.Count);
+        int firstIdx = random.Next(0, directions.Count);
         int secondIdx;
         while(true){
-            secondIdx = rng.Next(0, directions.Count);
+            secondIdx = random.Next(0, directions.Count);
             if(firstIdx != secondIdx)
             break;
         }

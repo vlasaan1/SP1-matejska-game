@@ -30,7 +30,7 @@ public class GeneratingAlgo : MonoBehaviour
 
     private int obstacles = 0;
 
-    private static System.Random random = new System.Random();
+    private System.Random random;
 
     private void exceptionThrower (string arg) {
         throw new InvalidOperationException(arg);
@@ -66,7 +66,6 @@ public class GeneratingAlgo : MonoBehaviour
 
     private (Vector2, Vector2) InitializeStart(Dictionary<Vector2, string> board, int size)
     {
-        System.Random random = new System.Random();
         string side = new string[] { "top", "bottom", "left", "right" }[random.Next(0, 4)];
         int max_iter_ending_pipes = 1000000;
 
@@ -259,12 +258,13 @@ public class GeneratingAlgo : MonoBehaviour
         path[path.Count - 1].outDir = new Vector2(0,0);
     }
 
-    public (Dictionary<Vector2, string>, List<PathTile>) GenerateMap(int ssize, int oobstacles)
+    public (Dictionary<Vector2, string>, List<PathTile>) GenerateMap(int ssize, int oobstacles, int seed)
     {
         size = ssize;
         obstacles = oobstacles;
         Dictionary<Vector2, string> board = new Dictionary<Vector2, string>();
         List<PathTile> path;
+        random = new System.Random(seed);
 
         for (int i = 0; i < size; i++)
         {
