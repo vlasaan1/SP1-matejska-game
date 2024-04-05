@@ -7,6 +7,7 @@ using UnityEngine;
 public class FillingLogic : MonoBehaviour
 {
     [SerializeField] float waitingTime = 2f;
+    [SerializeField] float speedWaitingTime = 0.25f;
     [SerializeField] PlayerGrid playerGrid;
     private bool finishState = false;
 
@@ -92,4 +93,9 @@ public class FillingLogic : MonoBehaviour
     private bool endCheck(BaseUnit current){
         return current is EndPipe;
     }
+
+    public void setSpeedToFilling(){
+        waitingTime = speedWaitingTime;
+    }
+
 }
