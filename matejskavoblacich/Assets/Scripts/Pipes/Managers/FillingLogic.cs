@@ -11,6 +11,7 @@ public class FillingLogic : MonoBehaviour
     [SerializeField] float speedWaitingTime = 0.25f;
     [SerializeField] PlayerGrid playerGrid;
     [SerializeField] GameMaster gameMaster;
+    [SerializeField] Minigame minigame;
     private bool finishState = false;
 
     /// <summary>
@@ -56,11 +57,11 @@ public class FillingLogic : MonoBehaviour
         }
         
         if(finishState){
-            Debug.Log("Good finish");
+            playerGrid.setSpriteRendererColor(Color.green);
             gameMaster.ChangeState(GameMaster.GameState.GoodEnd);
         }
         else{
-            Debug.Log("Bad finish");
+            playerGrid.setSpriteRendererColor(Color.red);
             gameMaster.ChangeState(GameMaster.GameState.FailEnd);
         }
     }
@@ -105,7 +106,8 @@ public class FillingLogic : MonoBehaviour
     }
 
     public void setSpeedToFilling(){
-        waitingTime = speedWaitingTime;
+        if(!minigame.isFinished)
+            waitingTime = speedWaitingTime;
     }
 
 }

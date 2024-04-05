@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class PlayerGrid : MonoBehaviour
 {
     [SerializeField] Tile tilePrefab;
+    [SerializeField] Minigame minigame;
 
+    private SpriteRenderer spriteRenderer;
     private float tileSize = 0f;
     private int scaler = 0;
     private int fieldSize = 0;
@@ -15,6 +17,10 @@ public class PlayerGrid : MonoBehaviour
     private System.Random random;
     private float MAGIC_CONSTANT = 0.75f;
     private int shufflingConstant = 20;
+
+    void Awake(){
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
     /// <summary>
     /// Function that is called from GameMaster, generating and spawning tiles to its right places
@@ -79,7 +85,7 @@ public class PlayerGrid : MonoBehaviour
     /// <param name="pos"></param>
     /// <returns>true if tile is occupied and unit is moveable</returns>
     public bool CanGetTileAtPosition(Vector2Int pos){
-        return grid[pos].isOccupied && grid[pos].occupiedUnit.IsMoveable;
+        return grid[pos].isOccupied && grid[pos].occupiedUnit.IsMoveable && !minigame.isFinished;
     }
 
     /// <summary>
@@ -114,5 +120,9 @@ public class PlayerGrid : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void setSpriteRendererColor(Color color){
+        spriteRenderer.color = color;
     }
 }
