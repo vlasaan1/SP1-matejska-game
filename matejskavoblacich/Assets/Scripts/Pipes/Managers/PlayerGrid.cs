@@ -9,14 +9,12 @@ public class PlayerGrid : MonoBehaviour
     [SerializeField] Tile tilePrefab;
 
     private float tileSize = 0f;
-
     private int scaler = 0;
-
     private int fieldSize = 0;
-
     public Dictionary<Vector2, Tile> grid;
     private System.Random random;
     private float MAGIC_CONSTANT = 0.75f;
+    private int shufflingConstant = 20;
 
     /// <summary>
     /// Function that is called from GameMaster, generating and spawning tiles to its right places
@@ -106,7 +104,7 @@ public class PlayerGrid : MonoBehaviour
             for(int x = 1; x < fieldSize - 1; x++){
                 Vector2Int ovec = new Vector2Int(x, y);
                 int i = 0;
-                while(i < 5){
+                while(i < shufflingConstant){
                     Vector2Int nvec = new Vector2Int(random.Next(1, fieldSize - 1), random.Next(1, fieldSize - 1));
                     if(CanGetTileAtPosition(ovec) && CanGetTileAtPosition(nvec)){
                         SwapTiles(ovec, nvec);
