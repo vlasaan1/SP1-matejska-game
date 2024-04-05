@@ -8,6 +8,7 @@ public class PlayerGrid : MonoBehaviour
 {
     [SerializeField] Tile tilePrefab;
 
+    private SpriteRenderer spriteRenderer;
     private float tileSize = 0f;
     private int scaler = 0;
     private int fieldSize = 0;
@@ -15,6 +16,10 @@ public class PlayerGrid : MonoBehaviour
     private System.Random random;
     private float MAGIC_CONSTANT = 0.75f;
     private int shufflingConstant = 20;
+
+    void Awake(){
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
     /// <summary>
     /// Function that is called from GameMaster, generating and spawning tiles to its right places
@@ -114,5 +119,9 @@ public class PlayerGrid : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void setSpriteRendererColor(Color color){
+        spriteRenderer.color = color;
     }
 }

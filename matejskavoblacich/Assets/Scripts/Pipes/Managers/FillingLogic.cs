@@ -56,11 +56,11 @@ public class FillingLogic : MonoBehaviour
         }
         
         if(finishState){
-            Debug.Log("Good finish");
+            playerGrid.setSpriteRendererColor(Color.green);
             gameMaster.ChangeState(GameMaster.GameState.GoodEnd);
         }
         else{
-            Debug.Log("Bad finish");
+            playerGrid.setSpriteRendererColor(Color.red);
             gameMaster.ChangeState(GameMaster.GameState.FailEnd);
         }
     }
