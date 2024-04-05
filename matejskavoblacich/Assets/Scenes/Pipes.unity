@@ -277,6 +277,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PipeMinigame
       objectReference: {fileID: 0}
+    - target: {fileID: 8731848156127098241, guid: 50696ce934ccecd45a1bfd7b8fa629a7, type: 3}
+      propertyPath: useSeed
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
