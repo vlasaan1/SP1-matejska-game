@@ -32,10 +32,10 @@ public class HoleActivation : BaseHittable
 
     void Awake()
     {
-        moveSpeed = 0.6f;
-        percentage = 0.1f;
-        timeTotal = 60f;
-       // timeTotal = minigame.endTime - minigame.startTime;
+        moveSpeed = 0.5f;
+        percentage = 0.2f;
+        //timeTotal = 60f;
+        timeTotal = minigame.endTime - minigame.startTime;
         startPosition = transform.position + new Vector3(0f, 0.28f, 0f);
         endPosition = startPosition + new Vector3(0f, 0.72f, 0f);
     }
@@ -45,8 +45,8 @@ public class HoleActivation : BaseHittable
     {
 
         if((Time.time > percentage*timeTotal)&&(moveSpeed<3f)&&(percentage<100f)){
-            percentage += 0.1f;
-            moveSpeed += 0.22f;
+            percentage += 0.2f;
+            moveSpeed += 0.25f;
         }
 
         if(!playerhealth.GetState()){

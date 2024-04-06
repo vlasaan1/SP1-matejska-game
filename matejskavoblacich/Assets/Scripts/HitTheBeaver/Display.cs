@@ -25,7 +25,7 @@ public class Display : MonoBehaviour
     void Start()
     {
         activeHearts = new List<GameObject>(); // Initialize activeHearts before using it
-        Vector3 startPosition = new Vector3(-2f,2.35f,0f);
+        Vector3 startPosition = transform.position + new Vector3(-2f,2.35f,0f);
         scoreText.text = minigame.score.ToString("000000");;
         displayedHearts = Playerhealth.GetHealth();
         
