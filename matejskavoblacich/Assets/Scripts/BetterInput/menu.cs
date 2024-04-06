@@ -10,29 +10,45 @@ public class menu : MonoBehaviour
     [SerializeField] MovingThing[] movingThings;
     [SerializeField] Button[] buttons;
 
-    [SerializeField] TextMeshPro minTimeText;
-    [SerializeField] TextMeshPro maxTimeText;
+    //[SerializeField] TextMeshPro minTimeText;
+    //[SerializeField] TextMeshPro maxTimeText;
     
     //ThrowingThings
 
-    public void IncreseThrowngThingObjectSize(){
+    public void IncreaseThrowinThingSize(){
         foreach(ThrowingThing throwingThing in throwingThings){
-            throwingThing.transform.localScale += new Vector3(0.2f,0.2f,0); 
+            throwingThing.transform.localScale += new Vector3(.1f,.1f,0);  
         }
     }
-    public void DecreaseThrowingThingObjectSize(){
+
+    public void DecreaseThrowinThingSize(){
         foreach(ThrowingThing throwingThing in throwingThings){
-            throwingThing.transform.localScale -= new Vector3(0.2f,0.2f,0); 
+            throwingThing.transform.localScale -= new Vector3(.1f,.1f,0);  
+        }
+    }
+
+    public void IncreseThrowngThingThrowSize(){
+        foreach(ThrowingThing throwingThing in throwingThings){
+            throwingThing.movingColliderZoneSize += 0.1f;
+            throwingThing.updateMaxMovement();  
+        }
+    }
+    public void DecreaseThrowingThingThrowSize(){
+        foreach(ThrowingThing throwingThing in throwingThings){
+            throwingThing.movingColliderZoneSize -= 0.1f;
+            throwingThing.updateMaxMovement();  
         }
     }
     public void IncreseThrowngThingColliderSize(){
         foreach(ThrowingThing throwingThing in throwingThings){
-            throwingThing.GetComponent<CapsuleCollider2D>().size += new Vector2(0.2f,0.2f); 
+            throwingThing.GetComponent<CapsuleCollider2D>().size += new Vector2(0.2f,0.2f);
+            throwingThing.updateMaxMovement(); 
         }
     }
     public void DecreaseThrowingThingColliderSize(){
         foreach(ThrowingThing throwingThing in throwingThings){
             throwingThing.GetComponent<CapsuleCollider2D>().size -= new Vector2(0.2f,0.2f); 
+            throwingThing.updateMaxMovement();
         }
     }
     public void IncreseThrowingThingMaxTimeBetweenClicks(){
@@ -89,11 +105,5 @@ public class menu : MonoBehaviour
         foreach(Button b in buttons){
             b.minTimeBeforeHold -= 0.1f;
         }
-    }
-
-
-    public void Update(){
-        minTimeText.text = buttons[0].minTimeBeforeHold.ToString();
-        maxTimeText.text = buttons[0].maxTimeBetweenClicks.ToString();
     }
 }

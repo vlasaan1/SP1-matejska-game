@@ -6,7 +6,7 @@ public class Button : BaseHoldable
     [SerializeField] SpriteRenderer sprite;
 
     [Header("Button properties")]
-    [SerializeField, Tooltip("If true, OnClick is called only once even when holding for long time")] bool clickOnce = false;
+    [SerializeField, Tooltip("If true, OnClick is called only once even when holding for long time")] bool clickOnce = true;
     [Header("Colors")]
     [SerializeField] Color baseColor = Color.white;
     [SerializeField] Color hoverColor = Color.white;

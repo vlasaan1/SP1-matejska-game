@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - MissEffectCollider
+  - Ball
+  - IntroText
   layers:
   - Default
   - TransparentFX

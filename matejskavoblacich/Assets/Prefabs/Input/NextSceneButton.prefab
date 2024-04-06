@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 2
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.5
   sprite: {fileID: 6551538323160633207}
   clickOnce: 1
