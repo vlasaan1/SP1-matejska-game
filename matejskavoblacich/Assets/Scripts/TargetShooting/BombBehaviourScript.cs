@@ -18,5 +18,10 @@ public class BombBehaviourScript : BaseHittable
     public override void Hit(Vector2 hitPosition)
     {
         Destroy(gameObject);
+
+        //add score -100 points
+        Minigame minigame = FindObjectOfType<Minigame>();
+        minigame.score -= 100;
     }
+
 }
