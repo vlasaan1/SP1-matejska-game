@@ -7,20 +7,24 @@ using initi.prefabScripts;
 
 public class BeaverSpawner : BaseHittable
 {
-    [SerializeField] float timeBetweenWaves = 0f;
+    [SerializeField] Minigame minigame;
+    [SerializeField] float timeBetweenWaves;
     [SerializeField] bool isLooping;
     [SerializeField] List<HoleActivation> holes;
 
-   // [SerializeField] int health = 30;
-
-
     void Start(){
+        timeBetweenWaves = 2f;
         StartCoroutine(SpawnRandomBeaver());
     }
 
     IEnumerator SpawnRandomBeaver(){
         do{
             int index = Random.Range(0, holes.Count);
+            if(holes[index].onShowBeaver!=0){
+                yield return new WaitForSeconds(0.3f);
+                continue;
+            } 
+            timeBetweenWaves = (0.72f / holes[index].moveSpeed) + 0.05f;
             holes[index].showBeaver();
             yield return new WaitForSeconds(timeBetweenWaves);
         } while(isLooping);
