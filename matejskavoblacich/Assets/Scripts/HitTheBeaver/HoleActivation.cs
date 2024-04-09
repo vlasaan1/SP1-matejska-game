@@ -12,7 +12,7 @@ public class HoleActivation : BaseHittable
 {
 
     [SerializeField] Minigame minigame;
-    [SerializeField] GameObject playerPrefab;
+    [SerializeField] List<GameObject> playerPrefab;
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] public float moveSpeed = 0.5f;
     float timeTotal;
@@ -84,7 +84,7 @@ public class HoleActivation : BaseHittable
         number = Random.Range(1,upperBound+1);
         if(number<upperBound){
             activeBeaver = Instantiate(
-                playerPrefab,
+                playerPrefab[minigame.playerId],
                 startPosition,
                 Quaternion.identity,
                 transform
