@@ -48,7 +48,9 @@ public class HoleActivation : BaseHittable
             percentage += 0.2f;
             moveSpeed += 0.25f;
         }
-
+        if(Time.time > minigame.endTime){
+            minigame.isFinished = true;
+        }
         if(!playerhealth.GetState()){
             minigame.isFinished = true;
             //nebo reset score?
