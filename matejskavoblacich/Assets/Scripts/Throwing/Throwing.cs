@@ -7,6 +7,9 @@ public class Throwing : BaseHoldable
     [SerializeField] GameObject ballPrefab;
     [SerializeField] Minigame minigame;
     [SerializeField] Transform baseBallPosition;
+    [SerializeField] Trajectory trajectory;
+    [SerializeField] Strip strip;
+    [SerializeField] float maxDraw = 0.9f;
     [SerializeField] float throwMultiplier = 12;
     [SerializeField] float returnBallDelay = .3f;
     [SerializeField] float nextBallPreparationDelay = .2f;
@@ -29,19 +32,33 @@ public class Throwing : BaseHoldable
 
     protected override void OnHold(Vector2 hitPosition)
     {
+        if(!nextBallPrepared) return;
         //Need one input update to find delta frame, fix ball position
         if(!isHeld){
             isHeld = true;
             moveDirection = baseBallPosition.position - heldBall.transform.position;
             deltaFrame = 1;
+            trajectory.ShowTrajectory();
         } else { 
             moveDirection = (Vector3)hitPosition - heldBall.transform.position;
             finalDest = hitPosition;
+            
+            if((baseBallPosition.position-(Vector3)hitPosition).magnitude>maxDraw){
+                finalDest = baseBallPosition.position + (((Vector3)hitPosition - baseBallPosition.position).normalized * maxDraw);
+                moveDirection = finalDest - heldBall.transform.position;
+                hitPosition = finalDest;
+            }
+
             //Stop jittering due to input accuracy
             if(moveDirection.magnitude < minMovement){
-                moveDirection = Vector3.zero;
+                deltaFrame = -1;
+            } else {
+                deltaFrame = Time.frameCount - lastFrameCount;
+                strip.SetStrip(heldBall.transform.position,finalDest,deltaFrame);
+                Vector3 hitPosV3 = hitPosition;
+                trajectory.UpdateTrajectory(hitPosition,(baseBallPosition.position-hitPosV3)*throwMultiplier);
             }
-            deltaFrame = Time.frameCount - lastFrameCount;
+
         }
         lastFrameCount = Time.frameCount;
         currentMovingFrame = 0;
@@ -60,6 +77,9 @@ public class Throwing : BaseHoldable
             isHeld = false;
             moveDirection = Vector3.zero;
             Invoke(nameof(NextBallPreparedToFalse), nextBallPreparationDelay);
+
+            strip.ResetStrip();
+            trajectory.HideTrajectory();
         }
     }
 
