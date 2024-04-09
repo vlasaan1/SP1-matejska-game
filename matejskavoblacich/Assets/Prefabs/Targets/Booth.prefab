@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2209020297211066050}
   - component: {fileID: 3318041708176299675}
   - component: {fileID: 5445910155516460920}
+  - component: {fileID: 7830195715442422702}
   m_Layer: 0
   m_Name: Booth
   m_TagString: Untagged
@@ -104,3 +105,21 @@ MonoBehaviour:
   Timer: 2
   timeToSpawn: 0.87
   targetPosition: {x: -0.4, y: 0, z: 0}
+--- !u!114 &7830195715442422702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5388562765533499070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d261206417b9f1b4cac20616297405ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startTime: 0
+  endTime: 0
+  score: 0
+  seed: 0
+  playerId: 0
+  isFinished: 0
