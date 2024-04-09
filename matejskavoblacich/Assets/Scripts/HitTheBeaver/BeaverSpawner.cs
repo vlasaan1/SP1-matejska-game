@@ -27,7 +27,7 @@ public class BeaverSpawner : BaseHittable
             timeBetweenWaves = (0.72f / holes[index].moveSpeed) + 0.05f;
             holes[index].showBeaver();
             yield return new WaitForSeconds(timeBetweenWaves);
-        } while(isLooping);
+        } while(isLooping && (!minigame.isFinished));
     }
 
 }
