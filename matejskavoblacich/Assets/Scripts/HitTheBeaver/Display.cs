@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,26 +8,47 @@ using UnityEngine.UI;
 public class Display : MonoBehaviour
 {
     [Header("Health")]
-     [SerializeField] Slider healthSlider;
+     [SerializeField] GameObject lifePrefab;
      [SerializeField] Lives Playerhealth;
 
-    [Header("Health")]
+    [Header("Score")]
     [SerializeField] TextMeshProUGUI scoreText;
-    ScoreKeeper scoreKeeper;
+    [SerializeField] Minigame minigame;
 
-    void Awake()
-    {
-        scoreKeeper = FindObjectOfType<ScoreKeeper>();
-        Playerhealth = FindObjectOfType<Lives>();
-    }
+    List<GameObject> activeHearts;
+
+    int displayedHearts;
+    Vector3 startPosition;
+    //x=-2 y=1 z=0
+
+
     void Start()
     {
-        healthSlider.maxValue = Playerhealth.GetHealth();
-        scoreText.text = scoreKeeper.GetScore().ToString("00000000");;
+        activeHearts = new List<GameObject>(); // Initialize activeHearts before using it
+        Vector3 startPosition = transform.position + new Vector3(-2f,2.35f,0f);
+        scoreText.text = minigame.score.ToString("000000");;
+        displayedHearts = Playerhealth.GetHealth();
+        
+        for(int i = 0; i<Playerhealth.GetHealth(); i++){
+            GameObject heart = Instantiate(
+                lifePrefab,
+                startPosition + new Vector3(i * 0.8f, 0f, 0f),
+                Quaternion.identity,
+                transform
+            );
+            activeHearts.Add(heart);
+        }
     }
     void Update()
     {
-        healthSlider.value = Playerhealth.GetHealth();   
-        scoreText.text = scoreKeeper.GetScore().ToString("00000000");
+        scoreText.text = minigame.score.ToString("000000");;
+        if(displayedHearts > Playerhealth.GetHealth() ){
+            if (activeHearts.Count > 0){
+                    Destroy(activeHearts.ElementAt(displayedHearts-1));
+                    activeHearts.RemoveAt(displayedHearts-1);
+            }
+            displayedHearts--;
+
+        }
     }
 }

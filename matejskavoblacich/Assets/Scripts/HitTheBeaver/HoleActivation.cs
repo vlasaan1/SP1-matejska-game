@@ -11,56 +11,65 @@ using UnityEngine.SceneManagement;
 public class HoleActivation : BaseHittable
 {
 
-
+    [SerializeField] Minigame minigame;
     [SerializeField] GameObject playerPrefab;
     [SerializeField] GameObject enemyPrefab;
-    [SerializeField] float moveSpeed = 0.5f;
+    [SerializeField] public float moveSpeed = 0.5f;
+    float timeTotal;
+    float percentage;
+
     GameObject activeBeaver;
     Vector3 startPosition;
     Vector3 endPosition; 
     //0-not active , 1-up , 2-down , 3-destroy with points , 4-destroy with points
-    int onShowBeaver = 0;
+    public int onShowBeaver = 0;
     //used for probability of enemy
     int number = 0;
     [SerializeField] int upperBound = 5;
-    Lives playerhealth;
-    ScoreKeeper score;
+    [SerializeField] Lives playerhealth;
     int changed = 0;
-    bool end = false;
 
 
     void Awake()
     {
+        moveSpeed = 0.5f;
+        percentage = 0.2f;
+        //timeTotal = 60f;
+        timeTotal = minigame.endTime - minigame.startTime;
         startPosition = transform.position + new Vector3(0f, 0.28f, 0f);
         endPosition = startPosition + new Vector3(0f, 0.72f, 0f);
-        playerhealth = FindObjectOfType<Lives>();
-        score = FindObjectOfType<ScoreKeeper>();
-
     }
+
 
     void Update()
     {
+
+        if((Time.time > percentage*timeTotal)&&(moveSpeed<3f)&&(percentage<100f)){
+            percentage += 0.2f;
+            moveSpeed += 0.25f;
+        }
+
         if(!playerhealth.GetState()){
-            end = true;
-            //EndGameNextScene();
+            minigame.isFinished = true;
+            //nebo reset score?
         }
         if(onShowBeaver!=0){
             if(activeBeaver==null && changed==0){
-                onShowBeaver = 3;
+                onShowBeaver = 0;
                 changed = 1;
                 if(number == upperBound){
                     //hit - decrease health
-                    playerhealth.DecreseHealth(10);
+                    playerhealth.DecreseHealth(1);
                     int num = playerhealth.GetHealth();
                     Debug.Log("Num");
                     Debug.Log(num);    
                 }
                 else{
                     //hit - add points
-                    score.ModifyScore(50);
-                    int s = score.GetScore();
+
+                    minigame.score += 50;
                     Debug.Log("Score");
-                    Debug.Log(s);
+                    Debug.Log(minigame.score);
                 }
             }
             else if(onShowBeaver==1){
@@ -121,9 +130,4 @@ public class HoleActivation : BaseHittable
             Destroy(activeBeaver);
         }
     }
-
-    void EndGameNextScene(){
-        SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex+1)%3);
-    }
-
 }

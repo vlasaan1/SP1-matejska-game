@@ -6,27 +6,20 @@ using UnityEngine;
 
 public class UnitManager : MonoBehaviour
 {
-    public static UnitManager instance;
-
     private List<ScriptableUnit> units;
-
     private int fieldSize;
-
-    private List<Vector2> directions;
-
-    void Awake(){
-        instance = this;
-
-        units = Resources.LoadAll<ScriptableUnit>("Pipes/Units").ToList();
-    }
-
-    void Start(){
-        directions = new List<Vector2>{
+    private List<Vector2> directions = new List<Vector2>{
             new Vector2(1,0),
             new Vector2(-1,0),
             new Vector2(0,1),
             new Vector2(0,-1)
         };
+    private BaseUnit start;
+    private BaseUnit end;
+    private System.Random random;
+
+    void Awake(){
+        units = Resources.LoadAll<ScriptableUnit>("Pipes/Units").ToList();
     }
 
     /// <summary>
@@ -39,10 +32,6 @@ public class UnitManager : MonoBehaviour
         return (T) units.FirstOrDefault(u=>u.uName == n).unitPrefab;
     }
 
-    private T getRandomPipe<T>(Type t) where T : BaseUnit{
-        return (T) units.Where( u=> u.type == t).OrderBy( o => Random.value).First().unitPrefab;
-    }
-
     /// <summary>
     /// function that is called from GameMaster to spawn Units on a Tiles
     /// </summary>
@@ -50,12 +39,14 @@ public class UnitManager : MonoBehaviour
     /// <param name="path"></param>
     /// <param name="playerHolder"></param>
     /// <param name="fs"></param>
-    public void spawnUnits(Dictionary<Vector2, string> board, List<PathTile> path, PlayerGrid playerHolder, int fs)
+    public (BaseUnit, BaseUnit) spawnUnits(Dictionary<Vector2, string> board, List<PathTile> path, PlayerGrid playerHolder, int fs, int seed)
     {
+        random = new System.Random(seed);
         fieldSize = fs;
         SpawnMainPath(path, playerHolder);
         SpawnRestUnits(board, playerHolder);
         playerHolder.Shuffle();
+        return (start, end);
     }
 
     /// <summary>
@@ -91,11 +82,10 @@ public class UnitManager : MonoBehaviour
     /// <returns></returns>
     private PathTile generateRandomPipePathTile(Vector2 pos){
         PathTile ret = new PathTile(pos);
-        System.Random rng = new System.Random();
-        int firstIdx = rng.Next(0, directions.Count);
+        int firstIdx = random.Next(0, directions.Count);
         int secondIdx;
         while(true){
-            secondIdx = rng.Next(0, directions.Count);
+            secondIdx = random.Next(0, directions.Count);
             if(firstIdx != secondIdx)
             break;
         }
@@ -113,8 +103,8 @@ public class UnitManager : MonoBehaviour
         for(int i = 1; i < path.Count - 1; i++){
             SpawnAndSetUnit(path[i], playerHolder, getPipeType(path[i].inDir, path[i].outDir));
         }
-        SpawnAndSetUnit(path[0], playerHolder, Name.StartPipe);
-        SpawnAndSetUnit(path[path.Count-1], playerHolder, Name.EndPipe);
+        start = SpawnAndSetUnit(path[0], playerHolder, Name.StartPipe);
+        end = SpawnAndSetUnit(path[path.Count-1], playerHolder, Name.EndPipe);
     }
 
     /// <summary>
@@ -123,7 +113,7 @@ public class UnitManager : MonoBehaviour
     /// <param name="info">Path tile to be spawned</param>
     /// <param name="playerHolder">current Player</param>
     /// <param name="name">name of the spawning Unit</param>
-    private void SpawnAndSetUnit(PathTile info, PlayerGrid playerHolder, Name name){
+    private BaseUnit SpawnAndSetUnit(PathTile info, PlayerGrid playerHolder, Name name){
         var unit = getUnit<BaseUnit>(name);
         unit.inDir = info.inDir;
         unit.outDir = info.outDir;
@@ -131,6 +121,7 @@ public class UnitManager : MonoBehaviour
         var spawnUnitOnTile = playerHolder.grid[info.position];
         spawnedUnit.CalculateRotation();
         spawnUnitOnTile.setUnit(spawnedUnit);
+        return spawnedUnit;
     }
 
     /// <summary>

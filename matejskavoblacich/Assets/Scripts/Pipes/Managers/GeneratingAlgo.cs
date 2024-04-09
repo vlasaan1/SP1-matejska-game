@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.IO;
 using System.Net.WebSockets;
@@ -19,17 +20,20 @@ public class PathTile{
 
 public class GeneratingAlgo : MonoBehaviour
 {
+    [SerializeField, Range(1, 3), Tooltip("including walls")] int bombPaddingFromEdgeXAxis = 1;
 
-    public static GeneratingAlgo instance;
+    [SerializeField, Range(1, 3), Tooltip("including walls")] int bombPaddingFromEdgeYAxis = 1;
+
+    [SerializeField, Range(1,2)] int distaceBetweenEndingPipes = 1;
 
     private int size = 0;
 
     private int obstacles = 0;
 
-    private static System.Random random = new System.Random();
+    private System.Random random;
 
-    void Awake(){
-        instance = this;
+    private void exceptionThrower (string arg) {
+        throw new InvalidOperationException(arg);
     }
 
     private void PrintBoard(Dictionary<Vector2, string> board){
@@ -62,67 +66,73 @@ public class GeneratingAlgo : MonoBehaviour
 
     private (Vector2, Vector2) InitializeStart(Dictionary<Vector2, string> board, int size)
     {
-        System.Random random = new System.Random();
         string side = new string[] { "top", "bottom", "left", "right" }[random.Next(0, 4)];
+        int max_iter_ending_pipes = 1000000;
 
         Vector2 start, end;
-        int row, col;
         
         if (side == "top")
         {
-            row = 0;
-            col = random.Next(1, size - 1);
-            start = new Vector2(row, col);
-            PlaceString(board, start, "S");
             while(true){
+                if(max_iter_ending_pipes == 0){
+                    exceptionThrower("Could not place ending pipes");
+                }
+                start = new Vector2(0, random.Next(1, size - 1));
                 end = new Vector2(size - 1, random.Next(1, size - 1));
-                if(end.y != col){
+                if(Math.Abs(end.y - start.y) > distaceBetweenEndingPipes){
                     break;
                 }
+                max_iter_ending_pipes--;
             }
+            PlaceString(board, start, "S");
             PlaceString(board, end, "E");
         }
         else if (side == "bottom")
         {
-            row = size - 1;
-            col = random.Next(1, size - 1);
-            start = new Vector2(row, col);
-            PlaceString(board, start, "S");
-            end = new Vector2(0, random.Next(1, size - 1));
             while(true){
+                if(max_iter_ending_pipes == 0){
+                    exceptionThrower("Could not place ending pipes");
+                }
+                start = new Vector2(size-1, random.Next(1, size - 1));
                 end = new Vector2(0, random.Next(1, size - 1));
-                if(end.y != col){
+                if(Math.Abs(end.y - start.y) > distaceBetweenEndingPipes){
                     break;
                 }
+                max_iter_ending_pipes--;
             }
+            PlaceString(board, start, "S");
             PlaceString(board, end, "E");
         }
         else if (side == "left")
         {
-            col = 0;
-            row = random.Next(1, size - 1);
-            start = new Vector2(row, col);
-            PlaceString(board, start, "S");
             while(true){
+                if(max_iter_ending_pipes == 0){
+                    exceptionThrower("Could not place ending pipes");
+                }
+                start = new Vector2(random.Next(1, size - 1), 0);
                 end = new Vector2(random.Next(1, size - 1), size - 1);
-                if(end.x != row){
+                if(Math.Abs(end.x - start.x) > distaceBetweenEndingPipes){
                     break;
                 }
+                max_iter_ending_pipes--;
             }
+            PlaceString(board, start, "S");
             PlaceString(board, end, "E");
         }
         else // "right"
         {
-            col = size - 1;
-            row = random.Next(1, size - 1);
-            start = new Vector2(row, col);
-            PlaceString(board, start, "S");
             while(true){
+                if(max_iter_ending_pipes == 0){
+                    exceptionThrower("Could not place ending pipes");
+                }
+                start = new Vector2(random.Next(1, size -1), size - 1);
                 end = new Vector2(random.Next(1, size - 1), 0);
-                if(end.x != row){
+                if(Math.Abs(end.x - start.x) > distaceBetweenEndingPipes){
                     break;
                 }
+                max_iter_ending_pipes--;
             }
+            PlaceString(board, start, "S");
             PlaceString(board, end, "E");
         }
 
@@ -140,9 +150,12 @@ public class GeneratingAlgo : MonoBehaviour
         return copy;
     }
 
-    private void PlaceObstacles(Dictionary<Vector2, string> board){
-        int rx = random.Next(1, size - 1);
-        int ry = random.Next(1, size - 1);
+    private void PlaceObstacles(Dictionary<Vector2, string> board, int cnt){
+        if(cnt > 100){
+            exceptionThrower("Could not place bombs acording to parametres");
+        }
+        int rx = random.Next(bombPaddingFromEdgeXAxis, size - bombPaddingFromEdgeXAxis);
+        int ry = random.Next(bombPaddingFromEdgeYAxis, size - bombPaddingFromEdgeYAxis);
         Vector2 pos = new Vector2(rx, ry);
 
         if (board[pos] == "V")
@@ -151,7 +164,7 @@ public class GeneratingAlgo : MonoBehaviour
         }
         else
         {
-            PlaceObstacles(board); // Recursive call to try again if position is not empty
+            PlaceObstacles(board, cnt+1); // Recursive call to try again if position is not empty
         }
     }
 
@@ -222,7 +235,7 @@ public class GeneratingAlgo : MonoBehaviour
     private (Dictionary<Vector2, string>, List<PathTile>) ObstaclesAndPath(Dictionary<Vector2, string> board, Vector2 start, Vector2 end){
         Dictionary<Vector2, string> copy = MakeDeepCopy(board);
         for(int i = 0; i < obstacles; i++){
-            PlaceObstacles(copy);
+            PlaceObstacles(copy, 0);
         }
         (bool found, Dictionary<Vector2, string> nboard, List<PathTile> path) = BFS(copy, start, end);
         if(found){
@@ -245,12 +258,13 @@ public class GeneratingAlgo : MonoBehaviour
         path[path.Count - 1].outDir = new Vector2(0,0);
     }
 
-    public (Dictionary<Vector2, string>, List<PathTile>) GenerateMap(int ssize, int oobstacles)
+    public (Dictionary<Vector2, string>, List<PathTile>) GenerateMap(int ssize, int oobstacles, int seed)
     {
         size = ssize;
         obstacles = oobstacles;
         Dictionary<Vector2, string> board = new Dictionary<Vector2, string>();
         List<PathTile> path;
+        random = new System.Random(seed);
 
         for (int i = 0; i < size; i++)
         {

@@ -5,6 +5,8 @@ using UnityEngine;
 public class BaseObstacle : BaseUnit
 {
     public BaseObstacle(){
-        isMoveable = false;
+        IsMoveable = false;
+        inDir = new Vector2(0,0);
+        outDir = new Vector2(0,0);
     }
 }

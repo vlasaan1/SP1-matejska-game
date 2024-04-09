@@ -40,12 +40,6 @@ public class BoothBehaviourScript : MonoBehaviour
             }
             // initiate as a child of the booth
             targetClone = Instantiate(target, transform.position + targetPosition, transform.rotation, transform) as GameObject;
-
-
-            //targetClone = Instantiate(target, targetPosition, transform.rotation) as GameObject;
-            
-            
-
             Timer = timeToSpawn;
         }
     }
