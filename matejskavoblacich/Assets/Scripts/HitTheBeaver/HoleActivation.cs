@@ -44,9 +44,9 @@ public class HoleActivation : BaseHittable
     void Update()
     {
 
-        if((Time.time > percentage*timeTotal)&&(moveSpeed<3f)&&(percentage<100f)){
+        if(((Time.time-minigame.startTime) > percentage*timeTotal)&&(moveSpeed<4f)&&(percentage<100f)){
             percentage += 0.2f;
-            moveSpeed += 0.25f;
+            moveSpeed += 0.5f;
         }
         if(Time.time > minigame.endTime){
             minigame.isFinished = true;
@@ -63,15 +63,10 @@ public class HoleActivation : BaseHittable
                     //hit - decrease health
                     playerhealth.DecreseHealth(1);
                     int num = playerhealth.GetHealth();
-                    Debug.Log("Num");
-                    Debug.Log(num);    
                 }
                 else{
                     //hit - add points
-
                     minigame.score += 50;
-                    Debug.Log("Score");
-                    Debug.Log(minigame.score);
                 }
             }
             else if(onShowBeaver==1){
