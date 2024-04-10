@@ -24,10 +24,13 @@ public class Throwing : BaseHoldable
     int currentMovingFrame = 0;
     bool isHeld = false;
     bool nextBallPrepared = false;
+    float timeToAddBall;
 
     void Start(){
         readyBalls.Enqueue(Instantiate(ballPrefab).GetComponent<Ball>());
         readyBalls.Peek().isInQueue = true;
+
+        timeToAddBall = minigame.startTime + (minigame.endTime - minigame.startTime)/2;
     }
 
     protected override void OnHold(Vector2 hitPosition)
@@ -92,6 +95,10 @@ public class Throwing : BaseHoldable
                 heldBall.transform.Translate(moveDirection/deltaFrame);
             }
             currentMovingFrame++;
+        }
+        if(Time.time > timeToAddBall){
+            timeToAddBall = float.MaxValue;
+            AddNewBall();
         }
     }
 

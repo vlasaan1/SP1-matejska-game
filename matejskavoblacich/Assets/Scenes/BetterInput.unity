@@ -1159,6 +1159,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 56927029482951438, guid: c1eef56637bb4b04ea87834753938a16, type: 3}
+      propertyPath: scoresThatAddsBall.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 56927029482951438, guid: c1eef56637bb4b04ea87834753938a16, type: 3}
+      propertyPath: scoresThatAddsBall.Array.data[0]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 56927029482951438, guid: c1eef56637bb4b04ea87834753938a16, type: 3}
+      propertyPath: scoresThatAddsBall.Array.data[1]
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1722949611427784547, guid: c1eef56637bb4b04ea87834753938a16, type: 3}
       propertyPath: m_Name
       value: ThrowingMinigame
