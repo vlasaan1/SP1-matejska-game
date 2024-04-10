@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4304b1bfc3caf5c48b81427bef448b50, type: 3}
   m_Name: HitTheBeaver
   m_EditorClassIdentifier: 
-  minigamePrefab: {fileID: 3454440548605698619, guid: 0dfd4548a8839434b9149070a568be4f, type: 3}
+  minigamePrefab: {fileID: 6300416174163090551, guid: 9586c6e8dcc6bc143b6b88aa6fcde76e, type: 3}
   introText: BumBum
   icon: {fileID: 0}

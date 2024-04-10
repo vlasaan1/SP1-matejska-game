@@ -19,6 +19,7 @@ public class MainGameMaster : MonoBehaviour
 
     MinigamePrefabSO currentMinigamePrefab;
     List<MinigamePrefabSO> minigames;
+    bool skipMinigame = false;
 
     void Awake(){
         //Dont destroy on load, destroy if exists
@@ -47,6 +48,10 @@ public class MainGameMaster : MonoBehaviour
         return resultsHistory;
     }
 
+    public void SkipMinigame(){
+        skipMinigame = true;
+    }
+
     IEnumerator PlayGame(List<Minigame> minigames, float minigameStartTime){
         //Play for set time
         while(Time.time < minigameStartTime+maxMinigamePlayTimeSeconds){
@@ -59,7 +64,7 @@ public class MainGameMaster : MonoBehaviour
                     break;
                 }
             }
-            if(end) break;
+            if(end || skipMinigame) break;
             //Check again later
             yield return new WaitForSeconds(0.5f);
         }
@@ -116,6 +121,8 @@ public class MainGameMaster : MonoBehaviour
             currentMinigames.Add(Instantiate(game,playerPositions[i],Quaternion.identity).GetComponent<Minigame>());
         }
         
+        skipMinigame = false;
+
         timer.SetTime(maxMinigamePlayTimeSeconds);
         StartCoroutine(PlayGame(currentMinigames,minigameStartTime));
     }
