@@ -38,6 +38,7 @@ public class HoleActivation : BaseHittable
         timeTotal = minigame.endTime - minigame.startTime;
         startPosition = transform.position + new Vector3(0f, 0.28f, 0f);
         endPosition = startPosition + new Vector3(0f, 0.72f, 0f);
+        //endPosition = startPosition + new Vector3(0f, 0.36f, 0f);
     }
 
 
@@ -47,6 +48,7 @@ public class HoleActivation : BaseHittable
         if(((Time.time-minigame.startTime) > percentage*timeTotal)&&(moveSpeed<4f)&&(percentage<100f)){
             percentage += 0.2f;
             moveSpeed += 0.5f;
+            //moveSpeed += 0.3f;
         }
         if(Time.time > minigame.endTime){
             minigame.isFinished = true;
