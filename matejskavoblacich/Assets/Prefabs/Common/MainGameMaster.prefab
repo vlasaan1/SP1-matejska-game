@@ -47,6 +47,8 @@ MonoBehaviour:
   initiInput: {fileID: 6238474914347051826, guid: ae87e526d9e2f374abbd289605557fc6, type: 3}
   originalMinigamesPrefabs:
   - {fileID: 11400000, guid: c3b61dd0b1f6c904c899726bf276aff7, type: 2}
+  - {fileID: 11400000, guid: c06d52ca6a035b841aead618fc528249, type: 2}
+  - {fileID: 11400000, guid: ddd014323cf32fd49a5ffa5d7e5afd19, type: 2}
   playerPositions:
   - {x: -5.38, y: 0.5, z: 0}
   - {x: 0.12, y: 0.5, z: 0}
