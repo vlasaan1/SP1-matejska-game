@@ -14,7 +14,6 @@ public class ResultsHandler : MonoBehaviour
     }
 
     public void ShowResults(int[] results){
-        Debug.Log(results);
         for(int i=0;i<results.Length;i++){
             players[i].sprite = sprites[results[i]];
         }

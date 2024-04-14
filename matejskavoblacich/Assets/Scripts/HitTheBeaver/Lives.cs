@@ -8,7 +8,7 @@ public class Lives : MonoBehaviour
    bool isAlive = true;
 
     void Awake(){
-        health = 30;
+        health = 3;
     }
 
     public int GetHealth(){
@@ -22,11 +22,10 @@ public class Lives : MonoBehaviour
         health -= change;
         if(health<=0){
             isAlive=false;
-            //yield return new WaitForSeconds(1f);
         }
     }
     public void ResetHealth(){
-        health = 30;
+        health = 3;
     }
 
 }
