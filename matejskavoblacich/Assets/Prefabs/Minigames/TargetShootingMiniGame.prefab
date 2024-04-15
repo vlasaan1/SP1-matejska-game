@@ -137,6 +137,7 @@ MonoBehaviour:
   Timer: 2
   timeToSpawn: 0.87
   targetPosition: {x: -0.4, y: 0, z: 0}
+  minigame: {fileID: 7830195715442422702}
 --- !u!114 &7830195715442422702
 MonoBehaviour:
   m_ObjectHideFlags: 0

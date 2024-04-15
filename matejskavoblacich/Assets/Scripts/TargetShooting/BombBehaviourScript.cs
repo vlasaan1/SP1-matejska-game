@@ -20,7 +20,7 @@ public class BombBehaviourScript : BaseHittable
         Destroy(gameObject);
 
         //add score -100 points
-        Minigame minigame = FindObjectOfType<Minigame>();
+        Minigame minigame = GetComponentInParent<Minigame>();
         minigame.score -= 100;
     }
 
