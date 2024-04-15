@@ -237,6 +237,26 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae87e526d9e2f374abbd289605557fc6, type: 3}
+--- !u!1 &451167647 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5388562765533499070, guid: faf0f9d829442c04ba8dfaa5dc60b8ff, type: 3}
+  m_PrefabInstance: {fileID: 1275576585466601345}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &451167648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451167647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1001 &839664645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -483,7 +503,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2209020297211066050, guid: faf0f9d829442c04ba8dfaa5dc60b8ff, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.5839
+      value: -5.64
       objectReference: {fileID: 0}
     - target: {fileID: 2209020297211066050, guid: faf0f9d829442c04ba8dfaa5dc60b8ff, type: 3}
       propertyPath: m_LocalPosition.y
@@ -521,6 +541,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2209020297211066050, guid: faf0f9d829442c04ba8dfaa5dc60b8ff, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5388562765533499070, guid: faf0f9d829442c04ba8dfaa5dc60b8ff, type: 3}
       propertyPath: m_Name
       value: Booth
@@ -529,10 +553,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5445910155516460920, guid: faf0f9d829442c04ba8dfaa5dc60b8ff, type: 3}
+      propertyPath: targetPosition.x
+      value: 0.01
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5388562765533499070, guid: faf0f9d829442c04ba8dfaa5dc60b8ff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 451167648}
   m_SourcePrefab: {fileID: 100100000, guid: faf0f9d829442c04ba8dfaa5dc60b8ff, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
