@@ -21,6 +21,13 @@ public class MainGameMaster : MonoBehaviour
     List<MinigamePrefabSO> minigames;
     bool skipMinigame = false;
 
+    //TMP
+    bool ignoreTime = false;
+
+    public void KeepPlaying(){
+        ignoreTime = true;
+    }
+
     void Awake(){
         //Dont destroy on load, destroy if exists
         if(FindObjectsByType<MainGameMaster>(FindObjectsSortMode.None).Length > 1){
@@ -54,7 +61,7 @@ public class MainGameMaster : MonoBehaviour
 
     IEnumerator PlayGame(List<Minigame> minigames, float minigameStartTime){
         //Play for set time
-        while(Time.time < minigameStartTime+maxMinigamePlayTimeSeconds){
+        while(ignoreTime || Time.time < minigameStartTime+maxMinigamePlayTimeSeconds){
 
             //End sooner if all minigames already ended
             bool end = true;
@@ -132,6 +139,13 @@ public class MainGameMaster : MonoBehaviour
         StartCoroutine(PrepareGame());
     }
 
+    public void LoadGameById(int id){
+        MinigamePrefabSO chosenOne = minigames[id];
+        minigames.Clear();
+        minigames.Add(chosenOne);
+        numberOfPlayers = 3;
+        LoadGame();
+    }
    
 
     void EndMinigame(List<Minigame> minigames){

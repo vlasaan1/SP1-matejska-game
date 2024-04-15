@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4304b1bfc3caf5c48b81427bef448b50, type: 3}
-  m_Name: Throwing
+  m_Name: TargetShooting
   m_EditorClassIdentifier: 
-  minigamePrefab: {fileID: 1722949611427784547, guid: c1eef56637bb4b04ea87834753938a16, type: 3}
-  introText: Popis hry asi
+  minigamePrefab: {fileID: 5388562765533499070, guid: 2aeae9de539a98149a4466c2c2aa5846, type: 3}
+  introText: Nestrilim Bomby
   icon: {fileID: 0}

@@ -27,4 +27,8 @@ public class Menu : MonoBehaviour
     public void QuitGame(){
         Application.Quit();
     }
+
+    public void LoadOneGame(int id){
+        gameMaster.LoadGameById(id);
+    }
 }
