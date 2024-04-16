@@ -29,7 +29,7 @@ public class BoothBehaviourScript : MonoBehaviour
         Timer -= Time.deltaTime;
         if (Timer <= 0f)
         {
-            targetPosition = new Vector3(Random.Range(-2f, 3f),Random.Range(-1f, 1f), -1f);
+            targetPosition = new Vector3(Random.Range(-1.9f, 1.9f),Random.Range(-1.9f, 1.9f), -1f);
 
             // chance to spawn a bomb
             if (Random.Range(0, 100) < 10)
@@ -40,12 +40,6 @@ public class BoothBehaviourScript : MonoBehaviour
             }
             // initiate as a child of the booth
             targetClone = Instantiate(target, transform.position + targetPosition, transform.rotation, transform) as GameObject;
-
-
-            //targetClone = Instantiate(target, targetPosition, transform.rotation) as GameObject;
-            
-            
-
             Timer = timeToSpawn;
         }
     }

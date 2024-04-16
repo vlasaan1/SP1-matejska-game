@@ -19,6 +19,14 @@ public class MainGameMaster : MonoBehaviour
 
     MinigamePrefabSO currentMinigamePrefab;
     List<MinigamePrefabSO> minigames;
+    bool skipMinigame = false;
+
+    //TMP
+    bool ignoreTime = false;
+
+    public void KeepPlaying(){
+        ignoreTime = true;
+    }
 
     void Awake(){
         //Dont destroy on load, destroy if exists
@@ -47,9 +55,13 @@ public class MainGameMaster : MonoBehaviour
         return resultsHistory;
     }
 
+    public void SkipMinigame(){
+        skipMinigame = true;
+    }
+
     IEnumerator PlayGame(List<Minigame> minigames, float minigameStartTime){
         //Play for set time
-        while(Time.time < minigameStartTime+maxMinigamePlayTimeSeconds){
+        while(ignoreTime || Time.time < minigameStartTime+maxMinigamePlayTimeSeconds){
 
             //End sooner if all minigames already ended
             bool end = true;
@@ -59,7 +71,7 @@ public class MainGameMaster : MonoBehaviour
                     break;
                 }
             }
-            if(end) break;
+            if(end || skipMinigame) break;
             //Check again later
             yield return new WaitForSeconds(0.5f);
         }
@@ -116,6 +128,8 @@ public class MainGameMaster : MonoBehaviour
             currentMinigames.Add(Instantiate(game,playerPositions[i],Quaternion.identity).GetComponent<Minigame>());
         }
         
+        skipMinigame = false;
+
         timer.SetTime(maxMinigamePlayTimeSeconds);
         StartCoroutine(PlayGame(currentMinigames,minigameStartTime));
     }
@@ -125,6 +139,13 @@ public class MainGameMaster : MonoBehaviour
         StartCoroutine(PrepareGame());
     }
 
+    public void LoadGameById(int id){
+        MinigamePrefabSO chosenOne = minigames[id];
+        minigames.Clear();
+        minigames.Add(chosenOne);
+        numberOfPlayers = 3;
+        LoadGame();
+    }
    
 
     void EndMinigame(List<Minigame> minigames){
