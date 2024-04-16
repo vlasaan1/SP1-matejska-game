@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14fe08dabdc71bf4089e78e8cbb024c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstWaitingTime: 5
-  waitingTime: 3
+  firstWaitingTime: 8
+  waitingTime: 3.5
   speedWaitingTime: 0.2
   playerGrid: {fileID: 3697292984579429712}
   gameMaster: {fileID: 8731848156127098241}
