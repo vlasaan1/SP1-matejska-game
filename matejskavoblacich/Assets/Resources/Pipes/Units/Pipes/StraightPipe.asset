@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: StraightPipe
   m_EditorClassIdentifier: 
   type: 0
-  unitPrefab: {fileID: 3890756374755842247, guid: 2aebc6ab9d348ff4a9df4ce84cc8cd61, type: 3}
+  unitPrefab: {fileID: 5395780310974634640, guid: 2aebc6ab9d348ff4a9df4ce84cc8cd61, type: 3}
+  uName: 0

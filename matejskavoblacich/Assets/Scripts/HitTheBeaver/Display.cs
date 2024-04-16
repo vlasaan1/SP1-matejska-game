@@ -25,14 +25,14 @@ public class Display : MonoBehaviour
     void Start()
     {
         activeHearts = new List<GameObject>(); // Initialize activeHearts before using it
-        Vector3 startPosition = transform.position + new Vector3(-2f,2.35f,0f);
+        Vector3 startPosition = transform.position + new Vector3(-1.38f,2.35f,0f);
         scoreText.text = minigame.score.ToString("000000");;
         displayedHearts = Playerhealth.GetHealth();
         
         for(int i = 0; i<Playerhealth.GetHealth(); i++){
             GameObject heart = Instantiate(
                 lifePrefab,
-                startPosition + new Vector3(i * 0.8f, 0f, 0f),
+                startPosition + new Vector3(i * 0.55f, 0f, 0f),
                 Quaternion.identity,
                 transform
             );

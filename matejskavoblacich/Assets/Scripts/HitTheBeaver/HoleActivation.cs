@@ -12,7 +12,7 @@ public class HoleActivation : BaseHittable
 {
 
     [SerializeField] Minigame minigame;
-    [SerializeField] GameObject playerPrefab;
+    [SerializeField] List<GameObject> playerPrefab;
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] public float moveSpeed = 0.5f;
     float timeTotal;
@@ -38,17 +38,21 @@ public class HoleActivation : BaseHittable
         timeTotal = minigame.endTime - minigame.startTime;
         startPosition = transform.position + new Vector3(0f, 0.28f, 0f);
         endPosition = startPosition + new Vector3(0f, 0.72f, 0f);
+        //endPosition = startPosition + new Vector3(0f, 0.36f, 0f);
     }
 
 
     void Update()
     {
 
-        if((Time.time > percentage*timeTotal)&&(moveSpeed<3f)&&(percentage<100f)){
+        if(((Time.time-minigame.startTime) > percentage*timeTotal)&&(moveSpeed<4f)&&(percentage<100f)){
             percentage += 0.2f;
-            moveSpeed += 0.25f;
+            moveSpeed += 0.5f;
+            //moveSpeed += 0.3f;
         }
-
+        if(Time.time > minigame.endTime){
+            minigame.isFinished = true;
+        }
         if(!playerhealth.GetState()){
             minigame.isFinished = true;
             //nebo reset score?
@@ -61,15 +65,10 @@ public class HoleActivation : BaseHittable
                     //hit - decrease health
                     playerhealth.DecreseHealth(1);
                     int num = playerhealth.GetHealth();
-                    Debug.Log("Num");
-                    Debug.Log(num);    
                 }
                 else{
                     //hit - add points
-
                     minigame.score += 50;
-                    Debug.Log("Score");
-                    Debug.Log(minigame.score);
                 }
             }
             else if(onShowBeaver==1){
@@ -87,7 +86,7 @@ public class HoleActivation : BaseHittable
         number = Random.Range(1,upperBound+1);
         if(number<upperBound){
             activeBeaver = Instantiate(
-                playerPrefab,
+                playerPrefab[minigame.playerId],
                 startPosition,
                 Quaternion.identity,
                 transform
