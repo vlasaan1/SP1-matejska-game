@@ -6,27 +6,23 @@ using UnityEngine.SceneManagement;
 
 public class MainGameMaster : MonoBehaviour
 {
+    [Header ("References")]
     [SerializeField] GameObject initiInput;
     [SerializeField] List<MinigamePrefabSO> originalMinigamesPrefabs;
     [SerializeField] List<Vector3> playerPositions;
+    [Header ("Time settings")]
     [SerializeField,Tooltip("Time between loading new scene and starting minigame")] float waitTimeBeforeMinigameStart = 3;
     [SerializeField] float maxMinigamePlayTimeSeconds = 90;
     [SerializeField] float waitTimeAfterMinigameEnds = 3;
 
     GameObject initiInstance;
     List<Results> resultsHistory = new();
-    int numberOfPlayers;
-
     MinigamePrefabSO currentMinigamePrefab;
     List<MinigamePrefabSO> minigames;
     bool skipMinigame = false;
+    int numberOfPlayers;
 
-    //TMP
-    bool ignoreTime = false;
 
-    public void KeepPlaying(){
-        ignoreTime = true;
-    }
 
     void Awake(){
         //Dont destroy on load, destroy if exists
@@ -42,7 +38,7 @@ public class MainGameMaster : MonoBehaviour
         //Save all minigames, to be able to restore it after changes
         minigames = new List<MinigamePrefabSO>(originalMinigamesPrefabs);
     }
-
+    
     public void SetNumberOfPlayers(int num){
         numberOfPlayers = num;
     }
@@ -59,32 +55,18 @@ public class MainGameMaster : MonoBehaviour
         skipMinigame = true;
     }
 
-    IEnumerator PlayGame(List<Minigame> minigames, float minigameStartTime){
-        //Play for set time
-        while(ignoreTime || Time.time < minigameStartTime+maxMinigamePlayTimeSeconds){
+    //Temporary method
+    public void LoadGameById(int id){
+        MinigamePrefabSO chosenOne = minigames[id];
+        minigames.Clear();
+        minigames.Add(chosenOne);
+        numberOfPlayers = 3;
+        LoadGame();
+    }
 
-            //End sooner if all minigames already ended
-            bool end = true;
-            foreach(Minigame m in minigames){
-                if(!m.isFinished){
-                    end = false;
-                    break;
-                }
-            }
-            if(end || skipMinigame) break;
-            //Check again later
-            yield return new WaitForSeconds(0.5f);
-        }
-
-        //Disable input - end of game
-        initiInstance.SetActive(false);
-        Timer timer = FindObjectOfType<Timer>();
-        timer.SetTime(waitTimeAfterMinigameEnds);
-        yield return new WaitForSeconds(waitTimeAfterMinigameEnds);
-
-        //Enable input again
-        initiInstance.SetActive(true);
-        EndMinigame(minigames);
+    public void LoadGame(){
+        SceneManager.LoadScene("Minigame");
+        StartCoroutine(PrepareGame());
     }
 
     IEnumerator PrepareGame(){
@@ -100,14 +82,15 @@ public class MainGameMaster : MonoBehaviour
 
         //Set timer visualization
         Timer timer = FindObjectOfType<Timer>();
+        timer.SetTime(waitTimeBeforeMinigameStart);
 
         //Show minigame intro text, wait
         TMP_Text introText = GameObject.FindGameObjectWithTag("IntroText").GetComponent<TMP_Text>();
         introText.text = minigames[nextGameId].introText;
         introText.gameObject.SetActive(true);
 
-        timer.SetTime(waitTimeBeforeMinigameStart);
         yield return new WaitForSeconds(waitTimeBeforeMinigameStart);
+
         //Hide text
         introText.gameObject.SetActive(false);
 
@@ -128,42 +111,53 @@ public class MainGameMaster : MonoBehaviour
             currentMinigames.Add(Instantiate(game,playerPositions[i],Quaternion.identity).GetComponent<Minigame>());
         }
         
-        skipMinigame = false;
 
-        timer.SetTime(maxMinigamePlayTimeSeconds);
         StartCoroutine(PlayGame(currentMinigames,minigameStartTime));
     }
 
-    public void LoadGame(){
-        SceneManager.LoadScene("Minigame");
-        StartCoroutine(PrepareGame());
-    }
+    IEnumerator PlayGame(List<Minigame> minigames, float minigameStartTime){
+        Timer timer = FindObjectOfType<Timer>();
+        timer.SetTime(maxMinigamePlayTimeSeconds);
+        skipMinigame = false;
 
-    public void LoadGameById(int id){
-        MinigamePrefabSO chosenOne = minigames[id];
-        minigames.Clear();
-        minigames.Add(chosenOne);
-        numberOfPlayers = 3;
-        LoadGame();
-    }
-   
+        //Play for set time
+        while(Time.time < minigameStartTime+maxMinigamePlayTimeSeconds){
+
+            //End sooner if all minigames already ended
+            bool end = true;
+            foreach(Minigame m in minigames){
+                if(!m.isFinished){
+                    end = false;
+                    break;
+                }
+            }
+            if(end || skipMinigame) break;
+            //Check again later
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        //Disable input - end of game
+        initiInstance.SetActive(false);
+        timer.SetTime(waitTimeAfterMinigameEnds);
+        yield return new WaitForSeconds(waitTimeAfterMinigameEnds);
+
+        //Enable input again
+        initiInstance.SetActive(true);
+        EndMinigame(minigames);
+    }   
 
     void EndMinigame(List<Minigame> minigames){
         //Count score
         Results gameResults = new();
         gameResults.results = new int[numberOfPlayers];
         gameResults.icon = currentMinigamePrefab.icon;
-        for(int i=0;i<minigames.Count;i++){
-            int max = int.MinValue;
-            int argMax=0;
-            for(int j=0;j<minigames.Count;j++){
-                if(minigames[j].score>max){
-                    max = minigames[j].score;
-                    argMax = j;
+        for(int i=0;i<numberOfPlayers;i++){
+            for(int j=0;j<numberOfPlayers;j++){
+                if(i==j) continue;
+                if(minigames[i].score>minigames[j].score){
+                    gameResults.results[j]++;
                 }
             }
-            gameResults.results[argMax] = i;
-            minigames[argMax].score = int.MinValue;
         }
         resultsHistory.Add(gameResults);
         
