@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d4fb3575bf58c4bad386e6a0b502de, type: 3}
-  m_Name: Bomb
+  m_Script: {fileID: 11500000, guid: 4304b1bfc3caf5c48b81427bef448b50, type: 3}
+  m_Name: TargetShooting
   m_EditorClassIdentifier: 
-  type: 1
-  unitPrefab: {fileID: 486520429416323681, guid: 7b0da202f1da9de49aed120397ead3a5, type: 3}
-  uName: 3
+  minigamePrefab: {fileID: 5388562765533499070, guid: 2aeae9de539a98149a4466c2c2aa5846, type: 3}
+  introText: Nestrilim Bomby
+  icon: {fileID: 0}

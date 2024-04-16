@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Throwing
   m_EditorClassIdentifier: 
   minigamePrefab: {fileID: 1722949611427784547, guid: c1eef56637bb4b04ea87834753938a16, type: 3}
-  introText: sdsdsdcdsc
+  introText: Popis hry asi
   icon: {fileID: 0}
