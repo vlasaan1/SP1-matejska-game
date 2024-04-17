@@ -7,7 +7,7 @@ public class BaseUnit : MonoBehaviour
     public Vector2 inDir;
     public Vector2 outDir;
     public Tile occupiedTile;
-    private SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer;
     private bool isMoveable;
     public bool IsMoveable {get; set;}
     private bool reversedFilling = false;

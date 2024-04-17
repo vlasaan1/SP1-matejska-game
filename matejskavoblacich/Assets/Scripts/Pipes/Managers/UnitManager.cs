@@ -128,8 +128,8 @@ public class UnitManager : MonoBehaviour
         unit.outDir = info.outDir;
         var spawnedUnit = Instantiate(unit, playerHolder.transform);
         var spawnUnitOnTile = playerHolder.grid[info.position];
-        spawnedUnit.CalculateRotation();
         spawnUnitOnTile.setUnit(spawnedUnit);
+        spawnedUnit.CalculateRotation();
         return spawnedUnit;
     }
 
