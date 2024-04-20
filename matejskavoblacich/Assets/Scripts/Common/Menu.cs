@@ -18,7 +18,8 @@ public class Menu : MonoBehaviour
 
     public void PlayGame(){
         mainMenu.SetActive(false);
-        chooseHeight.SetActive(true);
+        //chooseHeight.SetActive(true);
+        chooseNumberOfPlayers.SetActive(true);
     }
 
     public void SetHeight(float height){

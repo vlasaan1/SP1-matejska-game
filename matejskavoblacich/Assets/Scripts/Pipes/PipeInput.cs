@@ -6,12 +6,14 @@ public class PipeInput : BaseHoldable
 {
     [SerializeField] int numberOfTiles = 8;
     [SerializeField] PlayerGrid grid;
+    [SerializeField, Range(1,2)] float heldPipeSizeMultiplier = 1.2f;
 
     bool isHeld = false;
     GameObject heldObject;
     Vector2Int heldObjectArrayPos;
     Vector3 originalPosition;
     Vector3 moveDirection;
+    Vector3 originalScale;
     float minMovement = 0.1f;
     int deltaFrame = 1;
     int lastFrameCount = 0;
@@ -31,6 +33,8 @@ public class PipeInput : BaseHoldable
             if(!grid.CanGetTileAtPosition(heldObjectArrayPos)) return;
             heldObject = grid.GetTileAtPosition(heldObjectArrayPos).occupiedUnit.gameObject;
             originalPosition = heldObject.transform.position;
+            originalScale  = heldObject.transform.localScale;
+            heldObject.transform.localScale = originalScale*heldPipeSizeMultiplier;
             isHeld = true;
         } else {
             //Is already holding -> move 
@@ -63,6 +67,7 @@ public class PipeInput : BaseHoldable
         isHeld = false;
         moveDirection = Vector3.zero;
         heldObject.transform.position = originalPosition;
+        heldObject.transform.localScale = originalScale;
     }
 
     public void Update(){
