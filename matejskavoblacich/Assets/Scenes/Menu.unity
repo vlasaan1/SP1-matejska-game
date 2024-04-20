@@ -1695,7 +1695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 1974957411}
   chooseNumberOfPlayers: {fileID: 435098332}
-  chooseHeight: {fileID: 0}
+  chooseHeight: {fileID: 1252049841}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
