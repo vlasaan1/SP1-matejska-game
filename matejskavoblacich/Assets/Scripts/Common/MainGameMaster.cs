@@ -14,6 +14,9 @@ public class MainGameMaster : MonoBehaviour
     [SerializeField,Tooltip("Time between loading new scene and starting minigame")] float waitTimeBeforeMinigameStart = 3;
     [SerializeField] float maxMinigamePlayTimeSeconds = 90;
     [SerializeField] float waitTimeAfterMinigameEnds = 3;
+    [Header ("Stall movement variables")]
+    [SerializeField] float minYMove;
+    [SerializeField] float maxYMove;
 
     GameObject initiInstance;
     List<Results> resultsHistory = new();
@@ -21,6 +24,7 @@ public class MainGameMaster : MonoBehaviour
     List<MinigamePrefabSO> minigames;
     bool skipMinigame = false;
     int numberOfPlayers;
+    float currentYMove = 0;
 
 
 
@@ -41,6 +45,14 @@ public class MainGameMaster : MonoBehaviour
     
     public void SetNumberOfPlayers(int num){
         numberOfPlayers = num;
+    }
+
+    public void SetYMove(float yMove){
+        //Vypocet realneho posunu ??
+
+        if(yMove < minYMove) currentYMove = minYMove;
+        else if(yMove > maxYMove) currentYMove = maxYMove;
+        else currentYMove = yMove;
     }
 
     public Results GetLastResults(){
@@ -72,6 +84,9 @@ public class MainGameMaster : MonoBehaviour
     IEnumerator PrepareGame(){
         //Wait until next update, until new scene is prepared
         yield return new WaitUntil(() => true);
+        //Move Stall up/down to match player height 
+        GameObject.Find("Stall").transform.position += Vector3.up * currentYMove;
+
         List<Minigame> currentMinigames = new();
 
         //Choose randomly next minigame
@@ -108,7 +123,7 @@ public class MainGameMaster : MonoBehaviour
         for(int i=0;i<playerPositions.Count;i++){
             if(numberOfPlayers<=i) break;
             minigame.playerId = i;
-            currentMinigames.Add(Instantiate(game,playerPositions[i],Quaternion.identity).GetComponent<Minigame>());
+            currentMinigames.Add(Instantiate(game,playerPositions[i]+(Vector3.up*currentYMove),Quaternion.identity).GetComponent<Minigame>());
         }
         
 

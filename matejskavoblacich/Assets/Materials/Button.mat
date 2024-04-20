@@ -23,6 +23,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _HeldTex:
+        m_Texture: {fileID: 2800000, guid: c091f3a4bc7ada24496513c1e1bceec6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 0d7bec5f3619b6f4a9952c00d37e6861, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -43,7 +47,7 @@ Material:
     m_Floats:
     - _HoldPercent: 0
     m_Colors:
-    - _HighlightColor: {r: 1, g: 0.7254902, b: 0, a: 1}
+    - _HighlightColor: {r: 0.22663574, g: 0.3458452, b: 0.86415094, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &3018563519524359794
 MonoBehaviour:

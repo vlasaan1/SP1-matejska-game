@@ -39,7 +39,7 @@ public class Button : BaseHoldable
     IEnumerator HoldVisualization(){
         float holdPercent;
         while(activeVisualization){
-            holdPercent = Mathf.Clamp(((Time.time-firstHitTime)/minTimeBeforeHold)-.1f,0,1);
+            holdPercent = Mathf.Clamp((Time.time-firstHitTime)/minTimeBeforeHold,0,1);
             sprite.material.SetFloat("_HoldPercent",holdPercent);
             yield return new WaitForSeconds(0);
         }
