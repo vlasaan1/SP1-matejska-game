@@ -130,6 +130,7 @@ public class UnitManager : MonoBehaviour
         var spawnUnitOnTile = playerHolder.grid[info.position];
         spawnUnitOnTile.setUnit(spawnedUnit);
         spawnedUnit.CalculateRotation();
+        spawnedUnit.SetBackground();
         return spawnedUnit;
     }
 

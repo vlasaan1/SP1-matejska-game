@@ -100,3 +100,4 @@ MonoBehaviour:
   inDir: {x: 0, y: 0}
   outDir: {x: 0, y: 0}
   occupiedTile: {fileID: 0}
+  background: {fileID: 21300000, guid: 02bf4b9d5c42aa74aa9f242435d0092f, type: 3}

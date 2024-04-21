@@ -10,5 +10,7 @@ public class StraightPipe : BasePipe
     {
         if(Math.Abs(inDir.x) == 1)
             transform.Rotate(Vector3.forward, 90f);
+        rotation = transform.rotation.z;
     }
+
 }

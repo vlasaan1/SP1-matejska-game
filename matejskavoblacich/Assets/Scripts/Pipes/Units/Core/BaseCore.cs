@@ -7,4 +7,9 @@ public class BaseCore : BaseUnit
     public BaseCore(){
         IsMoveable = false;
     }
+
+    public override void SetBackground()
+    {
+        base.SetBackground();
+    }
 }
