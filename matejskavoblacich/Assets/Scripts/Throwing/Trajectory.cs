@@ -23,6 +23,10 @@ public class Trajectory : MonoBehaviour
 
     public void ShowTrajectory(){
         dotParent.SetActive(true);
+        //Reset points
+        for(int i=0;i<numberOfDots;i++){
+            dots[i].position = new Vector3(500,500,0);
+        }
     }
 
     public void UpdateTrajectory(Vector2 basePos, Vector2 force){

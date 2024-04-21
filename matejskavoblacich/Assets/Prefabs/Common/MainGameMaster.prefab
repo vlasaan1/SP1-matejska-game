@@ -57,3 +57,6 @@ MonoBehaviour:
   waitTimeBeforeMinigameStart: 4
   maxMinigamePlayTimeSeconds: 60
   waitTimeAfterMinigameEnds: 3
+  minYMove: -1.4
+  maxYMove: 0.3
+  currentYMove: 0

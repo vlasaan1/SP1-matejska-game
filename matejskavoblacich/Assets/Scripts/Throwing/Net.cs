@@ -7,6 +7,8 @@ public class Net : MonoBehaviour
     [SerializeField] Minigame minigame;
     [SerializeField] Transform movementZone;
     [SerializeField] float movementSpeed = 3;
+    [SerializeField] int goalPoints = 50;
+    [SerializeField] int goalPointsBonusMultiplier = 3;
     float nextHitTime = 0;
     float delayBetweenPoints = 0.3f;
     float shotFromUnderdelay = 1f;
@@ -30,7 +32,11 @@ public class Net : MonoBehaviour
                     nextHitTime = Time.time + shotFromUnderdelay;
                     return;
                 }
-                minigame.score+=1;
+                if(other.GetComponent<Ball>().IsBonus()){
+                    minigame.score+=goalPoints*goalPointsBonusMultiplier;
+                } else {
+                    minigame.score+=goalPoints;
+                }
                 nextHitTime = Time.time + delayBetweenPoints;
             }
         }
