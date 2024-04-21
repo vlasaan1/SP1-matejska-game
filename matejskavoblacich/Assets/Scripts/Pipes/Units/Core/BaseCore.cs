@@ -8,8 +8,8 @@ public class BaseCore : BaseUnit
         IsMoveable = false;
     }
 
-    public override void SetBackground()
+    public override void SetBackground(PlayerGrid playerGrid)
     {
-        base.SetBackground();
+        base.SetBackground(playerGrid);
     }
 }

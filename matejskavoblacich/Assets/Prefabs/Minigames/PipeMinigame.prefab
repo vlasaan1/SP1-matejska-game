@@ -275,6 +275,7 @@ MonoBehaviour:
   maxTimeBetweenClicks: 0.5
   numberOfTiles: 7
   grid: {fileID: 3697292984579429712}
+  heldPipeSizeMultiplier: 1.2
 --- !u!61 &8025890410766885991
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -468,6 +469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigame: {fileID: 959447931716666956}
+  playerGrid: {fileID: 3697292984579429712}
 --- !u!1001 &808567245811492905
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -546,7 +548,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6916486535830283401, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
       propertyPath: m_fontSize
-      value: 8.7
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

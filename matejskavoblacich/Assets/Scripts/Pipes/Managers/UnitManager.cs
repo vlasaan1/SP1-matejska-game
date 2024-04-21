@@ -7,6 +7,7 @@ using UnityEngine;
 public class UnitManager : MonoBehaviour
 {
     [SerializeField] Minigame minigame;
+    [SerializeField] PlayerGrid playerGrid;
     private List<ScriptableUnit> units;
     private int fieldSize;
     private List<Vector2> directions = new List<Vector2>{
@@ -130,7 +131,7 @@ public class UnitManager : MonoBehaviour
         var spawnUnitOnTile = playerHolder.grid[info.position];
         spawnUnitOnTile.setUnit(spawnedUnit);
         spawnedUnit.CalculateRotation();
-        spawnedUnit.SetBackground();
+        spawnedUnit.SetBackground(playerGrid);
         return spawnedUnit;
     }
 

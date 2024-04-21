@@ -8,13 +8,13 @@ public class BasePipe : BaseUnit
         IsMoveable = true;
     }
 
-    public override void SetBackground()
+    public override void SetBackground(PlayerGrid playerGrid)
     {
         backgroundObj = new GameObject("BackgroundObj");
         backgroundRenderer = backgroundObj.AddComponent<SpriteRenderer>();
+        backgroundObj.transform.SetParent(playerGrid.transform);
         spriteRenderer.sprite = background;
         backgroundObj.transform.position = transform.position;
         backgroundObj.transform.rotation = Quaternion.Euler(0f,0f,rotation);
-        base.SetBackground();
     }
 }

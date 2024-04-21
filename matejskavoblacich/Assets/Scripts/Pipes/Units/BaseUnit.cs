@@ -24,7 +24,7 @@ public class BaseUnit : MonoBehaviour
 
     public virtual void CalculateRotation(){}
 
-    public virtual void SetBackground(){}
+    public virtual void SetBackground(PlayerGrid playerGrid){}
 
     void Awake(){
         spriteRenderer = GetComponent<SpriteRenderer>();
