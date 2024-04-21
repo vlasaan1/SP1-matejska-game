@@ -3,11 +3,10 @@ using UnityEngine;
 using initi.prefabScripts;
 public class BaseHoldable : BaseHittable
 {
-    //Public for testing - edit later
-    [SerializeField] public float minTimeBeforeHold = 0.3f;
-    [SerializeField] public float maxTimeBetweenClicks = 0.4f;
-    float firstHitTime = 0;
-    float lastHitTime = 0;
+    [SerializeField] protected float minTimeBeforeHold = 0.3f;
+    [SerializeField] protected float maxTimeBetweenClicks = 0.4f;
+    protected float firstHitTime = 0;
+    protected float lastHitTime = 0;
 
     public override void Hit(Vector2 hitPosition){
         float timeNow = Time.time;
@@ -19,8 +18,8 @@ public class BaseHoldable : BaseHittable
             }
         } else {
             //First press
-            OnPress(hitPosition);
             firstHitTime = timeNow;
+            OnPress(hitPosition);
         }
         lastHitTime = timeNow;
         if(gameObject.activeInHierarchy){

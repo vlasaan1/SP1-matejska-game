@@ -28,10 +28,6 @@ public class MovingThing : BaseHoldable
                     if(other.isHeld){
                         return;
                     }
-                } else if(coll.gameObject.TryGetComponent<ThrowingThing>(out ThrowingThing other2)){
-                    if(other2.isHeld){
-                        return;
-                    }
                 }
             }
             //Start holding
