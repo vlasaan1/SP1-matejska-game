@@ -49,10 +49,9 @@ public class FillingLogic : MonoBehaviour
             else{
                 if(current.GetType() == typeof(StraightPipe)){
                     float startTime = Time.time;
-                    float duration = waitingTime;
                     current.spriteRenderer.material.SetInt("_isReversed", current.IsReversedFilling ? 0 : 1);
-                    while(startTime + duration >= Time.time){
-                        current.spriteRenderer.material.SetFloat("_HoldPercent", (Time.time - startTime) / duration);
+                    while(startTime + waitingTime >= Time.time){
+                        current.spriteRenderer.material.SetFloat("_HoldPercent", (Time.time - startTime) / waitingTime);
                         yield return new WaitForSeconds(0);
                     }
                     current.spriteRenderer.material.SetFloat("_HoldPercent", 1);
