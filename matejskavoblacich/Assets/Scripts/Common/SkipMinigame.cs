@@ -7,8 +7,4 @@ public class SkipMinigame : MonoBehaviour
     public void Skip(){
         FindObjectOfType<MainGameMaster>().SkipMinigame();
     }
-
-    public void KeepPlaying(){
-        FindObjectOfType<MainGameMaster>().KeepPlaying();
-    }
 }

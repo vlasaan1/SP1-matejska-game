@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,21 +8,17 @@ public class Button : BaseHoldable
 
     [Header("Button properties")]
     [SerializeField, Tooltip("If true, OnClick is called only once even when holding for long time")] bool clickOnce = true;
-    [Header("Colors")]
-    [SerializeField] Color baseColor = Color.white;
-    [SerializeField] Color hoverColor = Color.white;
-    [SerializeField] Color selectedColor = Color.white;
+
     [Header("OnClick event")]
     [SerializeField] UnityEvent onClick;
 
     bool clickedThisHold = false;
-    public void Start(){
-        sprite.color = baseColor;
-    }
+    bool activeVisualization = false;
 
     protected override void OnPress(Vector2 hitPosition)
     {
-        sprite.color = hoverColor;
+        activeVisualization = true;
+        StartCoroutine(HoldVisualization());
     }
 
     protected override void OnHold(Vector2 hitPosition)
@@ -31,12 +28,21 @@ public class Button : BaseHoldable
         }
         onClick.Invoke();
         clickedThisHold = true;
-        sprite.color = selectedColor;
     }
 
     protected override void OnRelease(Vector2 hitPosition)
     {
         clickedThisHold = false;
-        sprite.color = baseColor;
+        activeVisualization = false;
+    }
+
+    IEnumerator HoldVisualization(){
+        float holdPercent;
+        while(activeVisualization){
+            holdPercent = Mathf.Clamp(((Time.time-firstHitTime)/minTimeBeforeHold)-.1f,0,1);
+            sprite.material.SetFloat("_HoldPercent",holdPercent);
+            yield return new WaitForSeconds(0);
+        }
+        sprite.material.SetFloat("_HoldPercent",0);
     }
 }
