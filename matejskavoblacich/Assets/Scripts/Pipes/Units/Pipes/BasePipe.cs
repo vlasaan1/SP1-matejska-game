@@ -13,8 +13,11 @@ public class BasePipe : BaseUnit
         backgroundObj = new GameObject("BackgroundObj");
         backgroundRenderer = backgroundObj.AddComponent<SpriteRenderer>();
         backgroundObj.transform.SetParent(playerGrid.transform);
-        spriteRenderer.sprite = background;
+        backgroundRenderer.sprite = background;
+        backgroundRenderer.color = Color.white;
+        backgroundRenderer.sortingOrder = 2;
         backgroundObj.transform.position = transform.position;
-        backgroundObj.transform.rotation = Quaternion.Euler(0f,0f,rotation);
+        backgroundObj.transform.rotation = transform.rotation;
+        backgroundObj.transform.localScale = transform.localScale;
     }
 }

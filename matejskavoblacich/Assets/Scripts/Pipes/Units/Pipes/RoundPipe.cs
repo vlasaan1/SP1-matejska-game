@@ -14,7 +14,6 @@ public class RoundPipe : BasePipe
             transform.Rotate(Vector3.forward, 180f);
         else if(vec.x == -1 && vec.y == 1)
             transform.Rotate(Vector3.forward, 270f);
-        rotation = transform.rotation.z;
     }
 
 }

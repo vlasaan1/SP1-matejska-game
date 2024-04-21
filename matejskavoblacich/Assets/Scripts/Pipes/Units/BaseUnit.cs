@@ -8,7 +8,6 @@ public class BaseUnit : MonoBehaviour
     public Vector2 inDir;
     public Vector2 outDir;
     public Tile occupiedTile;
-    protected float rotation = 0;
     protected SpriteRenderer spriteRenderer;
     private bool isMoveable;
     public bool IsMoveable {get; set;}

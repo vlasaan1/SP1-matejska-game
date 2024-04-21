@@ -12,6 +12,5 @@ public class StartPipe : BaseCore
             transform.Rotate(Vector3.forward, 270f);
         else if(outDir.y == 1)
             transform.Rotate(Vector3.forward, 180f);
-        rotation = transform.rotation.z;
     }
 }

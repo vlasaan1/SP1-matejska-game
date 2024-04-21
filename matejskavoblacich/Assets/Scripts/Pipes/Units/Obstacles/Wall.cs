@@ -30,7 +30,6 @@ public class Wall : BaseObstacle
                 transform.Rotate(Vector3.forward, 90f);
             }
         }
-        rotation = transform.rotation.z;
     }
 
     private void swapToCornerWall(Vector2 pos, int sizeOfField){
