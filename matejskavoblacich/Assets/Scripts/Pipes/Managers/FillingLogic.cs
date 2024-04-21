@@ -60,7 +60,6 @@ public class FillingLogic : MonoBehaviour
                     yield return new WaitForSeconds(waitingTime);
                 }
             }
-            current.changeColor(Color.red);
 
             previous = current;
             current = sendSignalToNextPipe(current);

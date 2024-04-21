@@ -9,9 +9,4 @@ public class BaseObstacle : BaseUnit
         inDir = new Vector2(0,0);
         outDir = new Vector2(0,0);
     }
-
-    public override void SetBackground(PlayerGrid playerGrid)
-    {
-        base.SetBackground(playerGrid);
-    }
 }

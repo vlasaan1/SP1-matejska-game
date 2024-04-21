@@ -15,24 +15,12 @@ public class BaseUnit : MonoBehaviour
     public bool ReversedFilling { get; }
     public bool IsReversedFilling { get;}
 
-    // background things
-    public Sprite background;
-    protected GameObject backgroundObj;
-    protected SpriteRenderer backgroundRenderer;
-    
-
     public virtual void CalculateRotation(){}
 
     public virtual void SetBackground(PlayerGrid playerGrid){}
 
     void Awake(){
         spriteRenderer = GetComponent<SpriteRenderer>();
-    }
-
-    void Update(){
-        if(backgroundObj){
-            backgroundObj.transform.position = transform.position;
-        }
     }
 
     public void changeColor(Color color){
