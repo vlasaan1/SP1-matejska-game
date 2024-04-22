@@ -47,18 +47,13 @@ public class FillingLogic : MonoBehaviour
                 yield return new WaitForSeconds(firstWaitingTime);
             }
             else{
-                if(current.GetType() == typeof(StraightPipe)){
-                    float startTime = Time.time;
-                    current.spriteRenderer.material.SetInt("_isReversed", current.IsReversedFilling ? 0 : 1);
-                    while(startTime + waitingTime >= Time.time){
-                        current.spriteRenderer.material.SetFloat("_HoldPercent", (Time.time - startTime) / waitingTime);
-                        yield return new WaitForSeconds(0);
-                    }
-                    current.spriteRenderer.material.SetFloat("_HoldPercent", 1);
+                float startTime = Time.time;
+                current.spriteRenderer.material.SetInt("_isReversed", current.reversedFilling ? 1 : 0);
+                while(startTime + waitingTime >= Time.time){
+                    current.spriteRenderer.material.SetFloat("_HoldPercent", (Time.time - startTime) / waitingTime);
+                    yield return new WaitForSeconds(0);
                 }
-                else{
-                    yield return new WaitForSeconds(waitingTime);
-                }
+                current.spriteRenderer.material.SetFloat("_HoldPercent", 1);
             }
 
             previous = current;
@@ -98,11 +93,7 @@ public class FillingLogic : MonoBehaviour
     /// <param name="current"></param>
     /// <returns></returns>
     private BaseUnit sendSignalToNextPipe(BaseUnit current){
-        if(current.ReversedFilling)
-            current = playerGrid.GetTileAtPosition(new Vector2Int((int) current.occupiedTile.possitionOnGrid.x + (int) current.inDir.x, (int) current.occupiedTile.possitionOnGrid.y + (int) current.inDir.y)).occupiedUnit;
-        else{
-            current = playerGrid.GetTileAtPosition(new Vector2Int((int) current.occupiedTile.possitionOnGrid.x + (int) current.outDir.x, (int) current.occupiedTile.possitionOnGrid.y + (int) current.outDir.y)).occupiedUnit;
-        }
+        current = playerGrid.GetTileAtPosition(new Vector2Int((int) current.occupiedTile.possitionOnGrid.x + (int) current.outDir.x, (int) current.occupiedTile.possitionOnGrid.y + (int) current.outDir.y)).occupiedUnit;
         return current;
     }
 

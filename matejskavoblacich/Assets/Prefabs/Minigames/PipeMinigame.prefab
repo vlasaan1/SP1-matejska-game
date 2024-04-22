@@ -469,7 +469,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigame: {fileID: 959447931716666956}
-  playerGrid: {fileID: 3697292984579429712}
 --- !u!1001 &808567245811492905
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -11,9 +11,8 @@ public class BaseUnit : MonoBehaviour
     [HideInInspector] public SpriteRenderer spriteRenderer;
     private bool isMoveable;
     public bool IsMoveable {get; set;}
-    private bool reversedFilling = false;
-    public bool ReversedFilling { get; }
-    public bool IsReversedFilling { get;}
+    public bool reversedFilling = false;
+    protected float rotation = 0f;
 
     public virtual void CalculateRotation(){}
 

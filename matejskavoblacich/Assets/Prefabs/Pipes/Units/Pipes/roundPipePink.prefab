@@ -53,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5fddf9914d05c464a99d18bac13d6323, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -100,4 +100,4 @@ MonoBehaviour:
   inDir: {x: -1, y: 0}
   outDir: {x: 0, y: -1}
   occupiedTile: {fileID: 0}
-  background: {fileID: 21300000, guid: 0677fd9c35d1afa4ab0976a3a16ec01a, type: 3}
+  spriteRenderer: {fileID: 0}
