@@ -59,6 +59,6 @@ Material:
     m_Ints: []
     m_Floats:
     - _HoldPercent: 0.054
-    - _Slope: 0.39
+    - _Slope: 0
     m_Colors: []
   m_BuildTextureStacks: []
