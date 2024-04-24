@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using initi.prefabScripts;
 using UnityEngine;
 
-public class Ball : MonoBehaviour
+public class Ball : BaseHittable
 {
     AudioSource audioSource;
     SpriteRenderer spriteRenderer;

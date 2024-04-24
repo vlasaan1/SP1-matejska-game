@@ -53,3 +53,6 @@ TagManager:
   - name: buttons
     uniqueID: 2321990153
     locked: 0
+  - name: scene_transition
+    uniqueID: 1971430177
+    locked: 0

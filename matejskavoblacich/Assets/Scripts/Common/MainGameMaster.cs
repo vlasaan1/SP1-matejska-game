@@ -8,12 +8,14 @@ public class MainGameMaster : MonoBehaviour
 {
     [Header ("References")]
     [SerializeField] GameObject initiInput;
+    [SerializeField] GameObject sceneTransition;
     [SerializeField] List<MinigamePrefabSO> originalMinigamesPrefabs;
     [SerializeField] List<Vector3> playerPositions;
     [Header ("Time settings")]
     [SerializeField,Tooltip("Time between loading new scene and starting minigame")] float waitTimeBeforeMinigameStart = 3;
     [SerializeField] float maxMinigamePlayTimeSeconds = 90;
     [SerializeField] float waitTimeAfterMinigameEnds = 3;
+    [SerializeField] float sceneTransitionWaitTime = 1;
     [Header ("Stall movement variables")]
     [SerializeField] float minYMove;
     [SerializeField] float maxYMove;
@@ -26,7 +28,14 @@ public class MainGameMaster : MonoBehaviour
     int numberOfPlayers;
     float currentYMove = 0;
 
-
+    public enum GameState{
+        Menu,
+        LoadMinigame,
+        PlayMinigame,
+        BetweenMinigames,
+        FinalScene,
+        DoNothing
+    };
 
     void Awake(){
         //Dont destroy on load, destroy if exists
@@ -38,6 +47,8 @@ public class MainGameMaster : MonoBehaviour
         
         //Instantiate initiInput only once
         initiInstance = Instantiate(initiInput);
+
+        Instantiate(sceneTransition);
 
         //Save all minigames, to be able to restore it after changes
         minigames = new List<MinigamePrefabSO>(originalMinigamesPrefabs);
@@ -67,23 +78,53 @@ public class MainGameMaster : MonoBehaviour
         skipMinigame = true;
     }
 
+    
+
+    public void ChangeState(GameState newState){
+        switch(newState){
+            case GameState.LoadMinigame:
+                StartCoroutine(TransitionToScene("Minigame",GameState.PlayMinigame));
+                break;
+            case GameState.PlayMinigame:
+                StartCoroutine(PrepareGame());
+                break;
+            case GameState.BetweenMinigames:
+                break;
+            case GameState.FinalScene:
+                break;
+            case GameState.Menu:
+                //Restore minigames for next playing
+                minigames = new List<MinigamePrefabSO>(originalMinigamesPrefabs);
+                resultsHistory = new();
+                StartCoroutine(TransitionToScene("Menu",GameState.DoNothing));
+                break;
+        }
+    }
+
+    IEnumerator TransitionToScene(string sceneName, GameState nextState){
+        FindObjectOfType<SceneTransition>().StartTransition();
+        yield return new WaitForSeconds(sceneTransitionWaitTime);
+
+        SceneManager.LoadScene(sceneName);
+        yield return new WaitForSeconds(0);
+
+        Instantiate(sceneTransition);
+
+        ChangeState(nextState);
+    }
+
+
     //Temporary method
     public void LoadGameById(int id){
         MinigamePrefabSO chosenOne = minigames[id];
         minigames.Clear();
         minigames.Add(chosenOne);
         numberOfPlayers = 3;
-        LoadGame();
-    }
-
-    public void LoadGame(){
-        SceneManager.LoadScene("Minigame");
         StartCoroutine(PrepareGame());
     }
 
+
     IEnumerator PrepareGame(){
-        //Wait until next update, until new scene is prepared
-        yield return new WaitUntil(() => true);
         //Move Stall up/down to match player height 
         GameObject.Find("Stall").transform.position += Vector3.up * currentYMove;
 
@@ -126,7 +167,6 @@ public class MainGameMaster : MonoBehaviour
             currentMinigames.Add(Instantiate(game,playerPositions[i]+(Vector3.up*currentYMove),Quaternion.identity).GetComponent<Minigame>());
         }
         
-
         StartCoroutine(PlayGame(currentMinigames,minigameStartTime));
     }
 
@@ -178,16 +218,9 @@ public class MainGameMaster : MonoBehaviour
         
         //Show score
         if(this.minigames.Count>0){
-            SceneManager.LoadScene("BetweenMinigames");
+            StartCoroutine(TransitionToScene("BetweenMinigames",GameState.BetweenMinigames));
         } else {
-            SceneManager.LoadScene("FinalScene");
+            StartCoroutine(TransitionToScene("FinalScene",GameState.FinalScene));
         }
-    }
-
-    public void QuitToMenu(){
-        //Restore list to show all minigames for next play
-        minigames = new List<MinigamePrefabSO>(originalMinigamesPrefabs);
-        resultsHistory = new();
-        SceneManager.LoadScene("Menu");
     }
 }

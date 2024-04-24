@@ -241,6 +241,7 @@ MonoBehaviour:
   throwMultiplier: 13.5
   returnBallDelay: 0.3
   nextBallPreparationDelay: 0.2
+  bonusBallEveryNBalls: 3
 --- !u!58 &1488162460509476167
 CircleCollider2D:
   m_ObjectHideFlags: 0

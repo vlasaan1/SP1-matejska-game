@@ -31,7 +31,7 @@ public class Menu : MonoBehaviour
 
     public void SetNumberOfPlayers(int numberOfPlayers){
         gameMaster.SetNumberOfPlayers(numberOfPlayers);
-        gameMaster.LoadGame();
+        gameMaster.ChangeState(MainGameMaster.GameState.LoadMinigame);
     }
 
     public void ShowLeaderboard(){

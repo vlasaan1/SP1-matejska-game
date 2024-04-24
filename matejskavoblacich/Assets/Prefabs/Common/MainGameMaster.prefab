@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initiInput: {fileID: 6238474914347051826, guid: ae87e526d9e2f374abbd289605557fc6, type: 3}
+  sceneTransition: {fileID: 4038439167564523770, guid: bc75110b00f9cc24887becfe780aa113, type: 3}
   originalMinigamesPrefabs:
   - {fileID: 11400000, guid: c3b61dd0b1f6c904c899726bf276aff7, type: 2}
   - {fileID: 11400000, guid: c06d52ca6a035b841aead618fc528249, type: 2}
@@ -57,6 +58,6 @@ MonoBehaviour:
   waitTimeBeforeMinigameStart: 4
   maxMinigamePlayTimeSeconds: 60
   waitTimeAfterMinigameEnds: 3
+  sceneTransitionWaitTime: 2
   minYMove: -1.4
   maxYMove: 0.3
-  currentYMove: 0

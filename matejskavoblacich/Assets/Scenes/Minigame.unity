@@ -698,10 +698,10 @@ Canvas:
   m_GameObject: {fileID: 864035022}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 2028430588}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -709,7 +709,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -1972977143
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &864035026
@@ -1064,66 +1064,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1333829840}
   m_CullTransparentMesh: 1
---- !u!1001 &1742854092
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1722949611427784547, guid: c1eef56637bb4b04ea87834753938a16, type: 3}
-      propertyPath: m_Name
-      value: ThrowingMinigame
-      objectReference: {fileID: 0}
-    - target: {fileID: 2628920313501103406, guid: c1eef56637bb4b04ea87834753938a16, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.007762313
-      objectReference: {fileID: 0}
-    - target: {fileID: 2628920313501103406, guid: c1eef56637bb4b04ea87834753938a16, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.003929138
-      objectReference: {fileID: 0}
-    - target: {fileID: 2628920313501103406, guid: c1eef56637bb4b04ea87834753938a16, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2628920313501103406, guid: c1eef56637bb4b04ea87834753938a16, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2628920313501103406, guid: c1eef56637bb4b04ea87834753938a16, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2628920313501103406, guid: c1eef56637bb4b04ea87834753938a16, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2628920313501103406, guid: c1eef56637bb4b04ea87834753938a16, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2628920313501103406, guid: c1eef56637bb4b04ea87834753938a16, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2628920313501103406, guid: c1eef56637bb4b04ea87834753938a16, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2628920313501103406, guid: c1eef56637bb4b04ea87834753938a16, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1720386700007910761, guid: c1eef56637bb4b04ea87834753938a16, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-  m_SourcePrefab: {fileID: 100100000, guid: c1eef56637bb4b04ea87834753938a16, type: 3}
 --- !u!1 &1806597346
 GameObject:
   m_ObjectHideFlags: 0
@@ -1819,4 +1759,3 @@ SceneRoots:
   - {fileID: 1989888337}
   - {fileID: 1034106624}
   - {fileID: 763479870}
-  - {fileID: 1742854092}
