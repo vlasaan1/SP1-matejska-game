@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 116
   keyPress:
@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 104
   keyPress:
@@ -468,7 +468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 122
   keyPress:
@@ -630,7 +630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 111
   keyPress:
@@ -792,7 +792,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 113
   keyPress:
@@ -954,7 +954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 108
   keyPress:
@@ -1116,7 +1116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 103
   keyPress:
@@ -1278,7 +1278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 120
   keyPress:
@@ -1440,7 +1440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 121
   keyPress:
@@ -1767,7 +1767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 109
   keyPress:
@@ -1929,7 +1929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 114
   keyPress:
@@ -2091,7 +2091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 42
   keyPress:
@@ -2099,7 +2099,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8379193495181229137}
         m_TargetAssemblyTypeName: ScreenKeyboardController, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: SendName
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2253,7 +2253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 98
   keyPress:
@@ -2370,7 +2370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 46
   keyPress:
@@ -2378,7 +2378,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8379193495181229137}
         m_TargetAssemblyTypeName: ScreenKeyboardController, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: RemoveChar
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2748,7 +2748,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 119
   keyPress:
@@ -2910,7 +2910,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 118
   keyPress:
@@ -3072,7 +3072,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 106
   keyPress:
@@ -3234,7 +3234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 99
   keyPress:
@@ -3396,7 +3396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 115
   keyPress:
@@ -3558,7 +3558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 101
   keyPress:
@@ -3804,7 +3804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 100
   keyPress:
@@ -3966,7 +3966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 97
   keyPress:
@@ -4128,7 +4128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 112
   keyPress:
@@ -4374,7 +4374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 107
   keyPress:
@@ -4536,7 +4536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 102
   keyPress:
@@ -4698,7 +4698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 32
   keyPress:
@@ -4706,7 +4706,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8379193495181229137}
         m_TargetAssemblyTypeName: ScreenKeyboardController, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: KeyPress
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4860,7 +4860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 117
   keyPress:
@@ -5022,7 +5022,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 110
   keyPress:
@@ -5184,7 +5184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  minTimeBeforeHold: 0.3
+  minTimeBeforeHold: 1
   maxTimeBetweenClicks: 0.4
   character: 105
   keyPress:
