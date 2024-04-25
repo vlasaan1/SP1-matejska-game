@@ -118,9 +118,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.54}
+  m_Offset: {x: 0, y: 1.172}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.57
 --- !u!114 &7754451422566672103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,3 +134,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
+  popEffect: {fileID: 6444738995068923937, guid: b0f102b9dd6380f47a8affa5a9ac5913, type: 3}
