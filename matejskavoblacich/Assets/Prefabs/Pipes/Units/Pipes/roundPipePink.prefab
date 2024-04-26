@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9095445213472273848}
   - component: {fileID: -1976972229039790752}
   m_Layer: 0
-  m_Name: roundPipe
+  m_Name: roundPipePink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5fddf9914d05c464a99d18bac13d6323, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -100,3 +100,4 @@ MonoBehaviour:
   inDir: {x: -1, y: 0}
   outDir: {x: 0, y: -1}
   occupiedTile: {fileID: 0}
+  spriteRenderer: {fileID: 0}
