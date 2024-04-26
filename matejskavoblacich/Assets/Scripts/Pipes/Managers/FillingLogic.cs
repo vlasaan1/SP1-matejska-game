@@ -44,6 +44,7 @@ public class FillingLogic : MonoBehaviour
             }
             current.IsMoveable = false;
             if(i == 0){
+                current.spriteRenderer.color = Color.blue;
                 yield return new WaitForSeconds(firstWaitingTime);
             }
             else{
