@@ -29,7 +29,8 @@ public class HoleActivation : BaseHittable
 
     //used for probability of enemy
     int number = 0;
-    [SerializeField] int upperBound = 5;
+    [SerializeField] int upperBound = 3;
+   // [SerializeField] int upperBound = 5;
     private System.Random random;
     int changed = 0;
 
@@ -72,6 +73,7 @@ public class HoleActivation : BaseHittable
                     //hit - add points
                     minigame.score += 50;
                 }
+                ///
             }
             else if(onShowBeaver==1){
                 FollowPathUp();
