@@ -86,16 +86,16 @@ public class ScoreboardController : MonoBehaviour
 
     private void SetDefaultScoreboard() {
         sbWrapper.scoreboard = new List<ScoreboardEntry> {
-                new ScoreboardEntry("The Galactic Glue Guns", 705),
-                new ScoreboardEntry("Cosmic Carpenters", 635),
-                new ScoreboardEntry("Interstellar Innovators", 485),
-                new ScoreboardEntry("Galactic Gurus", 420),
-                new ScoreboardEntry("Astro Architects", 345),
-                new ScoreboardEntry("Repair Rangers", 110),
-                new ScoreboardEntry("Repair Rocketeers", 105),
-                new ScoreboardEntry("Space Spanners", 65),
-                new ScoreboardEntry("Space Saviors", 50),
-                new ScoreboardEntry("Cosmic Constructors", 25)
+                new ScoreboardEntry("Mickey mouse", 705),
+                new ScoreboardEntry("Maxipes Fik", 635),
+                new ScoreboardEntry("Karel Gott", 485),
+                new ScoreboardEntry("Julius Caesar", 420),
+                new ScoreboardEntry("Vecernicek", 345),
+                new ScoreboardEntry("Bob a Bobek", 110),
+                new ScoreboardEntry("Rumcajs", 105),
+                new ScoreboardEntry("Kremilek a Vochomurka", 65),
+                new ScoreboardEntry("Chip a Dale", 50),
+                new ScoreboardEntry("Tatka Smoula", 25)
             };
     }
 

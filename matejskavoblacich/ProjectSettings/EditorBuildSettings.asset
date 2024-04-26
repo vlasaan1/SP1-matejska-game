@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/TargetShootingScene.unity
     guid: f5ce5880a24829d4b9f4aabdae662073
   - enabled: 0
-    path: Assets/Scenes/Pipes.unity
+    path: Assets/Scenes/Keyboard.unity
     guid: 587c8b5b2bbd867488d589f6f17bb5bb
   - enabled: 0
     path: Assets/Scenes/BetterInput.unity
