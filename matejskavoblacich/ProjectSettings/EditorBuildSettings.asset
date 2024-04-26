@@ -15,13 +15,13 @@ EditorBuildSettings:
     path: Assets/Scenes/BetweenMinigames.unity
     guid: 4c2a467115c177140873a00826d95eb7
   - enabled: 1
-    path: Assets/Scenes/FinalScene.unity
+    path: Assets/Scenes/Leaderboard.unity
     guid: aad0fd01d275a1e4ea7fefa4ca149831
   - enabled: 0
     path: Assets/Scenes/TargetShootingScene.unity
     guid: f5ce5880a24829d4b9f4aabdae662073
   - enabled: 0
-    path: Assets/Scenes/Pipes.unity
+    path: Assets/Scenes/Keyboard.unity
     guid: 587c8b5b2bbd867488d589f6f17bb5bb
   - enabled: 0
     path: Assets/Scenes/BetterInput.unity
