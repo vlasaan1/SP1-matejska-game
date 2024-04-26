@@ -32,8 +32,9 @@ public class MainGameMaster : MonoBehaviour
         Menu,
         LoadMinigame,
         PlayMinigame,
-        BetweenMinigames,
-        FinalScene,
+        ShowResultsBetweenMinigames,
+        ShowResultsFinalScene,
+        ShowLeaderboard,
         DoNothing
     };
 
@@ -66,19 +67,13 @@ public class MainGameMaster : MonoBehaviour
         else currentYMove = yMove;
     }
 
-    public Results GetLastResults(){
-        return resultsHistory[^1];
-    }
-
-    public List<Results> GetAllResults(){
-        return resultsHistory;
-    }
-
     public void SkipMinigame(){
         skipMinigame = true;
     }
 
-    
+    public void SkipToFinalScene(){
+        StartCoroutine(TransitionToScene("FinalScene",GameState.ShowResultsFinalScene));
+    }
 
     public void ChangeState(GameState newState){
         switch(newState){
@@ -88,9 +83,14 @@ public class MainGameMaster : MonoBehaviour
             case GameState.PlayMinigame:
                 StartCoroutine(PrepareGame());
                 break;
-            case GameState.BetweenMinigames:
+            case GameState.ShowResultsBetweenMinigames:
+                FindObjectOfType<ResultsHandler>().ShowResults(resultsHistory[^1].results);
                 break;
-            case GameState.FinalScene:
+            case GameState.ShowResultsFinalScene:
+                FindObjectOfType<ResultsHandler>().FinalResults(resultsHistory);
+                break;
+            case GameState.ShowLeaderboard:
+                StartCoroutine(TransitionToScene("Leaderboard",GameState.DoNothing));
                 break;
             case GameState.Menu:
                 //Restore minigames for next playing
@@ -207,20 +207,23 @@ public class MainGameMaster : MonoBehaviour
         gameResults.results = new int[numberOfPlayers];
         gameResults.icon = currentMinigamePrefab.icon;
         for(int i=0;i<numberOfPlayers;i++){
-            for(int j=0;j<numberOfPlayers;j++){
-                if(i==j) continue;
-                if(minigames[i].score>minigames[j].score){
-                    gameResults.results[j]++;
-                }
-            }
+            gameResults.results[i]=minigames[i].score;
         }
+        //for(int i=0;i<numberOfPlayers;i++){
+        //    for(int j=0;j<numberOfPlayers;j++){
+        //        if(i==j) continue;
+        //        if(minigames[i].score>minigames[j].score){
+        //            gameResults.results[j]++;
+        //        }
+        //    }
+        //}
         resultsHistory.Add(gameResults);
         
         //Show score
         if(this.minigames.Count>0){
-            StartCoroutine(TransitionToScene("BetweenMinigames",GameState.BetweenMinigames));
+            StartCoroutine(TransitionToScene("BetweenMinigames",GameState.ShowResultsBetweenMinigames));
         } else {
-            StartCoroutine(TransitionToScene("FinalScene",GameState.FinalScene));
+            StartCoroutine(TransitionToScene("FinalScene",GameState.ShowResultsFinalScene));
         }
     }
 }

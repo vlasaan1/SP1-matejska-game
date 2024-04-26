@@ -17,4 +17,8 @@ public class ScoreScenes : MonoBehaviour
     public void GoToMenu(){
         gameMaster.ChangeState(MainGameMaster.GameState.Menu);
     }
+
+    public void SkipToFinalScene(){
+        gameMaster.SkipToFinalScene();
+    }
 }

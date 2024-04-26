@@ -35,8 +35,7 @@ public class Menu : MonoBehaviour
     }
 
     public void ShowLeaderboard(){
-        mainMenu.SetActive(false);
-        //TODO
+        gameMaster.ChangeState(MainGameMaster.GameState.ShowLeaderboard);
     }
 
     public void QuitGame(){
