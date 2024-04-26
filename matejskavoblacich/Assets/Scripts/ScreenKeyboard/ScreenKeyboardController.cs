@@ -34,10 +34,12 @@ public class ScreenKeyboardController : MonoBehaviour {
     ///     Sends team name
     /// </summary>
     public void SendName() {
-        teamName = teamName.ToUpper();
-        returnName.Invoke(teamName);
-        teamName = "";
-        UpdateName();
+        if(teamName.Length > 0){
+            teamName = teamName.ToUpper();
+            returnName.Invoke(teamName);
+            teamName = "";
+            UpdateName();
+        }
     }
 
     private void UpdateName() {
