@@ -26,7 +26,7 @@ public class MainGameMaster : MonoBehaviour
     List<MinigamePrefabSO> minigames;
     bool skipMinigame = false;
     int numberOfPlayers;
-    float currentYMove = 0;
+    float currentYMove = -1;
 
     public enum GameState{
         Menu,

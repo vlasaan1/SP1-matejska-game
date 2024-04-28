@@ -328,6 +328,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 908836825788755892, guid: 41934333b1bb8a04c98c4b13571e23fb, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 16.9045
+      objectReference: {fileID: 0}
+    - target: {fileID: 908836825788755892, guid: 41934333b1bb8a04c98c4b13571e23fb, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1.9734
+      objectReference: {fileID: 0}
+    - target: {fileID: 908836825788755892, guid: 41934333b1bb8a04c98c4b13571e23fb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.0688
+      objectReference: {fileID: 0}
+    - target: {fileID: 908836825788755892, guid: 41934333b1bb8a04c98c4b13571e23fb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.3809
+      objectReference: {fileID: 0}
     - target: {fileID: 1151713767000191915, guid: 41934333b1bb8a04c98c4b13571e23fb, type: 3}
       propertyPath: m_Name
       value: Keyboard
@@ -375,6 +391,27 @@ PrefabInstance:
     - target: {fileID: 2319396855652598374, guid: 41934333b1bb8a04c98c4b13571e23fb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8449295093855715084, guid: 41934333b1bb8a04c98c4b13571e23fb, type: 3}
+      propertyPath: m_text
+      value: "SKON\u010CIL JSI V 10 NEJLEP\u0160\xCDCH HR\xC1\u010C\xCDCH! ULO\u017D
+        SI SVOJE JM\xC9NO"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8449295093855715084, guid: 41934333b1bb8a04c98c4b13571e23fb, type: 3}
+      propertyPath: m_fontSize
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8449295093855715084, guid: 41934333b1bb8a04c98c4b13571e23fb, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 75.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8449295093855715084, guid: 41934333b1bb8a04c98c4b13571e23fb, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8449295093855715084, guid: 41934333b1bb8a04c98c4b13571e23fb, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -533,6 +570,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5097653384552427147, guid: 936b55acd919b8c42bda14158393a58b, type: 3}
+      propertyPath: text
+      value: 
+      objectReference: {fileID: 1838497436}
+    - target: {fileID: 5097653384552427147, guid: 936b55acd919b8c42bda14158393a58b, type: 3}
       propertyPath: leaderboard
       value: 
       objectReference: {fileID: 66205490}
@@ -587,6 +628,14 @@ PrefabInstance:
     - target: {fileID: 8404897745042161719, guid: 936b55acd919b8c42bda14158393a58b, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8626651643355312717, guid: 936b55acd919b8c42bda14158393a58b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8626651643355312717, guid: 936b55acd919b8c42bda14158393a58b, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -12,6 +12,8 @@ public class ResultsHandler : MonoBehaviour
     [Header("Final Scene only")]
     [SerializeField] GameObject leaderboard;
     [SerializeField] GameObject keyboardMenu;
+    [SerializeField] GameObject text;
+    [SerializeField] float waitTimeBeforeLeaderboardPopup = 4;
 
     int maxPoints;
 
@@ -35,17 +37,18 @@ public class ResultsHandler : MonoBehaviour
             }
         }
         ShowResults(pointsSum);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(waitTimeBeforeLeaderboardPopup);
         maxPoints = int.MinValue;
         for(int i=0;i<pointsSum.Length;i++){
             if(pointsSum[i]>maxPoints) maxPoints = pointsSum[i];
         }
         ScoreboardController scoreboard = leaderboard.GetComponent<ScoreboardController>();
         if(scoreboard.FindScoreboardPos(maxPoints) > -1){
-            for(int i=0;i<results.Count;i++){
+            for(int i=0;i<results[0].results.Length;i++){
                 resultRend[i].gameObject.SetActive(false);
                 resultText[i].gameObject.SetActive(false);
             }
+            text.SetActive(false);
             keyboardMenu.SetActive(true);
             keyboardMenu.GetComponentInChildren<ScreenKeyboardController>().returnName.AddListener(AddToLeaderboardAndGoToMenu);
         }
