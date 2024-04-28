@@ -135,3 +135,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
   popEffect: {fileID: 6444738995068923937, guid: b0f102b9dd6380f47a8affa5a9ac5913, type: 3}
+  enemyPopSound: {fileID: 8300000, guid: d9c32d86d2cebdc4d9805ed1b6da9912, type: 3}
+  popSoundVolume: 1
