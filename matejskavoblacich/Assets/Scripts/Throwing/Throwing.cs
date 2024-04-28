@@ -13,24 +13,24 @@ public class Throwing : BaseHoldable
     [SerializeField] float throwMultiplier = 12;
     [SerializeField] float returnBallDelay = .3f;
     [SerializeField] float nextBallPreparationDelay = .2f;
+    [SerializeField] int bonusBallEveryNBalls = 3;
 
     Queue<Ball> readyBalls = new();
     Ball heldBall;
     Vector3 moveDirection;
     Vector3 finalDest;
-    float minMovement = 0.1f;
+    float minMovement = 0.03f;
     int deltaFrame = 1;
     int lastFrameCount = 0;
     int currentMovingFrame = 0;
     bool isHeld = false;
     bool nextBallPrepared = false;
-    float timeToAddBall;
+    int bonusBallCounter;
 
     void Start(){
         readyBalls.Enqueue(Instantiate(ballPrefab).GetComponent<Ball>());
         readyBalls.Peek().isInQueue = true;
-
-        timeToAddBall = minigame.startTime + (minigame.endTime - minigame.startTime)/2;
+        bonusBallCounter = bonusBallEveryNBalls;
     }
 
     protected override void OnHold(Vector2 hitPosition)
@@ -96,10 +96,6 @@ public class Throwing : BaseHoldable
             }
             currentMovingFrame++;
         }
-        if(Time.time > timeToAddBall){
-            timeToAddBall = float.MaxValue;
-            AddNewBall();
-        }
     }
 
     void NextBallPreparedToFalse(){
@@ -122,6 +118,13 @@ public class Throwing : BaseHoldable
             rb.rotation = 0;
 
             nextBallPrepared = true;
+            bonusBallCounter -= 1;
+            if(bonusBallCounter <= 0){
+                heldBall.TurnOnBonus();
+                bonusBallCounter = bonusBallEveryNBalls;
+            } else {
+                heldBall.TurnOffBonus();
+            }
         }
     }
     public void AddNewBall(){

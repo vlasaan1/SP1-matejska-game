@@ -7,6 +7,7 @@ public class Tile : MonoBehaviour
     public BaseUnit occupiedUnit;
     public bool isOccupied = false;
     public Vector2 possitionOnGrid;
+    public int sizeOfFiled;
     public void setUnit(BaseUnit unit){
         if(unit.occupiedTile != null) unit.occupiedTile.occupiedUnit = null;
         unit.transform.position = transform.position;

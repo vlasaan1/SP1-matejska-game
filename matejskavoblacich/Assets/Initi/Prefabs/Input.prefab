@@ -61,7 +61,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -105,7 +105,7 @@ Transform:
   m_GameObject: {fileID: 6238474914347051826}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -129,7 +129,7 @@ MonoBehaviour:
   inputManagers:
   - {fileID: 6238474915037807658}
   - {fileID: 6238474914427263398}
-  missEffect: {fileID: 0}
+  missEffect: {fileID: 1029852533527260313, guid: f2ade471ede0c234f84c0d8d951230b6, type: 3}
   hitSound: {fileID: 0}
 --- !u!114 &6238474914347051824
 MonoBehaviour:

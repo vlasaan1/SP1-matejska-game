@@ -100,3 +100,4 @@ MonoBehaviour:
   inDir: {x: 0, y: 0}
   outDir: {x: 0, y: 0}
   occupiedTile: {fileID: 0}
+  roundWallSprite: {fileID: 21300000, guid: 6ba2b5a11c41c54f7a242bdd176f4cbe, type: 3}
