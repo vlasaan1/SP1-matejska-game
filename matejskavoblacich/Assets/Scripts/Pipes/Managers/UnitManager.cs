@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class UnitManager : MonoBehaviour
 {
+    [SerializeField] Minigame minigame;
     private List<ScriptableUnit> units;
     private int fieldSize;
     private List<Vector2> directions = new List<Vector2>{
@@ -19,7 +20,15 @@ public class UnitManager : MonoBehaviour
     private System.Random random;
 
     void Awake(){
-        units = Resources.LoadAll<ScriptableUnit>("Pipes/Units").ToList();
+        if(minigame.playerId == 0){ //blue
+            units = Resources.LoadAll<ScriptableUnit>("Pipes/Blue/Units").ToList();
+        }
+        else if(minigame.playerId == 1){ //pink
+            units = Resources.LoadAll<ScriptableUnit>("Pipes/Pink/Units").ToList();
+        }
+        else if(minigame.playerId == 2){ //yellow
+            units = Resources.LoadAll<ScriptableUnit>("Pipes/Yellow/Units").ToList();
+        }
     }
 
     /// <summary>
@@ -119,8 +128,8 @@ public class UnitManager : MonoBehaviour
         unit.outDir = info.outDir;
         var spawnedUnit = Instantiate(unit, playerHolder.transform);
         var spawnUnitOnTile = playerHolder.grid[info.position];
-        spawnedUnit.CalculateRotation();
         spawnUnitOnTile.setUnit(spawnedUnit);
+        spawnedUnit.CalculateRotation();
         return spawnedUnit;
     }
 

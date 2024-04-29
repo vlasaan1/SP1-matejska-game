@@ -595,7 +595,8 @@ PrefabInstance:
       value: HitTheBeaver
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 529198329926501252, guid: 9586c6e8dcc6bc143b6b88aa6fcde76e, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9586c6e8dcc6bc143b6b88aa6fcde76e, type: 3}

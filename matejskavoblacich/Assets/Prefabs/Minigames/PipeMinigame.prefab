@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14fe08dabdc71bf4089e78e8cbb024c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstWaitingTime: 5
-  waitingTime: 3
+  firstWaitingTime: 8
+  waitingTime: 3.5
   speedWaitingTime: 0.2
   playerGrid: {fileID: 3697292984579429712}
   gameMaster: {fileID: 8731848156127098241}
@@ -187,7 +187,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 5.06, y: 5.06, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4336457545363903827}
@@ -275,6 +275,7 @@ MonoBehaviour:
   maxTimeBetweenClicks: 0.5
   numberOfTiles: 7
   grid: {fileID: 3697292984579429712}
+  heldPipeSizeMultiplier: 1.2
 --- !u!61 &8025890410766885991
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -467,6 +468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 239044798928bcf408858c1d5f38cf85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minigame: {fileID: 959447931716666956}
 --- !u!1001 &808567245811492905
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -505,7 +507,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5562949263328752834, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.5
+      value: -2.61
       objectReference: {fileID: 0}
     - target: {fileID: 5562949263328752834, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
       propertyPath: m_LocalPosition.z
@@ -545,7 +547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6916486535830283401, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
       propertyPath: m_fontSize
-      value: 8.7
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

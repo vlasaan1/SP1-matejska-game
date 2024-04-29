@@ -32,7 +32,7 @@ public class BoothBehaviourScript : MonoBehaviour
         Timer -= Time.deltaTime;
         if (Timer <= 0f)
         {
-            targetPosition = new Vector3(Random.Range(-1.9f, 1.9f),Random.Range(-1.9f, 1.9f), -1f);
+            targetPosition = new Vector3(Random.Range(-2.2f, 2.2f),Random.Range(-3f, 3f), -1f);
 
             // chance to spawn a bomb
             if (Random.Range(0, 100) < 10)

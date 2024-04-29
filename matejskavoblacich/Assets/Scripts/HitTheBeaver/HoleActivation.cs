@@ -6,6 +6,8 @@ using initi.prefabScripts;
 using System.Globalization;
 
 using UnityEngine.SceneManagement;
+using System.Runtime.CompilerServices;
+using UnityEditor;
 
 
 public class HoleActivation : BaseHittable
@@ -15,6 +17,7 @@ public class HoleActivation : BaseHittable
     [SerializeField] List<GameObject> playerPrefab;
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] public float moveSpeed = 0.5f;
+    [SerializeField] Lives playerhealth;
     float timeTotal;
     float percentage;
 
@@ -23,10 +26,12 @@ public class HoleActivation : BaseHittable
     Vector3 endPosition; 
     //0-not active , 1-up , 2-down , 3-destroy with points , 4-destroy with points
     public int onShowBeaver = 0;
+
     //used for probability of enemy
     int number = 0;
-    [SerializeField] int upperBound = 5;
-    [SerializeField] Lives playerhealth;
+    [SerializeField] int upperBound = 3;
+   // [SerializeField] int upperBound = 5;
+    private System.Random random;
     int changed = 0;
 
 
@@ -38,22 +43,23 @@ public class HoleActivation : BaseHittable
         timeTotal = minigame.endTime - minigame.startTime;
         startPosition = transform.position + new Vector3(0f, 0.28f, 0f);
         endPosition = startPosition + new Vector3(0f, 0.72f, 0f);
+        random = new System.Random(minigame.seed);
+
     }
 
 
     void Update()
     {
 
-        if(((Time.time-minigame.startTime) > percentage*timeTotal)&&(moveSpeed<4f)&&(percentage<100f)){
+        if(((Time.time-minigame.startTime) > percentage*timeTotal)&&(moveSpeed<2.5f)&&(percentage<100f)){
             percentage += 0.2f;
-            moveSpeed += 0.5f;
+            moveSpeed += 0.3f;
         }
         if(Time.time > minigame.endTime){
             minigame.isFinished = true;
         }
         if(!playerhealth.GetState()){
             minigame.isFinished = true;
-            //nebo reset score?
         }
         if(onShowBeaver!=0){
             if(activeBeaver==null && changed==0){
@@ -62,12 +68,12 @@ public class HoleActivation : BaseHittable
                 if(number == upperBound){
                     //hit - decrease health
                     playerhealth.DecreseHealth(1);
-                    int num = playerhealth.GetHealth();
                 }
                 else{
                     //hit - add points
                     minigame.score += 50;
                 }
+                ///
             }
             else if(onShowBeaver==1){
                 FollowPathUp();
@@ -81,7 +87,7 @@ public class HoleActivation : BaseHittable
     public void showBeaver(){
         onShowBeaver = 1;
         changed = 0;
-        number = Random.Range(1,upperBound+1);
+        number = random.Next(1,upperBound+1);
         if(number<upperBound){
             activeBeaver = Instantiate(
                 playerPrefab[minigame.playerId],

@@ -15,7 +15,7 @@ public class PlayerGrid : MonoBehaviour
     private int fieldSize = 0;
     public Dictionary<Vector2, Tile> grid;
     private System.Random random;
-    private float MAGIC_CONSTANT = 0.75f;
+    private float MAGIC_CONSTANT = 0.72f;
     private int shufflingConstant = 20;
 
     void Awake(){
@@ -40,6 +40,7 @@ public class PlayerGrid : MonoBehaviour
                 var spawnedTile = Instantiate(tilePrefab, getPos(x, y), Quaternion.identity, transform);
                 spawnedTile.transform.localScale = new Vector3(tileSize, tileSize, 1);
                 spawnedTile.name = "Tile_" + x + "_" + y;
+                spawnedTile.sizeOfFiled = fieldSize;
                 grid[new Vector2(x,y)] = spawnedTile;
                 spawnedTile.possitionOnGrid = new Vector2(x,y);
             }

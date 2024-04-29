@@ -11,10 +11,14 @@ public class ScoreScenes : MonoBehaviour
     }
 
     public void LoadNextMinigame(){
-        gameMaster.LoadGame();
+        gameMaster.ChangeState(MainGameMaster.GameState.LoadMinigame);
     }
 
     public void GoToMenu(){
-        gameMaster.QuitToMenu();
+        gameMaster.ChangeState(MainGameMaster.GameState.Menu);
+    }
+
+    public void SkipToFinalScene(){
+        gameMaster.SkipToFinalScene();
     }
 }

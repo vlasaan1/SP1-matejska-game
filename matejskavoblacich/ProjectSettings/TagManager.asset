@@ -41,6 +41,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: stanek_spodek
+    uniqueID: 3931769031
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: stanek_strecha
+    uniqueID: 2770235713
+    locked: 0
+  - name: buttons
+    uniqueID: 2321990153
+    locked: 0
+  - name: scene_transition
+    uniqueID: 1971430177
     locked: 0
