@@ -17,11 +17,10 @@ public class BombBehaviourScript : BaseHittable
     //onclick destroy
     public override void Hit(Vector2 hitPosition)
     {
-        Destroy(gameObject);
-
         //add score -100 points
-        Minigame minigame = GetComponentInParent<Minigame>();
-        minigame.score -= 100;
+        GetComponentInParent<BoothBehaviourScript>().UpdateScore(-100);
+
+        Destroy(gameObject);
     }
 
 }

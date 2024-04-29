@@ -8,11 +8,11 @@ public class TargetBehaviourScript : BaseHittable
 
     public override void Hit(Vector2 hitPosition)
     {
+        //add score 50 points
+        GetComponentInParent<BoothBehaviourScript>().UpdateScore(50);
         //destroy target
         Destroy(gameObject);
-        //add score 50 points
-        Minigame minigame = GetComponentInParent<Minigame>();
-        minigame.score += 50;
+
     }
 
     public void Update()

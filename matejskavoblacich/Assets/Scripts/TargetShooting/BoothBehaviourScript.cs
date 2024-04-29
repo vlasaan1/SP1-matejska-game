@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class BoothBehaviourScript : MonoBehaviour
@@ -8,6 +9,7 @@ public class BoothBehaviourScript : MonoBehaviour
     public GameObject targetClone;
     public GameObject bomb;
     public GameObject bombClone;
+    [SerializeField] TMP_Text scoreText;
     public float Timer = 2f;
 
     public float timeToSpawn = 2f;
@@ -23,7 +25,7 @@ public class BoothBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        UpdateScore(0);
     }
 
     // Update is called once per frame
@@ -45,5 +47,10 @@ public class BoothBehaviourScript : MonoBehaviour
             targetClone = Instantiate(target, transform.position + targetPosition, transform.rotation, transform) as GameObject;
             Timer = timeToSpawn;
         }
+    }
+
+    public void UpdateScore(int change){
+        minigame.score += change;
+        scoreText.text = minigame.score.ToString();
     }
 }
