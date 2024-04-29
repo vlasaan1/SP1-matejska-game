@@ -13,6 +13,9 @@ public class BoothBehaviourScript : MonoBehaviour
     public float timeToSpawn = 2f;
 
     public Vector3 targetPosition;
+
+    //minigame script
+    public Minigame minigame;
     
 
 

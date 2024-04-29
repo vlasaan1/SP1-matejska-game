@@ -5,12 +5,13 @@ using initi.prefabScripts;
 
 public class TargetBehaviourScript : BaseHittable
 {
+
     public override void Hit(Vector2 hitPosition)
     {
         //destroy target
         Destroy(gameObject);
         //add score 50 points
-        Minigame minigame = FindObjectOfType<Minigame>();
+        Minigame minigame = GetComponentInParent<Minigame>();
         minigame.score += 50;
     }
 
