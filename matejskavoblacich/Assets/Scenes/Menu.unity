@@ -1352,11 +1352,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6916486535830283401, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
       propertyPath: m_text
-      value: Leaderbboard
+      value: Leaderboard
       objectReference: {fileID: 0}
     - target: {fileID: 6916486535830283401, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
       propertyPath: m_fontSize
-      value: 4.05
+      value: 4.45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
