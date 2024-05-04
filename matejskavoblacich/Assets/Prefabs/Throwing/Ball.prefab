@@ -98,7 +98,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8b5e758573e27f344967d96430f71e54, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -258,4 +258,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6658be68646b1c041a84ba15e6fa1ae1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shareColliderWithHierarchy: 0
+  ballSoundClips:
+  - {fileID: 8300000, guid: 506db3ebb62517b41b0adbd1eb5a9bfa, type: 3}
+  - {fileID: 8300000, guid: 5b61d0beeeadea2499780d26b30390ae, type: 3}
+  - {fileID: 8300000, guid: fcc29d77a20e6b240b978d13ff92ca78, type: 3}
   isInQueue: 0
