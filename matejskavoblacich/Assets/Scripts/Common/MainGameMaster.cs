@@ -120,7 +120,7 @@ public class MainGameMaster : MonoBehaviour
         minigames.Clear();
         minigames.Add(chosenOne);
         numberOfPlayers = 3;
-        StartCoroutine(PrepareGame());
+        ChangeState(GameState.LoadMinigame);
     }
 
 

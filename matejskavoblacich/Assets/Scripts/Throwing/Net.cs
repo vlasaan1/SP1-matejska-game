@@ -37,6 +37,7 @@ public class Net : MonoBehaviour
                 } else {
                     minigame.score+=goalPoints;
                 }
+                GetComponent<AudioSource>().Play();
                 nextHitTime = Time.time + delayBetweenPoints;
             }
         }
