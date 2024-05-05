@@ -29,6 +29,8 @@ public class HoleActivation : BaseHittable
 
     //used for probability of enemy
     int number = 0;
+    int previousEnemies = 0;
+    int previousBeavers = 0;
     [SerializeField] int upperBound = 5;
    // [SerializeField] int upperBound = 3;
     private System.Random random;
@@ -71,7 +73,7 @@ public class HoleActivation : BaseHittable
                 }
                 else{
                     //hit - add points
-                    minigame.score += 50;
+                    minigame.score += 25;
                 }
                 ///
             }
@@ -88,7 +90,9 @@ public class HoleActivation : BaseHittable
         onShowBeaver = 1;
         changed = 0;
         number = random.Next(1,upperBound+1);
-        if(number<upperBound){
+        if( ((number<upperBound) || (previousEnemies==3)) && (previousBeavers!=12) ) {
+            previousEnemies = 0;
+            previousBeavers++;
             activeBeaver = Instantiate(
                 playerPrefab[minigame.playerId],
                 startPosition,
@@ -97,6 +101,8 @@ public class HoleActivation : BaseHittable
             );
         }
         else{
+            previousBeavers = 0;
+            previousEnemies++;
             activeBeaver = Instantiate(
                 enemyPrefab,
                 startPosition,
