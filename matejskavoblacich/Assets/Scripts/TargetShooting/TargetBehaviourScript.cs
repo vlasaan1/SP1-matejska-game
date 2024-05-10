@@ -5,11 +5,12 @@ using initi.prefabScripts;
 
 public class TargetBehaviourScript : BaseHittable
 {
+    public int updateScoreBy ;
 
     public override void Hit(Vector2 hitPosition)
     {
         //add score 50 points
-        GetComponentInParent<BoothBehaviourScript>().UpdateScore(50);
+        GetComponentInParent<BoothBehaviourScript>().UpdateScore(updateScoreBy);
         //destroy target
         Destroy(gameObject);
 
