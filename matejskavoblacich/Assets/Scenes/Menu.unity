@@ -161,7 +161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5562949263328752834, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.65
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 5562949263328752834, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
       propertyPath: m_LocalPosition.y
@@ -258,7 +258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5562949263328752834, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.82
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5562949263328752834, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
       propertyPath: m_LocalPosition.y
@@ -483,7 +483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5562949263328752834, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.737
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 5562949263328752834, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
       propertyPath: m_LocalPosition.y
@@ -789,8 +789,8 @@ Transform:
   m_GameObject: {fileID: 811292067}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.28, y: -0.12, z: 0}
-  m_LocalScale: {x: 0.64, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -0.1, z: 0}
+  m_LocalScale: {x: 0.6, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1292796786}
@@ -814,7 +814,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1252049842
 Transform:
   m_ObjectHideFlags: 0
@@ -1055,10 +1055,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8454547748426416298, guid: 6d582350c21ebae4bbf3b14f3313ce44, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d582350c21ebae4bbf3b14f3313ce44, type: 3}
 --- !u!4 &1567333775 stripped
 Transform:
@@ -1409,7 +1406,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5562949263328752834, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.86
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5562949263328752834, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1529,14 +1526,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6916486535830283401, guid: 6d582350c21ebae4bbf3b14f3313ce44, type: 3}
       propertyPath: m_text
-      value: Matejska v oblacich xd
+      value: "Mat\u011Bjsk\xE1 v oblac\xEDch"
       objectReference: {fileID: 0}
     - target: {fileID: 6916486535830283401, guid: 6d582350c21ebae4bbf3b14f3313ce44, type: 3}
       propertyPath: m_fontSize
-      value: 2.8
+      value: 5.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6916486535830283401, guid: 6d582350c21ebae4bbf3b14f3313ce44, type: 3}
+      propertyPath: m_margin.x
+      value: 7.6827335
+      objectReference: {fileID: 0}
+    - target: {fileID: 6916486535830283401, guid: 6d582350c21ebae4bbf3b14f3313ce44, type: 3}
+      propertyPath: m_margin.z
+      value: 7.692341
       objectReference: {fileID: 0}
     - target: {fileID: 6916486535830283401, guid: 6d582350c21ebae4bbf3b14f3313ce44, type: 3}
       propertyPath: m_fontSizeMin
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8454547748426416298, guid: 6d582350c21ebae4bbf3b14f3313ce44, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
