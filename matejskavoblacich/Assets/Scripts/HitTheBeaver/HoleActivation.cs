@@ -29,8 +29,8 @@ public class HoleActivation : BaseHittable
 
     //used for probability of enemy
     int number = 0;
-    [SerializeField] int upperBound = 3;
-   // [SerializeField] int upperBound = 5;
+    [SerializeField] int upperBound = 5;
+   // [SerializeField] int upperBound = 3;
     private System.Random random;
     int changed = 0;
 
@@ -41,8 +41,8 @@ public class HoleActivation : BaseHittable
         percentage = 0.2f;
         //timeTotal = 60f;
         timeTotal = minigame.endTime - minigame.startTime;
-        startPosition = transform.position + new Vector3(0f, 0.28f, 0f);
-        endPosition = startPosition + new Vector3(0f, 0.72f, 0f);
+        startPosition = transform.position + new Vector3(0f, -0.1f, 0f);
+        endPosition = startPosition + new Vector3(0f, 1f, 0f);
         random = new System.Random(minigame.seed);
 
     }

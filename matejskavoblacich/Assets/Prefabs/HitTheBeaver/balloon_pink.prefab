@@ -84,7 +84,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!58 &2091157066770671223
 CircleCollider2D:
@@ -135,5 +135,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
   popEffect: {fileID: 6444738995068923937, guid: b0f102b9dd6380f47a8affa5a9ac5913, type: 3}
-  popSound: {fileID: 8300000, guid: d9c32d86d2cebdc4d9805ed1b6da9912, type: 3}
+  popSound: {fileID: 8300000, guid: 2514c1747ad217b4c9d368fc054361c7, type: 3}
   popSoundVolume: 1
