@@ -5,6 +5,7 @@ using UnityEngine;
 public class Net : MonoBehaviour
 {
     [SerializeField] Minigame minigame;
+    [SerializeField] List<Sprite> sprites;
     [SerializeField] Transform movementZone;
     [SerializeField] float movementSpeed = 3;
     [SerializeField] int goalPoints = 50;
@@ -22,6 +23,8 @@ public class Net : MonoBehaviour
         target = transform.position;
         minX = movementZone.position.x - movementZone.localScale.x/2;
         maxX = movementZone.position.x + movementZone.localScale.x/2;
+
+        GetComponentInChildren<SpriteRenderer>().sprite = sprites[minigame.playerId];
     }
 
     void OnTriggerEnter2D(Collider2D other){

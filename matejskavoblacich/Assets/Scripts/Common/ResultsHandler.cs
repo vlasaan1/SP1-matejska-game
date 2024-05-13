@@ -13,12 +13,15 @@ public class ResultsHandler : MonoBehaviour
     [SerializeField] GameObject leaderboard;
     [SerializeField] GameObject keyboardMenu;
     [SerializeField] GameObject text;
+    [SerializeField] GameObject backToMenuButton;
     [SerializeField] float waitTimeBeforeLeaderboardPopup = 4;
 
     int maxPoints;
+    int numberOfPlayers;
 
     public void ShowResults(int[] results){
         int[] orderRes = GetOrder(results);
+        numberOfPlayers = results.Length;
         for(int i=0;i<results.Length;i++){
             resultRend[i].sprite = sprites[orderRes[i]];
             resultText[i].text = results[i].ToString();
@@ -50,15 +53,24 @@ public class ResultsHandler : MonoBehaviour
             }
             text.SetActive(false);
             keyboardMenu.SetActive(true);
-            keyboardMenu.GetComponentInChildren<ScreenKeyboardController>().returnName.AddListener(AddToLeaderboardAndGoToMenu);
+            keyboardMenu.GetComponentInChildren<ScreenKeyboardController>().returnName.AddListener(AddToLeaderboard);
+        } else {
+            backToMenuButton.SetActive(true);
         }
         
     }
 
-    void AddToLeaderboardAndGoToMenu(string name){
+    void AddToLeaderboard(string name){
         ScoreboardController scoreboard = leaderboard.GetComponent<ScoreboardController>();
         scoreboard.AddEntry(name,maxPoints);
-        FindObjectOfType<MainGameMaster>().ChangeState(MainGameMaster.GameState.ShowLeaderboard);
+
+        for(int i=0;i<numberOfPlayers;i++){
+            resultRend[i].gameObject.SetActive(true);
+            resultText[i].gameObject.SetActive(true);
+        }
+        text.SetActive(true);
+        keyboardMenu.SetActive(false);
+        backToMenuButton.SetActive(true);
     }
 
     int[] GetOrder(int[] results){
