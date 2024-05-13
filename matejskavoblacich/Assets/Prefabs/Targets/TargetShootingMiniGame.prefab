@@ -132,11 +132,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 436229822017950322, guid: 78abebf10070e1c4cb3da7ac30f74c47, type: 3}
   targetClone: {fileID: 436229822017950322, guid: 78abebf10070e1c4cb3da7ac30f74c47, type: 3}
+  targetBonus: {fileID: 436229822017950322, guid: c6d258f5db6963d41a4b9f4c051dfce5, type: 3}
+  targetBonusClone: {fileID: 436229822017950322, guid: c6d258f5db6963d41a4b9f4c051dfce5, type: 3}
   bomb: {fileID: 436229822017950322, guid: 397085e835767d54f81558464e32afe2, type: 3}
   bombClone: {fileID: 436229822017950322, guid: 397085e835767d54f81558464e32afe2, type: 3}
+  scoreText: {fileID: 0}
   Timer: 2
   timeToSpawn: 0.87
   targetPosition: {x: -0.4, y: 0, z: 0}
+  minigame: {fileID: 0}
 --- !u!114 &7830195715442422702
 MonoBehaviour:
   m_ObjectHideFlags: 0

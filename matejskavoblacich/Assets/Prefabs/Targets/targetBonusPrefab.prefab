@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8753840898496890106}
   - component: {fileID: -4332653029667044455}
   m_Layer: 0
-  m_Name: targetPrefab
+  m_Name: targetBonusPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5be722bea2a4745459f3f4277fd47885, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f057a02210ef644fbdf049b8ebdbc90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shareColliderWithHierarchy: 1
-  updateScoreBy: 50
+  shareColliderWithHierarchy: 0
+  updateScoreBy: 300
 --- !u!58 &-4332653029667044455
 CircleCollider2D:
   m_ObjectHideFlags: 0
