@@ -7,6 +7,10 @@ public class BoothBehaviourScript : MonoBehaviour
 {
     public GameObject target;
     public GameObject targetClone;
+
+    public GameObject targetBonus;
+
+    public GameObject targetBonusClone;
     public GameObject bomb;
     public GameObject bombClone;
     [SerializeField] TMP_Text scoreText;
@@ -40,6 +44,13 @@ public class BoothBehaviourScript : MonoBehaviour
             if (Random.Range(0, 100) < 10)
             {
                 bombClone = Instantiate(bomb, transform.position + targetPosition, transform.rotation, transform) as GameObject;
+                Timer = timeToSpawn;
+                return;
+            }
+            // chance to spawn a bonus target
+            if (Random.Range(0, 100) < 10)
+            {
+                targetBonusClone = Instantiate(targetBonus, transform.position + targetPosition, transform.rotation, transform) as GameObject;
                 Timer = timeToSpawn;
                 return;
             }
