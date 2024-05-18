@@ -633,6 +633,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button
       objectReference: {fileID: 0}
+    - target: {fileID: 5159128893046278092, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5562949263328752834, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -684,11 +688,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8454547748426416298, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
+--- !u!1 &1612107328 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5159128893046278092, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
+  m_PrefabInstance: {fileID: 1612107327}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1655020857
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -717,9 +723,17 @@ PrefabInstance:
       propertyPath: keyboardMenu
       value: 
       objectReference: {fileID: 184973228}
+    - target: {fileID: 5097653384552427147, guid: 936b55acd919b8c42bda14158393a58b, type: 3}
+      propertyPath: backToMenuButton
+      value: 
+      objectReference: {fileID: 1612107328}
     - target: {fileID: 6005278367560530122, guid: 936b55acd919b8c42bda14158393a58b, type: 3}
       propertyPath: m_Name
       value: Results
+      objectReference: {fileID: 0}
+    - target: {fileID: 6005278367560530122, guid: 936b55acd919b8c42bda14158393a58b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7392386700762436637, guid: 936b55acd919b8c42bda14158393a58b, type: 3}
       propertyPath: m_LocalPosition.x

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Ball : BaseHittable
 {
     [SerializeField] List<AudioClip> ballSoundClips;
+    [SerializeField] List<Sprite> ballSprites;
     AudioSource audioSource;
     SpriteRenderer spriteRenderer;
     public bool isInQueue = false;
@@ -14,6 +15,7 @@ public class Ball : BaseHittable
     void Start (){
         audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = ballSprites[0];
     }
     public void OnCollisionEnter2D(Collision2D coll){
         audioSource.volume = Mathf.Clamp(coll.relativeVelocity.magnitude/15,0,1);
@@ -23,13 +25,15 @@ public class Ball : BaseHittable
 
     public void TurnOnBonus(){
         bonusBall = true;
-        spriteRenderer.material.SetInt("_EnableBonus",1);
+        spriteRenderer.sprite = ballSprites[1];
+        //spriteRenderer.material.SetInt("_EnableBonus",1);
     }
 
     public void TurnOffBonus(){
         if(bonusBall){
             bonusBall = false;
-            spriteRenderer.material.SetInt("_EnableBonus",0);
+            spriteRenderer.sprite = ballSprites[0];
+            //spriteRenderer.material.SetInt("_EnableBonus",0);
         }
     }
 

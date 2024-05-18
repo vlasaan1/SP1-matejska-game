@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 493aadacff3d6254b9a9cb754ebd8997, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5d5606b02671d034bb66d3bed3c118a6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -263,4 +263,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 506db3ebb62517b41b0adbd1eb5a9bfa, type: 3}
   - {fileID: 8300000, guid: 5b61d0beeeadea2499780d26b30390ae, type: 3}
   - {fileID: 8300000, guid: fcc29d77a20e6b240b978d13ff92ca78, type: 3}
+  ballSprites:
+  - {fileID: 21300000, guid: 5d5606b02671d034bb66d3bed3c118a6, type: 3}
+  - {fileID: 21300000, guid: 44774fceb4e9b6a4e8ea00750f83c930, type: 3}
   isInQueue: 0
