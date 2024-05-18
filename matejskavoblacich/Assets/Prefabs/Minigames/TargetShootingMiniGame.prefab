@@ -139,7 +139,7 @@ MonoBehaviour:
   bombClone: {fileID: 436229822017950322, guid: 397085e835767d54f81558464e32afe2, type: 3}
   scoreText: {fileID: 291308041855486}
   Timer: 2
-  timeToSpawn: 0.87
+  timeToSpawn: 0.6
   targetPosition: {x: -0.4, y: 0, z: 0}
   minigame: {fileID: 7830195715442422702}
 --- !u!114 &7830195715442422702

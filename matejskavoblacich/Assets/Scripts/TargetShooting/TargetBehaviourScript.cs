@@ -19,7 +19,7 @@ public class TargetBehaviourScript : BaseHittable
     public void Update()
     {
         //every 0.5 seconds independently of time scale
-        if (Time.unscaledTime % 0.1f < Time.unscaledDeltaTime)
+        if (Time.unscaledTime % 0.05f < Time.unscaledDeltaTime)
         {
             //shrinks the target
             transform.localScale = new Vector3(transform.localScale.x - 0.001f, transform.localScale.y - 0.001f, transform.localScale.z);   
