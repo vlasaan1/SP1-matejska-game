@@ -43,19 +43,15 @@ public class FillingLogic : MonoBehaviour
                 break;
             }
             current.IsMoveable = false;
-            if(i == 0){
-                current.spriteRenderer.color = Color.blue;
-                yield return new WaitForSeconds(firstWaitingTime);
+
+            float startTime = Time.time;
+            float currTime = i == 0 ? firstWaitingTime : waitingTime;
+            current.spriteRenderer.material.SetInt("_isReversed", current.reversedFilling ? 1 : 0);
+            while(startTime + currTime >= Time.time){
+                current.spriteRenderer.material.SetFloat("_HoldPercent", (Time.time - startTime) / currTime);
+                yield return new WaitForSeconds(0);
             }
-            else{
-                float startTime = Time.time;
-                current.spriteRenderer.material.SetInt("_isReversed", current.reversedFilling ? 1 : 0);
-                while(startTime + waitingTime >= Time.time){
-                    current.spriteRenderer.material.SetFloat("_HoldPercent", (Time.time - startTime) / waitingTime);
-                    yield return new WaitForSeconds(0);
-                }
-                current.spriteRenderer.material.SetFloat("_HoldPercent", 1);
-            }
+            current.spriteRenderer.material.SetFloat("_HoldPercent", 1);
 
             previous = current;
             current = sendSignalToNextPipe(current);
