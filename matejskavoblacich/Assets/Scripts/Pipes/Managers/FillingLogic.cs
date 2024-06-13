@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Transactions;
 using TMPro;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 
 public class FillingLogic : MonoBehaviour
@@ -59,11 +60,11 @@ public class FillingLogic : MonoBehaviour
         }
         
         if(finishState){
-            playerGrid.setSpriteRendererColor(Color.green);
+            playerGrid.setSpriteRendererColor(new Color(137f, 209f, 116f));
             gameMaster.ChangeState(GameMaster.GameState.GoodEnd);
         }
         else{
-            playerGrid.setSpriteRendererColor(Color.red);
+            playerGrid.setSpriteRendererColor(new Color(236f, 10f, 25f));
             gameMaster.ChangeState(GameMaster.GameState.FailEnd);
         }
     }

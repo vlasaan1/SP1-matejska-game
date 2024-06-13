@@ -40,7 +40,7 @@ public class GameMaster : MonoBehaviour
     }
 
     private void SuccessedFunction(){
-        minigame.score = (int) ((minigame.endTime - Time.time) * 100);
+        minigame.score = (int) (minigame.endTime - Time.time);
         minigame.isFinished = true;
     }
 
