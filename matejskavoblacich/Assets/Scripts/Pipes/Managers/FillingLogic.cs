@@ -60,11 +60,11 @@ public class FillingLogic : MonoBehaviour
         }
         
         if(finishState){
-            playerGrid.setSpriteRendererColor(new Color(137f, 209f, 116f));
+            playerGrid.setSpriteRendererColor(new Color(137/255f, 209/255f, 116/255f));
             gameMaster.ChangeState(GameMaster.GameState.GoodEnd);
         }
         else{
-            playerGrid.setSpriteRendererColor(new Color(236f, 10f, 25f));
+            playerGrid.setSpriteRendererColor(new Color(236/255f, 10/255f, 25/255f));
             gameMaster.ChangeState(GameMaster.GameState.FailEnd);
         }
     }
