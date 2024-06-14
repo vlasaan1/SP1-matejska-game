@@ -52,7 +52,8 @@ public class PlayerGrid : MonoBehaviour
     }
 
     private float getYPos(int y){
-        return scaler*((tileSize/2) - y*tileSize + 0.5f) + transform.position.y - MAGIC_CONSTANT;
+        float offset = tileSize * scaler;
+        return scaler*((tileSize/2) - y*tileSize + 0.5f) + transform.position.y - offset;
     }
 
     /// <summary>
