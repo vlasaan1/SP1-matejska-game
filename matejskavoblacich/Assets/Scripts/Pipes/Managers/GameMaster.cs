@@ -12,7 +12,13 @@ public class GameMaster : MonoBehaviour
     [SerializeField] FillingLogic fillingLogic;
     [SerializeField] int numberOfBombs = 3;
     [SerializeField] int fieldSize = 6;
+    public int FieldSize{
+        get {return fieldSize;}
+    }
     [SerializeField] int scaler = 5;
+    public int Scaler{
+        get {return scaler;}
+    }
     [SerializeField] bool useSeed = false;
 
     private Dictionary<Vector2, string> board;
@@ -24,10 +30,6 @@ public class GameMaster : MonoBehaviour
     void Start()
     {
         ChangeState(GameState.Instantiate);
-    }
-
-    public int getSizeOfField(){
-        return fieldSize;
     }
 
     private void StartUp(){

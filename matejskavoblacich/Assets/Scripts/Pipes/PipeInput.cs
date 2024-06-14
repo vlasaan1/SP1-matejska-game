@@ -21,7 +21,7 @@ public class PipeInput : BaseHoldable
     int currentMovingFrame = 0;
 
     void Awake(){
-        numberOfTiles = gameMaster.getSizeOfField();
+        numberOfTiles = gameMaster.FieldSize;
     }
 
     Vector2Int GetArrayPos(Vector2 hitPosition){
