@@ -53,6 +53,7 @@ public class FillingLogic : MonoBehaviour
             current.spriteRenderer.material.SetInt("_isReversed", current.reversedFilling ? 1 : 0);
             while(startTime + currTime >= Time.time){
                 current.spriteRenderer.material.SetFloat("_HoldPercent", (Time.time - startTime) / currTime);
+                currTime = i == 0 ? firstWaitingTime : waitingTime; // so that i can pres FILL IT whenever i want
                 yield return new WaitForSeconds(0);
             }
             current.spriteRenderer.material.SetFloat("_HoldPercent", 1);
@@ -108,6 +109,9 @@ public class FillingLogic : MonoBehaviour
     }
      
 
+    /// <summary>
+    /// when pressed FILL IT button, it changes filling speed
+    /// </summary>
     public void setSpeedToFilling(){
         if(!minigame.isFinished)
             waitingTime = speedWaitingTime;
