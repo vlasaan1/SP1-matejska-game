@@ -24,18 +24,17 @@ public class HoleActivation : BaseHittable
     GameObject activeBeaver;
     Vector3 startPosition;
     Vector3 endPosition; 
+
     //0-not active , 1-up , 2-down , 3-destroy with points , 4-destroy with points
     public int onShowBeaver = 0;
-
-    //used for probability of enemy
+    //variables used for probability of enemy and beaver spawned
+    int enemyMaxNum = 2;
+    int beaverMaxNum = 10;
+    //int beaverMinNum = 2;
     int number = 0;
-    int previousEnemies = 0;
-    int previousBeavers = 0;
     [SerializeField] int upperBound = 5;
-   // [SerializeField] int upperBound = 3;
     private System.Random random;
     int changed = 0;
-
 
     void Awake()
     {
@@ -46,13 +45,10 @@ public class HoleActivation : BaseHittable
         startPosition = transform.position + new Vector3(0f, -0.1f, 0f);
         endPosition = startPosition + new Vector3(0f, 1f, 0f);
         random = new System.Random(minigame.seed);
-
     }
-
 
     void Update()
     {
-
         if(((Time.time-minigame.startTime) > percentage*timeTotal)&&(moveSpeed<2.5f)&&(percentage<100f)){
             percentage += 0.2f;
             moveSpeed += 0.3f;
@@ -86,12 +82,13 @@ public class HoleActivation : BaseHittable
         }
     }
 
-    public void showBeaver(){
+    public void showBeaver(ref int previousEnemies, ref int previousBeavers){
         onShowBeaver = 1;
         changed = 0;
         number = random.Next(1,upperBound+1);
-        if( ((number<upperBound) || (previousEnemies==3)) && (previousBeavers!=12) ) {
+        if( ((number<upperBound) || (previousEnemies==enemyMaxNum)) && (previousBeavers!=beaverMaxNum)) {
             previousEnemies = 0;
+            number = 1; //when rng needs to be altered
             previousBeavers++;
             activeBeaver = Instantiate(
                 playerPrefab[minigame.playerId],
@@ -103,6 +100,7 @@ public class HoleActivation : BaseHittable
         else{
             previousBeavers = 0;
             previousEnemies++;
+            number = upperBound; //when rng needs to be altered especially when altering outcome
             activeBeaver = Instantiate(
                 enemyPrefab,
                 startPosition,
