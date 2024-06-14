@@ -15,7 +15,6 @@ public class PlayerGrid : MonoBehaviour
     private int fieldSize = 0;
     public Dictionary<Vector2, Tile> grid;
     private System.Random random;
-    private float MAGIC_CONSTANT = 0.72f;
     private int shufflingConstant = 20;
 
     void Awake(){
