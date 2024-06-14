@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// blueprint for one type of the unit in game
+/// </summary>
 [CreateAssetMenu(fileName = "New Unit", menuName = "Scriptable Unit")]
 public class ScriptableUnit : ScriptableObject
 {

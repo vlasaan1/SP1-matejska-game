@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+/// <summary>
+/// abstract base class for every unit in the game
+/// </summary>
 public class BaseUnit : MonoBehaviour
 {
     public Vector2 inDir;
@@ -14,6 +17,9 @@ public class BaseUnit : MonoBehaviour
     public bool reversedFilling = false;
     protected float rotation = 0f;
 
+    /// <summary>
+    /// calculates rotation depending on class variables that it needs
+    /// </summary>
     public virtual void CalculateRotation(){}
 
     public virtual void SetBackground(PlayerGrid playerGrid){}
@@ -26,6 +32,9 @@ public class BaseUnit : MonoBehaviour
         spriteRenderer.color = color;
     }
 
+    /// <summary>
+    /// swaps inDir with outDir if needed
+    /// </summary>
     public void swapDirections(){
         Vector2 temp = inDir;
         inDir = outDir;

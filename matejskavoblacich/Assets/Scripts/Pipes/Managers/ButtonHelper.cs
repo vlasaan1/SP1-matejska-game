@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <sumary>
+/// Class that just moves the button acording to the scaler of the game
+/// <sumary>
 public class ButtonHelper : MonoBehaviour
 {
     [SerializeField] GameMaster gameMaster;

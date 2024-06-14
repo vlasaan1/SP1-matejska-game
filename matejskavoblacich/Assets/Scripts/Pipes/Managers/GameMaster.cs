@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Hadles and sets everything for the game, the main crossroad to all actions that will take place
+/// </summary>
 public class GameMaster : MonoBehaviour
 {
     public GameState gameState;
@@ -50,6 +53,10 @@ public class GameMaster : MonoBehaviour
         minigame.isFinished = true;
     }
 
+    /// <summary>
+    /// Controls the code of the minigame, runs the code depending on the state given as method argument
+    /// </summary>
+    /// <param name="newState">New state of the game that will take the place and start the concrete code</param>
     public void ChangeState(GameState newState){
         gameState = newState;
         switch(newState){

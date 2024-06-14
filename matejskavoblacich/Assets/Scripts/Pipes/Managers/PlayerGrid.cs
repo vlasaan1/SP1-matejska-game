@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
+/// <summary>
+/// handles the grid, that fill be used to place playboard on. Also spawns and handles each tile of the game on which will be game elements placed
+/// </summary>
 public class PlayerGrid : MonoBehaviour
 {
     [SerializeField] Tile tilePrefab;
@@ -123,6 +126,10 @@ public class PlayerGrid : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// sets the grid background sprite color
+    /// </summary>
+    /// <param name="color"></param>
     public void setSpriteRendererColor(Color color){
         spriteRenderer.color = color;
     }

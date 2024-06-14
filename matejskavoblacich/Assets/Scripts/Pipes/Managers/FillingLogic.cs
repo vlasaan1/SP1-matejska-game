@@ -5,8 +5,9 @@ using TMPro;
 using UnityEditor.ShaderGraph;
 using UnityEngine;
 
-///
-
+/// <summary>
+/// Class that handles "liquid flow in the game and the game flow proccess itself"
+/// </summary>
 public class FillingLogic : MonoBehaviour
 {
     [SerializeField] float firstWaitingTime = 8f;
@@ -105,7 +106,8 @@ public class FillingLogic : MonoBehaviour
     private bool endCheck(BaseUnit current){
         return current is EndPipe;
     }
-    
+     
+
     public void setSpeedToFilling(){
         if(!minigame.isFinished)
             waitingTime = speedWaitingTime;
