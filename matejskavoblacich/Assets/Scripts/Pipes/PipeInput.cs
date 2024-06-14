@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Scripting;
 
 public class PipeInput : BaseHoldable
 {
-    [SerializeField] int numberOfTiles = 8;
     [SerializeField] PlayerGrid grid;
     [SerializeField, Range(1,2)] float heldPipeSizeMultiplier = 1.2f;
-
+    [SerializeField] GameMaster gameMaster;
+    int numberOfTiles = -1;
     bool isHeld = false;
     GameObject heldObject;
     Vector2Int heldObjectArrayPos;
@@ -18,6 +19,10 @@ public class PipeInput : BaseHoldable
     int deltaFrame = 1;
     int lastFrameCount = 0;
     int currentMovingFrame = 0;
+
+    void Awake(){
+        numberOfTiles = gameMaster.getSizeOfField();
+    }
 
     Vector2Int GetArrayPos(Vector2 hitPosition){
         hitPosition = transform.InverseTransformPoint(new Vector3(hitPosition.x, hitPosition.y));

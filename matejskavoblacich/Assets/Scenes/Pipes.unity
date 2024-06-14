@@ -270,6 +270,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6238474914427263398, guid: ae87e526d9e2f374abbd289605557fc6, type: 3}
   m_PrefabInstance: {fileID: 6238474913641898935}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &801628035 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8731848156127098241, guid: 50696ce934ccecd45a1bfd7b8fa629a7, type: 3}
+  m_PrefabInstance: {fileID: 4589043212801731842}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e763a62eb02d5343acde24391e9c5c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4589043212801731842
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -322,6 +333,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PipeMinigame
       objectReference: {fileID: 0}
+    - target: {fileID: 8430654809220443195, guid: 50696ce934ccecd45a1bfd7b8fa629a7, type: 3}
+      propertyPath: gameMaster
+      value: 
+      objectReference: {fileID: 801628035}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

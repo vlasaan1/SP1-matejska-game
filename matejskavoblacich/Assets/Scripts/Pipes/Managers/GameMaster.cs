@@ -26,6 +26,10 @@ public class GameMaster : MonoBehaviour
         ChangeState(GameState.Instantiate);
     }
 
+    public int getSizeOfField(){
+        return fieldSize;
+    }
+
     private void StartUp(){
         if(useSeed){
             seed = minigame.seed;
