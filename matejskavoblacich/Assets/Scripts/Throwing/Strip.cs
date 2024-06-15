@@ -20,8 +20,8 @@ public class Strip : MonoBehaviour
     public void ResetStrip(){
         for(int i=0;i<renderers.Count;i++){
             //Add (0,0,-1) to make sure the strip is in front of the sling
-            renderers[i].SetPosition(0,baseStripPositions[i].position + new Vector3(0,0,-1));
-            renderers[i].SetPosition(1,baseBallPosition.position + new Vector3(0,0,-1));
+            renderers[i].SetPosition(0,baseStripPositions[i].position);// + new Vector3(0,0,-1));
+            renderers[i].SetPosition(1,baseBallPosition.position);// + new Vector3(0,0,-1));
         }
     }
 

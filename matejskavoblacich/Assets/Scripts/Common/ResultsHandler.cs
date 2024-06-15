@@ -47,10 +47,8 @@ public class ResultsHandler : MonoBehaviour
         }
         ScoreboardController scoreboard = leaderboard.GetComponent<ScoreboardController>();
         if(scoreboard.FindScoreboardPos(maxPoints) > -1){
-            for(int i=0;i<results[0].results.Length;i++){
-                resultRend[i].gameObject.SetActive(false);
-                resultText[i].gameObject.SetActive(false);
-            }
+            resultText[0].transform.parent.gameObject.SetActive(false);
+
             text.SetActive(false);
             keyboardMenu.SetActive(true);
             keyboardMenu.GetComponentInChildren<ScreenKeyboardController>().returnName.AddListener(AddToLeaderboard);
@@ -64,10 +62,8 @@ public class ResultsHandler : MonoBehaviour
         ScoreboardController scoreboard = leaderboard.GetComponent<ScoreboardController>();
         scoreboard.AddEntry(name,maxPoints);
 
-        for(int i=0;i<numberOfPlayers;i++){
-            resultRend[i].gameObject.SetActive(true);
-            resultText[i].gameObject.SetActive(true);
-        }
+        resultText[0].transform.parent.gameObject.SetActive(true);
+
         text.SetActive(true);
         keyboardMenu.SetActive(false);
         backToMenuButton.SetActive(true);
