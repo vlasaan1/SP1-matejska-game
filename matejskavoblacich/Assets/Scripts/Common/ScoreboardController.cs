@@ -99,6 +99,16 @@ public class ScoreboardController : MonoBehaviour
             };
     }
 
+    public void ClearScoreboard(){
+        string path = Application.persistentDataPath + defaultScoreboardFileName;
+        if(File.Exists(path)){
+            string json = File.ReadAllText(path);
+            sbWrapper = JsonUtility.FromJson<SBWrapper>(json);
+            SetDefaultScoreboard();
+            Save();
+        }
+    }
+
     [Serializable]
     private class SBWrapper {
         public List<ScoreboardEntry> scoreboard;

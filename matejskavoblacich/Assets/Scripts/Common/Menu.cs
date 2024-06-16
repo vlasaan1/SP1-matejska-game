@@ -8,12 +8,14 @@ public class Menu : MonoBehaviour
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject chooseNumberOfPlayers;
     [SerializeField] GameObject chooseHeight;
+    [SerializeField] GameObject options;
 
     void Start(){
         gameMaster = FindObjectOfType<MainGameMaster>();
         mainMenu.SetActive(true);
         chooseNumberOfPlayers.SetActive(false);
         chooseHeight.SetActive(false);
+        options.SetActive(false);
     }
 
     public void PlayGame(){
@@ -36,6 +38,18 @@ public class Menu : MonoBehaviour
 
     public void ShowLeaderboard(){
         gameMaster.ChangeState(MainGameMaster.GameState.ShowLeaderboard);
+    }
+
+    public void ShowOptions(){
+        mainMenu.SetActive(false);
+        options.SetActive(true);
+    }
+
+    public void ShowMenu(){
+        mainMenu.SetActive(true);
+        chooseHeight.SetActive(false);
+        chooseNumberOfPlayers.SetActive(false);
+        options.SetActive(false);
     }
 
     public void QuitGame(){
