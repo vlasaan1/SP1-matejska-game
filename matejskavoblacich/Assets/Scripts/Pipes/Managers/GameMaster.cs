@@ -7,12 +7,15 @@ using UnityEngine;
 /// </summary>
 public class GameMaster : MonoBehaviour
 {
-    public GameState gameState;
+    [Header("---------- Managers -----------")]
     [SerializeField] Minigame minigame;
     [SerializeField] PlayerGrid playerGrid;
     [SerializeField] GeneratingAlgo generatingAlgo;
     [SerializeField] UnitManager unitManager;
     [SerializeField] FillingLogic fillingLogic;
+    [SerializeField] PipesAudioManager pipesAudioManager;
+    [Header("---------- Game Settings -----------")]
+    public GameState gameState;
     [SerializeField] int numberOfBombs = 3;
     [SerializeField] int fieldSize = 6;
     public int FieldSize{
@@ -45,10 +48,12 @@ public class GameMaster : MonoBehaviour
     }
 
     private void FailedFunction(){
+        pipesAudioManager.PlaySFX(pipesAudioManager.fail);
         minigame.isFinished = true;
     }
 
     private void SuccessedFunction(){
+        pipesAudioManager.PlaySFX(pipesAudioManager.success);
         minigame.score = (int) (minigame.endTime - Time.time);
         minigame.isFinished = true;
     }

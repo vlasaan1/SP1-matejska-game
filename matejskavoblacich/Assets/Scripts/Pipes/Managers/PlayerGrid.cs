@@ -9,8 +9,10 @@ using UnityEngine.UI;
 /// </summary>
 public class PlayerGrid : MonoBehaviour
 {
+    [Header("------------------- Managers --------------")]
     [SerializeField] Tile tilePrefab;
     [SerializeField] Minigame minigame;
+    [SerializeField] PipesAudioManager pipesAudioManager;
 
     private SpriteRenderer spriteRenderer;
     private float tileSize = 0f;
@@ -98,8 +100,11 @@ public class PlayerGrid : MonoBehaviour
     /// </summary>
     /// <param name="first"></param>
     /// <param name="second"></param>
-    public void SwapTiles(Vector2Int first, Vector2Int second){
+    /// <param name="playSound">if sound should by played</param>
+    public void SwapTiles(Vector2Int first, Vector2Int second, bool playSound){
         if(CanGetTileAtPosition(first) && CanGetTileAtPosition(second)){
+            if(playSound)
+                pipesAudioManager.PlaySFX(pipesAudioManager.move);
             grid[first].SwapUnits(grid[second]);
             grid[first].occupiedUnit.transform.position = getPos(first.x, first.y);
             grid[second].occupiedUnit.transform.position = getPos(second.x, second.y);
@@ -117,7 +122,7 @@ public class PlayerGrid : MonoBehaviour
                 while(i < shufflingConstant){
                     Vector2Int nvec = new Vector2Int(random.Next(1, fieldSize - 1), random.Next(1, fieldSize - 1));
                     if(CanGetTileAtPosition(ovec) && CanGetTileAtPosition(nvec)){
-                        SwapTiles(ovec, nvec);
+                        SwapTiles(ovec, nvec, false);
                         break;
                     }
                     i++;

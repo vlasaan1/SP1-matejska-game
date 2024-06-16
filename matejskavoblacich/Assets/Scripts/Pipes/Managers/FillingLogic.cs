@@ -10,12 +10,15 @@ using UnityEngine;
 /// </summary>
 public class FillingLogic : MonoBehaviour
 {
+    [Header("--------------- Settings --------------")]
     [SerializeField] float firstWaitingTime = 8f;
     [SerializeField] float waitingTime = 4f;
     [SerializeField] float speedWaitingTime = 0.25f;
+    [Header("--------------- Managers --------------")]
     [SerializeField] PlayerGrid playerGrid;
     [SerializeField] GameMaster gameMaster;
     [SerializeField] Minigame minigame;
+    [SerializeField] PipesAudioManager pipesAudioManager;
     private bool finishState = false;
 
     /// <summary>
@@ -37,6 +40,7 @@ public class FillingLogic : MonoBehaviour
     /// <returns></returns>
     private IEnumerator fillingHelper(BaseUnit previous, BaseUnit current){
         int i = 0;
+        pipesAudioManager.PlaySFX(pipesAudioManager.flow);
         while(true){
             if(endCheck(current)){
                 finishState = true;
@@ -113,8 +117,10 @@ public class FillingLogic : MonoBehaviour
     /// when pressed FILL IT button, it changes filling speed
     /// </summary>
     public void setSpeedToFilling(){
-        if(!minigame.isFinished)
+        if(!minigame.isFinished){
             waitingTime = speedWaitingTime;
+            pipesAudioManager.PlaySFX(pipesAudioManager.flow);
+        }
     }
 
 }

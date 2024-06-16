@@ -54,7 +54,7 @@ public class PipeInput : BaseHoldable
                 if(grid.CanGetTileAtPosition(currentArrayPos)){
                     originalPosition = grid.GetTileAtPosition(currentArrayPos).occupiedUnit.gameObject.transform.position;
                     Vector3 currentPosition = heldObject.transform.position;
-                    grid.SwapTiles(heldObjectArrayPos,currentArrayPos);
+                    grid.SwapTiles(heldObjectArrayPos,currentArrayPos, true);
                     heldObjectArrayPos = currentArrayPos;
                     heldObject.transform.position = currentPosition;
                 }
