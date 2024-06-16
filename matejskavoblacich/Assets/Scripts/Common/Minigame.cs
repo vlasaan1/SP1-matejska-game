@@ -1,6 +1,8 @@
 using UnityEngine;
 
-//This script has to be in every minigame prefab
+/// <summary>
+/// This script has to be in every minigame prefab
+/// </summary>
 public class Minigame : MonoBehaviour
 {
     public float startTime; //Time at which minigame starts

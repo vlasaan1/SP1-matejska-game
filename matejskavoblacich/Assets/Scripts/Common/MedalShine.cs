@@ -1,14 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+///<summary>
+/// Makes medals shine - randomly chooses shine and plays animation
+///</summary>
 public class MedalShine : MonoBehaviour
 {
     [SerializeField] float minTimeBetweenShines;
     [SerializeField] float maxTimeBetweenShines;
 
-    float nextShine;
     Animator animator;
+    float nextShine;
+    readonly int animationVariantCount = 4;
 
     void Start()
     {
@@ -20,7 +22,7 @@ public class MedalShine : MonoBehaviour
     {
         if(Time.time > nextShine){
             nextShine = Time.time + Random.Range(minTimeBetweenShines,maxTimeBetweenShines);
-            animator.SetInteger("ShineVariant",Random.Range(0,4));
+            animator.SetInteger("ShineVariant",Random.Range(0,animationVariantCount));
             animator.SetTrigger("Shine");
         }
     }

@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Timer in every minigame
+/// </summary>
 public class Timer : MonoBehaviour
 {
     [SerializeField] Slider timer;

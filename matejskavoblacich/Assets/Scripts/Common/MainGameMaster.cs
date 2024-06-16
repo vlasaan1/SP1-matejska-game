@@ -4,6 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Handles flow of the whole game
+/// </summary>
 public class MainGameMaster : MonoBehaviour
 {
     [Header ("References")]
@@ -11,22 +14,24 @@ public class MainGameMaster : MonoBehaviour
     [SerializeField] GameObject sceneTransition;
     [SerializeField] List<MinigamePrefabSO> originalMinigamesPrefabs;
     [SerializeField] List<Vector3> playerPositions;
+
     [Header ("Time settings")]
     [SerializeField,Tooltip("Time between loading new scene and starting minigame")] float waitTimeBeforeMinigameStart = 3;
     [SerializeField] float maxMinigamePlayTimeSeconds = 90;
     [SerializeField] float waitTimeAfterMinigameEnds = 3;
     [SerializeField] float sceneTransitionWaitTime = 1;
+
     [Header ("Stall movement variables")]
     [SerializeField] float minYMove;
     [SerializeField] float maxYMove;
+    [SerializeField] float baseYMove = -1;
 
     GameObject initiInstance;
     List<Results> resultsHistory = new();
-    MinigamePrefabSO currentMinigamePrefab;
     List<MinigamePrefabSO> minigames;
-    bool skipMinigame = false;
     int numberOfPlayers;
-    float currentYMove = -1;
+    float currentYMove;
+    bool skipMinigame = false; //Can be set with skip minigame button
 
     public enum GameState{
         Menu,
@@ -53,24 +58,32 @@ public class MainGameMaster : MonoBehaviour
 
         //Save all minigames, to be able to restore it after changes
         minigames = new List<MinigamePrefabSO>(originalMinigamesPrefabs);
+
+        currentYMove = baseYMove;
     }
     
     public void SetNumberOfPlayers(int num){
         numberOfPlayers = num;
     }
 
+    /// <summary>
+    /// Offset all minigames
+    /// </summary>
+    /// <param name="yMove">Offset, clamped between minYMove and maxYMove</param>
     public void SetYMove(float yMove){
-        //Vypocet realneho posunu ??
-
-        if(yMove < minYMove) currentYMove = minYMove;
-        else if(yMove > maxYMove) currentYMove = maxYMove;
-        else currentYMove = yMove;
+        currentYMove = baseYMove + Mathf.Clamp(yMove,minYMove,maxYMove);
     }
 
+    /// <summary>
+    /// Instantly ends current minigame
+    /// </summary>
     public void SkipMinigame(){
         skipMinigame = true;
     }
 
+    /// <summary>
+    /// Skip all remaining minigames and show final results
+    /// </summary>
     public void SkipToFinalScene(){
         StartCoroutine(TransitionToScene("FinalScene",GameState.ShowResultsFinalScene));
     }
@@ -84,10 +97,10 @@ public class MainGameMaster : MonoBehaviour
                 StartCoroutine(PrepareGame());
                 break;
             case GameState.ShowResultsBetweenMinigames:
-                FindObjectOfType<ResultsHandler>().ShowResults(resultsHistory[^1].results);
+                FindObjectOfType<BetweenMinigamesResults>().ShowResults(resultsHistory[^1].results);
                 break;
             case GameState.ShowResultsFinalScene:
-                FindObjectOfType<ResultsHandler>().FinalResults(resultsHistory);
+                FindObjectOfType<FinalSceneResults>().FinalResults(resultsHistory);
                 break;
             case GameState.ShowLeaderboard:
                 StartCoroutine(TransitionToScene("Leaderboard",GameState.DoNothing));
@@ -101,6 +114,11 @@ public class MainGameMaster : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Transtions to new scene with clouds effect, then changes MainGameMaster to nextState
+    /// </summary>
+    /// <param name="sceneName"> Scene to transition to </param>
+    /// <param name="nextState"> MainGameMaster state after transition </param>
     IEnumerator TransitionToScene(string sceneName, GameState nextState){
         FindObjectOfType<SceneTransition>().StartTransition();
         yield return new WaitForSeconds(sceneTransitionWaitTime);
@@ -114,16 +132,20 @@ public class MainGameMaster : MonoBehaviour
     }
 
 
-    //Temporary method
-    public void LoadGameById(int id){
+    /// <summary>
+    /// Used to play only one minigame
+    /// </summary>
+    /// <param name="id"> Desired minigame index in minigames array </param>
+    public void PlaySingleMinigame(int id){
         MinigamePrefabSO chosenOne = minigames[id];
         minigames.Clear();
         minigames.Add(chosenOne);
-        numberOfPlayers = 3;
         ChangeState(GameState.LoadMinigame);
     }
 
-
+    /// <summary>
+    /// Instantiates minigames instances, fill required variables, call PlayMinigame to start minigame
+    /// </summary>
     IEnumerator PrepareGame(){
         //Move Stall up/down to match player height 
         GameObject.Find("Stall").transform.position += Vector3.up * currentYMove;
@@ -133,7 +155,6 @@ public class MainGameMaster : MonoBehaviour
         //Choose randomly next minigame
         int nextGameId = Random.Range(0,minigames.Count); 
 
-        currentMinigamePrefab = minigames[nextGameId];
         GameObject game = minigames[nextGameId].minigamePrefab;
 
         //Set timer visualization
@@ -167,15 +188,21 @@ public class MainGameMaster : MonoBehaviour
             currentMinigames.Add(Instantiate(game,playerPositions[i]+(Vector3.up*currentYMove),Quaternion.identity).GetComponent<Minigame>());
         }
         
-        StartCoroutine(PlayGame(currentMinigames,minigameStartTime));
+        StartCoroutine(PlayGame(currentMinigames));
     }
 
-    IEnumerator PlayGame(List<Minigame> minigames, float minigameStartTime){
+    /// <summary>
+    /// Used from Prepare minigame, should never be called from a different place, waits until time runs out, skip button is pressed or all minigame instances ends
+    /// </summary>
+    /// <param name="minigames"> List of current minigame instances </param>
+    /// <returns></returns>
+    IEnumerator PlayGame(List<Minigame> minigames){
+        float minigameStartTime = Time.time;
         Timer timer = FindObjectOfType<Timer>();
         timer.SetTime(maxMinigamePlayTimeSeconds);
         skipMinigame = false;
 
-        //Play for set time
+        //Play for a set time
         while(Time.time < minigameStartTime+maxMinigamePlayTimeSeconds){
 
             //End sooner if all minigames already ended
@@ -201,22 +228,17 @@ public class MainGameMaster : MonoBehaviour
         EndMinigame(minigames);
     }   
 
+    /// <summary>
+    /// Saves score, transitions to BetweenMinigames or FinalScene
+    /// </summary>
+    /// <param name="minigames"> List of current minigame instances </param>
     void EndMinigame(List<Minigame> minigames){
         //Count score
         Results gameResults = new();
         gameResults.results = new int[numberOfPlayers];
-        gameResults.icon = currentMinigamePrefab.icon;
         for(int i=0;i<numberOfPlayers;i++){
             gameResults.results[i]=minigames[i].score;
         }
-        //for(int i=0;i<numberOfPlayers;i++){
-        //    for(int j=0;j<numberOfPlayers;j++){
-        //        if(i==j) continue;
-        //        if(minigames[i].score>minigames[j].score){
-        //            gameResults.results[j]++;
-        //        }
-        //    }
-        //}
         resultsHistory.Add(gameResults);
         
         //Show score
