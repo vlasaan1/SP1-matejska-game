@@ -635,6 +635,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Medal
       objectReference: {fileID: 0}
+    - target: {fileID: 7187472653556511947, guid: d532b47e8b5dc124ea3129a6bb970728, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -710,6 +714,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Medal (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7187472653556511947, guid: d532b47e8b5dc124ea3129a6bb970728, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -784,6 +792,10 @@ PrefabInstance:
     - target: {fileID: 7187472653556511947, guid: d532b47e8b5dc124ea3129a6bb970728, type: 3}
       propertyPath: m_Name
       value: Medal (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7187472653556511947, guid: d532b47e8b5dc124ea3129a6bb970728, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

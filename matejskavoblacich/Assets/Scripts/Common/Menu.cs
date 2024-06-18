@@ -11,7 +11,7 @@ public class Menu : MonoBehaviour
     [SerializeField] GameObject chooseOneGame;
     [SerializeField] GameObject options;
     [SerializeField] GameObject credits;
-
+    [SerializeField] GameObject clouds;
     MainGameMaster gameMaster;
     int playOnlyOneGameId = -1; //Used to load a single minigame
     void Start(){
@@ -46,11 +46,13 @@ public class Menu : MonoBehaviour
 
     public void ShowOptions(){
         mainMenu.SetActive(false);
+        clouds.SetActive(false);
         options.SetActive(true);
     }
 
     public void ShowMenu(){
         mainMenu.SetActive(true);
+        clouds.SetActive(true);
         chooseNumberOfPlayers.SetActive(false);
         chooseOneGame.SetActive(gameMaster.showSingleMinigameButtons);
         options.SetActive(false);

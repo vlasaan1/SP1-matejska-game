@@ -111,7 +111,7 @@ MonoBehaviour:
   minTimeBetweenClouds: 0.2
   maxTimeBetweenClouds: 5
   minCloudSpeed: 0.5
-  maxCloudSpeed: 5
+  maxCloudSpeed: 3
   maxX: 9
   maxY: 5.5
   clouds:

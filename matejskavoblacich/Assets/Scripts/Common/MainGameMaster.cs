@@ -71,8 +71,13 @@ public class MainGameMaster : MonoBehaviour
     /// Offset all minigames
     /// </summary>
     /// <param name="yMove">Offset, clamped between minYMove and maxYMove</param>
-    public void SetYMove(float yMove){
-        currentYMove = baseYMove + Mathf.Clamp(yMove,minYMove,maxYMove);
+    public void AddYMove(float yMove){
+        //currentYMove = baseYMove + Mathf.Clamp(yMove,minYMove,maxYMove);
+        currentYMove = Mathf.Clamp(currentYMove+yMove,minYMove,maxYMove);
+    }
+
+    public float GetYMove(){
+        return currentYMove;
     }
 
     /// <summary>

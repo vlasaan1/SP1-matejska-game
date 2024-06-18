@@ -17,6 +17,7 @@ public class BetweenMinigamesResults : MonoBehaviour
     public void ShowResults(int[] results){
         int[] orderRes = GetOrder(results);
         for(int i=0;i<results.Length;i++){
+            resultRend[i].transform.parent.gameObject.SetActive(true);
             resultRend[i].sprite = sprites[orderRes[i]];
             resultText[i].text = results[i].ToString();
         }
