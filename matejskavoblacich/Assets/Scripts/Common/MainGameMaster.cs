@@ -125,7 +125,10 @@ public class MainGameMaster : MonoBehaviour
         yield return new WaitForSeconds(sceneTransitionWaitTime);
 
         SceneManager.LoadScene(sceneName);
+
+        GetComponentInChildren<CloudsAnimation>().enabled = false;
         yield return new WaitForSeconds(0);
+        GetComponentInChildren<CloudsAnimation>().enabled = true;
 
         Instantiate(sceneTransition);
 

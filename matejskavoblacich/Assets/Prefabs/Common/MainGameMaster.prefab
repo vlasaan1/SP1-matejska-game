@@ -29,7 +29,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7452839095598198087}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4705345342326053933
@@ -61,3 +62,69 @@ MonoBehaviour:
   sceneTransitionWaitTime: 2
   minYMove: -1.4
   maxYMove: 0.3
+  baseYMove: -1
+  showSingleMinigameButtons: 0
+--- !u!1 &5846430411522923722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7452839095598198087}
+  - component: {fileID: 7614453363894178318}
+  m_Layer: 0
+  m_Name: CloudsAnimation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7452839095598198087
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5846430411522923722}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2787360837908412488}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7614453363894178318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5846430411522923722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c25b0cee5f10b9344bad41759fe430e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minTimeBetweenClouds: 0.2
+  maxTimeBetweenClouds: 5
+  minCloudSpeed: 0.5
+  maxCloudSpeed: 5
+  maxX: 9
+  maxY: 5.5
+  clouds:
+  - {fileID: 5006868229859477872, guid: b19f0beac7de02a45ad3ce569f46832c, type: 3}
+  - {fileID: 2931852394000642953, guid: 7bd0fb7bd3c1f6e40860d7918e0e9d40, type: 3}
+  - {fileID: 1786839447669516650, guid: 384f7e26676cb814683017f062e8bd22, type: 3}
+  - {fileID: 3498417327081122372, guid: 97ee3842093665245aa7c132e60251e3, type: 3}
+  - {fileID: 4531277341141149989, guid: 759be21f74e3f8c43b9de58aa3803797, type: 3}
+  - {fileID: 99644743306204631, guid: 75836dcbded283b47a078244eef4e7e2, type: 3}
+  - {fileID: 3588229965020748768, guid: 7c965c9261c822d428507bbe548b9e38, type: 3}
+  - {fileID: 8320861063489536901, guid: de7c1797935aac94c8160c9d2323cec4, type: 3}
+  - {fileID: 7042375032922165360, guid: 95be39f0444652547a3d4eeda9cfe183, type: 3}
+  - {fileID: 7501571167427548342, guid: 47264faa03017f14d9b8b4f3693ad7f2, type: 3}
+  - {fileID: 6339254102559411615, guid: fcb9bec9a2c03e145ad1fc4a1b4cebc2, type: 3}
+  - {fileID: 4528530047361397213, guid: 4c79645523c4ced4db8a7321d142fc23, type: 3}
+  - {fileID: 8290911118346706465, guid: 53e895bff78c6f74591c5c7cbe780a06, type: 3}

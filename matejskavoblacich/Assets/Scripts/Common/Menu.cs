@@ -8,6 +8,7 @@ public class Menu : MonoBehaviour
     [Header("References")]
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject chooseNumberOfPlayers;
+    [SerializeField] GameObject chooseOneGame;
     [SerializeField] GameObject options;
     [SerializeField] GameObject credits;
 
@@ -51,6 +52,7 @@ public class Menu : MonoBehaviour
     public void ShowMenu(){
         mainMenu.SetActive(true);
         chooseNumberOfPlayers.SetActive(false);
+        chooseOneGame.SetActive(gameMaster.showSingleMinigameButtons);
         options.SetActive(false);
     }
 
