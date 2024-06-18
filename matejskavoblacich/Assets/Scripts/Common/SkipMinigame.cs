@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Function for skip minigame button
+/// </summary>
 public class SkipMinigame : MonoBehaviour
 {
     public void Skip(){

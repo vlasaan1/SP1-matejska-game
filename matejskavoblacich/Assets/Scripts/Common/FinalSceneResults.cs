@@ -1,32 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
 
-public class ResultsHandler : MonoBehaviour
+/// <summary>
+/// Shows medals for final scene, handles adding results to the leaderboard
+/// </summary>
+public class FinalSceneResults : BetweenMinigamesResults
 {
-    [SerializeField] List<SpriteRenderer> resultRend;
-    [SerializeField] List<TMP_Text> resultText;
-
-    [SerializeField] List<Sprite> sprites;
-    [Header("Final Scene only")]
-    [SerializeField] GameObject leaderboard;
-    [SerializeField] GameObject keyboardMenu;
+    [Header("Final scene variables")]
+    [SerializeField,Tooltip("Instance in scene")] GameObject leaderboard;
+    [SerializeField,Tooltip("Instance in scene")] GameObject keyboardMenu;
     [SerializeField] GameObject text;
     [SerializeField] GameObject backToMenuButton;
     [SerializeField] float waitTimeBeforeLeaderboardPopup = 4;
 
     int maxPoints;
-    int numberOfPlayers;
-
-    public void ShowResults(int[] results){
-        int[] orderRes = GetOrder(results);
-        numberOfPlayers = results.Length;
-        for(int i=0;i<results.Length;i++){
-            resultRend[i].sprite = sprites[orderRes[i]];
-            resultText[i].text = results[i].ToString();
-        }
-    }
 
     public void FinalResults(List<Results> results){
         StartCoroutine(FinalScene(results));
@@ -47,10 +35,8 @@ public class ResultsHandler : MonoBehaviour
         }
         ScoreboardController scoreboard = leaderboard.GetComponent<ScoreboardController>();
         if(scoreboard.FindScoreboardPos(maxPoints) > -1){
-            for(int i=0;i<results[0].results.Length;i++){
-                resultRend[i].gameObject.SetActive(false);
-                resultText[i].gameObject.SetActive(false);
-            }
+            resultText[0].transform.parent.gameObject.SetActive(false);
+
             text.SetActive(false);
             keyboardMenu.SetActive(true);
             keyboardMenu.GetComponentInChildren<ScreenKeyboardController>().returnName.AddListener(AddToLeaderboard);
@@ -64,26 +50,10 @@ public class ResultsHandler : MonoBehaviour
         ScoreboardController scoreboard = leaderboard.GetComponent<ScoreboardController>();
         scoreboard.AddEntry(name,maxPoints);
 
-        for(int i=0;i<numberOfPlayers;i++){
-            resultRend[i].gameObject.SetActive(true);
-            resultText[i].gameObject.SetActive(true);
-        }
+        resultText[0].transform.parent.gameObject.SetActive(true);
+
         text.SetActive(true);
         keyboardMenu.SetActive(false);
         backToMenuButton.SetActive(true);
     }
-
-    int[] GetOrder(int[] results){
-        int[] res = new int[results.Length];
-        for(int i=0;i<results.Length;i++){
-            for(int j=0;j<results.Length;j++){
-                if(i==j) continue;
-                if(results[i]>results[j]){
-                    res[j]++;
-                }
-            }
-        }
-        return res;
-    }
-
 }

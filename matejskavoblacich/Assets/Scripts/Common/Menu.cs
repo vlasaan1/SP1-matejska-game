@@ -1,15 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Main menu
+/// </summary>
 public class Menu : MonoBehaviour
 {
-    MainGameMaster gameMaster;
+    [Header("References")]
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject chooseNumberOfPlayers;
     [SerializeField] GameObject chooseHeight;
     [SerializeField] GameObject options;
 
+    MainGameMaster gameMaster;
+    int playOnlyOneGameId = -1; //Used to load a single minigame
     void Start(){
         gameMaster = FindObjectOfType<MainGameMaster>();
         mainMenu.SetActive(true);
@@ -18,23 +21,26 @@ public class Menu : MonoBehaviour
         options.SetActive(false);
     }
 
+    /// <summary>
+    /// Called from Play button
+    /// </summary>
     public void PlayGame(){
         mainMenu.SetActive(false);
-        //chooseHeight.SetActive(true);
         chooseNumberOfPlayers.SetActive(true);
     }
 
-    public void SetHeight(float height){
-        // ???
-        chooseHeight.SetActive(false);
-        gameMaster.SetYMove(height);
-        chooseNumberOfPlayers.SetActive(true);
-    }
-
+    /// <summary>
+    /// Called from choose number of players, starts minigames with that number of players
+    /// </summary>
     public void SetNumberOfPlayers(int numberOfPlayers){
         gameMaster.SetNumberOfPlayers(numberOfPlayers);
-        gameMaster.ChangeState(MainGameMaster.GameState.LoadMinigame);
+        if(playOnlyOneGameId==-1){
+            gameMaster.ChangeState(MainGameMaster.GameState.LoadMinigame);
+        } else {
+            gameMaster.PlaySingleMinigame(playOnlyOneGameId);
+        }
     }
+
 
     public void ShowLeaderboard(){
         gameMaster.ChangeState(MainGameMaster.GameState.ShowLeaderboard);
@@ -56,7 +62,12 @@ public class Menu : MonoBehaviour
         Application.Quit();
     }
 
+    /// <summary>
+    /// Load singe minigame
+    /// </summary>
+    /// <param name="id"> Index of minigame in MainGameMaster minigames array </param>
     public void LoadOneGame(int id){
-        gameMaster.LoadGameById(id);
+        playOnlyOneGameId = id;
+        PlayGame();
     }
 }

@@ -1,12 +1,15 @@
-using System.Collections;
 using System.Collections.Generic;
 using initi.prefabScripts;
 using UnityEngine;
 
+/// <summary>
+/// Ball logic from basketball minigame
+/// </summary>
 public class Ball : BaseHittable
 {
     [SerializeField] List<AudioClip> ballSoundClips;
     [SerializeField] List<Sprite> ballSprites;
+
     AudioSource audioSource;
     SpriteRenderer spriteRenderer;
     public bool isInQueue = false;
@@ -26,14 +29,12 @@ public class Ball : BaseHittable
     public void TurnOnBonus(){
         bonusBall = true;
         spriteRenderer.sprite = ballSprites[1];
-        //spriteRenderer.material.SetInt("_EnableBonus",1);
     }
 
     public void TurnOffBonus(){
         if(bonusBall){
             bonusBall = false;
             spriteRenderer.sprite = ballSprites[0];
-            //spriteRenderer.material.SetInt("_EnableBonus",0);
         }
     }
 

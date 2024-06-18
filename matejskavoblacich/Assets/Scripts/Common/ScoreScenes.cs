@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Functions for buttons in BetweenMinigames and FinalScene scenes
+/// </summary>
 public class ScoreScenes : MonoBehaviour
 {
     MainGameMaster gameMaster;

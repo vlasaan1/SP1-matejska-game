@@ -21,15 +21,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Leaderboard.unity
     guid: aad0fd01d275a1e4ea7fefa4ca149831
   - enabled: 0
-    path: Assets/Scenes/TargetShootingScene.unity
+    path: Assets/Scenes/tmp/TargetShootingScene.unity
     guid: f5ce5880a24829d4b9f4aabdae662073
   - enabled: 0
-    path: Assets/Scenes/keyboard.unity
+    path: Assets/Scenes/tmp/keyboard.unity
     guid: 587c8b5b2bbd867488d589f6f17bb5bb
   - enabled: 0
     path: Assets/Scenes/BetterInput.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 0
-    path: Assets/Scenes/HitTheBeaver.unity
+    path: Assets/Scenes/tmp/HitTheBeaver.unity
     guid: 39aafd32f3c70b1468dee027d559078d
   m_configObjects: {}

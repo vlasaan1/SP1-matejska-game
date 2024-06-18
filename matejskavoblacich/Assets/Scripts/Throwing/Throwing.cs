@@ -2,24 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Logic for throwing the ball in basketball minigame
+/// </summary>
 public class Throwing : BaseHoldable
 {
+    [Header("References")]
     [SerializeField] GameObject ballPrefab;
     [SerializeField] Minigame minigame;
     [SerializeField] Transform baseBallPosition;
     [SerializeField] Trajectory trajectory;
     [SerializeField] Strip strip;
+
+    [Header("Throwing settings")]
     [SerializeField] float maxDraw = 0.9f;
     [SerializeField] float throwMultiplier = 12;
-    [SerializeField] float returnBallDelay = .3f;
-    [SerializeField] float nextBallPreparationDelay = .2f;
+    [SerializeField, Tooltip("Time between ball touching the floor and flying to base position")] float returnBallDelay = .3f;
+    [SerializeField, Tooltip("Time the ball takes to fly to the base position")] float nextBallPreparationDelay = .2f;
     [SerializeField] int bonusBallEveryNBalls = 3;
 
-    Queue<Ball> readyBalls = new();
+
+    Queue<Ball> readyBalls = new();  //Not really needed now, but prepared for adding more then 1 ball
     Ball heldBall;
     Vector3 moveDirection;
     Vector3 finalDest;
-    float minMovement = 0.03f;
+    readonly float minMovement = 0.03f;
     int deltaFrame = 1;
     int lastFrameCount = 0;
     int currentMovingFrame = 0;
@@ -28,6 +35,7 @@ public class Throwing : BaseHoldable
     int bonusBallCounter;
 
     void Start(){
+        //Spawn one ball, put it in queue and inicialize counter for bonus
         readyBalls.Enqueue(Instantiate(ballPrefab).GetComponent<Ball>());
         readyBalls.Peek().isInQueue = true;
         bonusBallCounter = bonusBallEveryNBalls;
@@ -35,6 +43,7 @@ public class Throwing : BaseHoldable
 
     protected override void OnHold(Vector2 hitPosition)
     {
+        //If no ball is prepared, there is nothing to do
         if(!nextBallPrepared) return;
         //Need one input update to find delta frame, fix ball position
         if(!isHeld){
@@ -42,19 +51,21 @@ public class Throwing : BaseHoldable
             moveDirection = baseBallPosition.position - heldBall.transform.position;
             deltaFrame = 1;
             trajectory.ShowTrajectory();
-        } else { 
+        } else {
             moveDirection = (Vector3)hitPosition - heldBall.transform.position;
             finalDest = hitPosition;
             
+            //Start moving the ball to match input 
             if((baseBallPosition.position-(Vector3)hitPosition).magnitude>maxDraw){
                 finalDest = baseBallPosition.position + (((Vector3)hitPosition - baseBallPosition.position).normalized * maxDraw);
                 moveDirection = finalDest - heldBall.transform.position;
                 hitPosition = finalDest;
             }
 
-            //Stop jittering due to input accuracy
+            //Stop jittering due to input inaccuracy
             if(moveDirection.magnitude < minMovement){
                 deltaFrame = -1;
+            //Move strips with the ball, update trajectory vizualization
             } else {
                 deltaFrame = Time.frameCount - lastFrameCount;
                 strip.SetStrip(heldBall.transform.position,finalDest,deltaFrame);
@@ -69,6 +80,7 @@ public class Throwing : BaseHoldable
 
     protected override void OnRelease(Vector2 hitPosition)
     {
+        //Throw ball, reset variables, reset strip, hide trajectory vizualization
         if(isHeld){
             Vector3 throwDirection = baseBallPosition.position - heldBall.transform.position;
 
@@ -98,10 +110,16 @@ public class Throwing : BaseHoldable
         }
     }
 
+    /// <summary>
+    /// Needed for invoking ball preparation
+    /// </summary>
     void NextBallPreparedToFalse(){
         nextBallPrepared = false;
     }
     
+    /// <summary>
+    /// Prepare next ball to base position, if possible
+    /// </summary>
     void TryPrepareNextBall(){
         if(!nextBallPrepared && readyBalls.Count>0){
             heldBall = readyBalls.Dequeue();
@@ -110,7 +128,7 @@ public class Throwing : BaseHoldable
             deltaFrame = 30;
             currentMovingFrame = 0;
 
-            //Stop all physics based movement
+            //Stop all physics based movement of the ball
             Rigidbody2D rb = heldBall.gameObject.GetComponent<Rigidbody2D>();
             rb.bodyType = RigidbodyType2D.Kinematic;
             rb.velocity = Vector2.zero;
@@ -127,10 +145,10 @@ public class Throwing : BaseHoldable
             }
         }
     }
-    public void AddNewBall(){
-        Instantiate(ballPrefab,baseBallPosition.position+new Vector3(-1,0,0),Quaternion.identity);
-    }
 
+    /// <summary>
+    /// Wait for returnBallDelay, then add ball to ready queue
+    /// </summary>
     IEnumerator ReturnBall(Ball ball){
         yield return new WaitForSeconds(returnBallDelay);
         readyBalls.Enqueue(ball);
@@ -138,6 +156,7 @@ public class Throwing : BaseHoldable
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        //Mark ball as ready after it hits floor
         if(collision.collider.TryGetComponent(out Ball ball) && !ball.isInQueue){
             StartCoroutine(ReturnBall(ball));
             ball.isInQueue = true;
