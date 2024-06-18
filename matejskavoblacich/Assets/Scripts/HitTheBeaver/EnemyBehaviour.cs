@@ -16,7 +16,6 @@ public class EnemyBehaviour : BaseHittable
         ParticleSystem pop = Instantiate(popEffect, transform.position - new Vector3(0f,0f,2f), Quaternion.identity);
         AudioSource.PlayClipAtPoint(enemyPopSound, new Vector3(0f,0f,0f), popSoundVolume); 
         Destroy(pop,0.5f);
-        Debug.Log("played" + popEffect.transform.position);
         Destroy(gameObject);
     }
 }
