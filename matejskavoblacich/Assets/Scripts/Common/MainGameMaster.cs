@@ -32,6 +32,7 @@ public class MainGameMaster : MonoBehaviour
     int numberOfPlayers;
     float currentYMove;
     bool skipMinigame = false; //Can be set with skip minigame button
+    [HideInInspector] public bool showSingleMinigameButtons = false;
 
     public enum GameState{
         Menu,

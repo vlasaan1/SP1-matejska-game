@@ -8,17 +8,14 @@ public class Menu : MonoBehaviour
     [Header("References")]
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject chooseNumberOfPlayers;
-    [SerializeField] GameObject chooseHeight;
     [SerializeField] GameObject options;
+    [SerializeField] GameObject credits;
 
     MainGameMaster gameMaster;
     int playOnlyOneGameId = -1; //Used to load a single minigame
     void Start(){
         gameMaster = FindObjectOfType<MainGameMaster>();
-        mainMenu.SetActive(true);
-        chooseNumberOfPlayers.SetActive(false);
-        chooseHeight.SetActive(false);
-        options.SetActive(false);
+        ShowMenu();
     }
 
     /// <summary>
@@ -53,7 +50,6 @@ public class Menu : MonoBehaviour
 
     public void ShowMenu(){
         mainMenu.SetActive(true);
-        chooseHeight.SetActive(false);
         chooseNumberOfPlayers.SetActive(false);
         options.SetActive(false);
     }
