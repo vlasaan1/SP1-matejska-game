@@ -41,6 +41,7 @@ public class MainGameMaster : MonoBehaviour
         ShowResultsBetweenMinigames,
         ShowResultsFinalScene,
         ShowLeaderboard,
+        ShowCredits,
         DoNothing
     };
 
@@ -105,6 +106,9 @@ public class MainGameMaster : MonoBehaviour
                 break;
             case GameState.ShowLeaderboard:
                 StartCoroutine(TransitionToScene("Leaderboard",GameState.DoNothing));
+                break;
+            case GameState.ShowCredits:
+                StartCoroutine(TransitionToScene("Credits", GameState.DoNothing));
                 break;
             case GameState.Menu:
                 //Restore minigames for next playing

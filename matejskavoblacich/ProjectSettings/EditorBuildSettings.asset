@@ -18,8 +18,11 @@ EditorBuildSettings:
     path: Assets/Scenes/FinalScene.unity
     guid: 6636d835f6be24e4cb68c1126c17fcff
   - enabled: 1
-    path: Assets/Scenes/Leaderboard.unity
+    path: Assets/Scenes/Credits.unity
     guid: aad0fd01d275a1e4ea7fefa4ca149831
+  - enabled: 1
+    path: Assets/Scenes/Leaderboard.unity
+    guid: 3c8f3f7d09f042d408d23acd4db44d38
   - enabled: 0
     path: Assets/Scenes/tmp/TargetShootingScene.unity
     guid: f5ce5880a24829d4b9f4aabdae662073

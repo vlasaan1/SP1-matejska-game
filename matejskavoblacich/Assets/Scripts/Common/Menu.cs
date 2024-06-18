@@ -43,6 +43,10 @@ public class Menu : MonoBehaviour
         gameMaster.ChangeState(MainGameMaster.GameState.ShowLeaderboard);
     }
 
+    public void ShowCredits(){
+        gameMaster.ChangeState(MainGameMaster.GameState.ShowCredits);
+    }
+
     public void ShowOptions(){
         mainMenu.SetActive(false);
         options.SetActive(true);

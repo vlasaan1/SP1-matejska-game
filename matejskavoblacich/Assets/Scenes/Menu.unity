@@ -325,10 +325,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2447789324025984649, guid: c5c9da20c6ceb7d47b5af264c71d43b2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5c9da20c6ceb7d47b5af264c71d43b2, type: 3}
 --- !u!1001 &163454274
 PrefabInstance:
@@ -910,10 +907,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8454547748426416298, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
 --- !u!1 &811292067
 GameObject:
@@ -1048,6 +1042,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1974957412}
     m_Modifications:
+    - target: {fileID: 2290490504112233897, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
+      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8723702694513916405}
+    - target: {fileID: 2290490504112233897, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
+      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShowCredits
+      objectReference: {fileID: 0}
+    - target: {fileID: 2290490504112233897, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
+      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Menu, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5159128893046278092, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
       propertyPath: m_Name
       value: Credits
@@ -1313,7 +1319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1884024798
 Transform:
   m_ObjectHideFlags: 0
@@ -1469,7 +1475,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1974957412
 Transform:
   m_ObjectHideFlags: 0
@@ -1659,10 +1665,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8454547748426416298, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
 --- !u!1001 &2093674432
 PrefabInstance:
