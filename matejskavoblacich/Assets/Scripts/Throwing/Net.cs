@@ -1,18 +1,24 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Net logic from basketball minigame
+/// </summary>
 public class Net : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] Minigame minigame;
     [SerializeField] List<Sprite> sprites;
-    [SerializeField] Transform movementZone;
+    [SerializeField,Tooltip("Net will randomly move in this zone")] Transform movementZone;
+
+    [Header("Settings")]
     [SerializeField] float movementSpeed = 3;
     [SerializeField] int goalPoints = 50;
     [SerializeField] int goalPointsBonusMultiplier = 3;
+    [SerializeField, Tooltip("Needed to make sure single ball isnt counted multiple times")] float delayBetweenPoints = 0.3f;
+    [SerializeField,Tooltip("Points scored in this time after ball is thrown to the net from under doesnt count")] float shotFromUnderDelay = 1f;
+
     float nextHitTime = 0;
-    float delayBetweenPoints = 0.3f;
-    float shotFromUnderdelay = 1f;
     Vector3 moveDir;
     float minX;
     float maxX;
@@ -31,10 +37,12 @@ public class Net : MonoBehaviour
         if(Time.time<nextHitTime) return;
         if(other.gameObject.CompareTag("Ball")){
             if(other.TryGetComponent(out Rigidbody2D rb)){
+                //Ball went from under, points dont count
                 if(rb.velocity.y>=0){
-                    nextHitTime = Time.time + shotFromUnderdelay;
+                    nextHitTime = Time.time + shotFromUnderDelay;
                     return;
                 }
+                //Add points, play sound, add delay
                 if(other.GetComponent<Ball>().IsBonus()){
                     minigame.score+=goalPoints*goalPointsBonusMultiplier;
                 } else {
@@ -46,6 +54,9 @@ public class Net : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Move net ranomly in movement zone
+    /// </summary>
     void Update(){
         if((target - transform.position).magnitude < .1f){
             float x;

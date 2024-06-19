@@ -19,11 +19,8 @@ public class Display : MonoBehaviour
     List<SpriteRenderer> spriteRenderer;
     [SerializeField] List<Sprite> spriteList;
 
-
     int displayedHearts;
     Vector3 startPosition;
-    //x=-2 y=1 z=0
-
 
     void Start()
     {
@@ -33,7 +30,7 @@ public class Display : MonoBehaviour
         scoreText.text = minigame.score.ToString("000000");;
         displayedHearts = Playerhealth.GetHealth();
 
-        
+        //based on max health level generate heart object representing health
         for(int i = 0; i<Playerhealth.GetHealth(); i++){
             GameObject heart = Instantiate(
                 lifePrefab,
@@ -46,6 +43,9 @@ public class Display : MonoBehaviour
             activeHearts.Add(heart);
         }
     }
+    /// <summary>
+    /// Displays current score of a player and number of hearts representing the health.
+    /// </summary>
     void Update()
     {
         scoreText.text = minigame.score.ToString("000000");;
@@ -60,6 +60,11 @@ public class Display : MonoBehaviour
         }
     }
 
+/// <summary>
+/// Animates the destruction and disappearance of a heart, when the health is decreased.
+/// </summary>
+/// <param name="heart">Heart object to be destroyed.</param>
+/// <param name="displayedNum">Number of displayed hearts, used for position of to be destroyed heart.</param>
     void MoveHeart(GameObject heart, int displayedNum ){
         heart.GetComponentInChildren<Animator>().SetTrigger("Fall");
         Destroy(heart,1f);

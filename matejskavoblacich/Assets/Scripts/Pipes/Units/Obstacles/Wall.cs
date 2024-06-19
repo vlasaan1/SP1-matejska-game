@@ -32,6 +32,11 @@ public class Wall : BaseObstacle
         }
     }
 
+    /// <summary>
+    /// changes straight wall to round wall, if condition is met
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <param name="sizeOfField"></param>
     private void swapToCornerWall(Vector2 pos, int sizeOfField){
         if(math.abs(pos.x - pos.y) == 0 || math.abs(pos.x - pos.y) == sizeOfField - 1){
             spriteRenderer.sprite = roundWallSprite;

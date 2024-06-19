@@ -26,14 +26,18 @@ public class Button : BaseHoldable
         if(clickOnce && clickedThisHold){
             return;
         }
-        onClick.Invoke();
         clickedThisHold = true;
+        onClick.Invoke();
     }
 
     protected override void OnRelease(Vector2 hitPosition)
     {
         clickedThisHold = false;
         activeVisualization = false;
+    }
+
+    void OnEnable(){
+        sprite.material.SetFloat("_HoldPercent",0);
     }
 
     IEnumerator HoldVisualization(){

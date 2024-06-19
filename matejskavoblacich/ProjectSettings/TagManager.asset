@@ -41,6 +41,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: background
+    uniqueID: 2774327429
+    locked: 0
   - name: stanek_spodek
     uniqueID: 3931769031
     locked: 0

@@ -1,8 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Updates score of minigame in basketball minigame
+/// </summary>
 public class ScoreVizualization : MonoBehaviour
 {
     [SerializeField] TMP_Text score;
