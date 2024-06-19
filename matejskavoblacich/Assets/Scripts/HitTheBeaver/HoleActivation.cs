@@ -31,8 +31,8 @@ public class HoleActivation : BaseHittable
     //0-not active , 1-up , 2-down , 3-destroy with points , 4-destroy with points
     public int onShowBeaver = 0;
     //variables used for probability of enemy and beaver spawned
-    int enemyMaxNum = 2;
     int beaverMinNum = 2;
+    //int enemyMaxNum = 2;
     //int beaverMaxNum = 10;
     int number = 0;
     //used for generating objects(deciding factor of type)
