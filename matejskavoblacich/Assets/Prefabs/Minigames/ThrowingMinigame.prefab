@@ -1377,22 +1377,6 @@ PrefabInstance:
       propertyPath: movementZone
       value: 
       objectReference: {fileID: 3616926669803857909}
-    - target: {fileID: 2445195739567012414, guid: 1ad95c8def436ad469cf217d22b1434e, type: 3}
-      propertyPath: sprites.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2445195739567012414, guid: 1ad95c8def436ad469cf217d22b1434e, type: 3}
-      propertyPath: sprites.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: f4e16d278d391eb46bff1c2254936eb3, type: 3}
-    - target: {fileID: 2445195739567012414, guid: 1ad95c8def436ad469cf217d22b1434e, type: 3}
-      propertyPath: sprites.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300000, guid: f5791d91d41539449804aaa37e3bcccf, type: 3}
-    - target: {fileID: 2445195739567012414, guid: 1ad95c8def436ad469cf217d22b1434e, type: 3}
-      propertyPath: sprites.Array.data[2]
-      value: 
-      objectReference: {fileID: 21300000, guid: 58c7f7c4f142deb4f89b7295dddecc7b, type: 3}
     - target: {fileID: 4322158147214289841, guid: 1ad95c8def436ad469cf217d22b1434e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.06

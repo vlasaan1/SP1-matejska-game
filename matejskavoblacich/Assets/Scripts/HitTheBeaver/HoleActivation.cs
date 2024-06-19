@@ -76,7 +76,7 @@ public class HoleActivation : MonoBehaviour
                 }
                 else{
                     //hit - add points
-                    minigame.score += 25;
+                    minigame.score += 10;
                 }
             }
             else if(onShowBeaver==1){

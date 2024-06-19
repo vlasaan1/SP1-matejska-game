@@ -54,7 +54,7 @@ public class GameMaster : MonoBehaviour
 
     private void SuccessedFunction(){
         pipesAudioManager.PlaySFX(pipesAudioManager.success);
-        minigame.score = (int) (minigame.endTime - Time.time);
+        minigame.score = (int) ((minigame.endTime - Time.time)*20);
         minigame.isFinished = true;
     }
 
