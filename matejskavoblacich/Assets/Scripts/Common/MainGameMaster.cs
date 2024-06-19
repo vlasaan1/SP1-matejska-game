@@ -130,10 +130,7 @@ public class MainGameMaster : MonoBehaviour
         yield return new WaitForSeconds(sceneTransitionWaitTime);
 
         SceneManager.LoadScene(sceneName);
-
-        GetComponentInChildren<CloudsAnimation>().enabled = false;
         yield return new WaitForSeconds(0);
-        GetComponentInChildren<CloudsAnimation>().enabled = true;
 
         Instantiate(sceneTransition);
 
@@ -172,7 +169,7 @@ public class MainGameMaster : MonoBehaviour
 
         //Show minigame intro text, wait
         TMP_Text introText = GameObject.FindGameObjectWithTag("IntroText").GetComponent<TMP_Text>();
-        introText.text = minigames[nextGameId].introText;
+        introText.text = minigames[nextGameId].introText.Replace("\\n","\n");
         introText.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(waitTimeBeforeMinigameStart);

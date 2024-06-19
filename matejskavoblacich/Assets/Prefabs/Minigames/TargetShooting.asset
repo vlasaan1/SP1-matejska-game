@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: TargetShooting
   m_EditorClassIdentifier: 
   minigamePrefab: {fileID: 5388562765533499070, guid: 2aeae9de539a98149a4466c2c2aa5846, type: 3}
-  introText: Nestrilim Bomby
-  icon: {fileID: 0}
+  introText: "Sest\u0159el co nejv\xEDc ter\u010D\u016F \\n Pozor na bomby!"

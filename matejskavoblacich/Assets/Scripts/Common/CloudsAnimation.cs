@@ -17,15 +17,10 @@ public class CloudsAnimation : MonoBehaviour
     List<Tuple<GameObject,float>> currentClouds = new();
     float nextCloud = 0;
 
-
-    void OnEnable(){
-        currentClouds.Clear();
-    }
-
     void Update()
     {
         if(Time.time > nextCloud){
-            GameObject newCloud = Instantiate(clouds[Random.Range(0,clouds.Count)], new Vector3(-maxX-10,Random.Range(-maxY,maxY),1),Quaternion.identity);
+            GameObject newCloud = Instantiate(clouds[Random.Range(0,clouds.Count)], new Vector3(-maxX-10,Random.Range(-maxY,maxY),1),Quaternion.identity,transform);
             currentClouds.Add(Tuple.Create(newCloud,Random.Range(minCloudSpeed,maxCloudSpeed)));
             nextCloud = Time.time + Random.Range(minTimeBetweenClouds,maxTimeBetweenClouds);
         }

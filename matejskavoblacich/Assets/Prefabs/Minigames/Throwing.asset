@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Throwing
   m_EditorClassIdentifier: 
   minigamePrefab: {fileID: 1722949611427784547, guid: c1eef56637bb4b04ea87834753938a16, type: 3}
-  introText: Popis hry asi
-  icon: {fileID: 0}
+  introText: "Nah\xE1zej co nejv\xEDc ko\u0161\u016F \\n Barevn\xFD m\xED\u010D jsou
+    bonusov\xE9 body!"
