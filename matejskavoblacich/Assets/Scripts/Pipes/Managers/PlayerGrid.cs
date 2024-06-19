@@ -4,10 +4,15 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
+/// <summary>
+/// handles the grid, that fill be used to place playboard on. Also spawns and handles each tile of the game on which will be game elements placed
+/// </summary>
 public class PlayerGrid : MonoBehaviour
 {
+    [Header("------------------- Managers --------------")]
     [SerializeField] Tile tilePrefab;
     [SerializeField] Minigame minigame;
+    [SerializeField] PipesAudioManager pipesAudioManager;
 
     private SpriteRenderer spriteRenderer;
     private float tileSize = 0f;
@@ -15,7 +20,6 @@ public class PlayerGrid : MonoBehaviour
     private int fieldSize = 0;
     public Dictionary<Vector2, Tile> grid;
     private System.Random random;
-    private float MAGIC_CONSTANT = 0.72f;
     private int shufflingConstant = 20;
 
     void Awake(){
@@ -52,7 +56,8 @@ public class PlayerGrid : MonoBehaviour
     }
 
     private float getYPos(int y){
-        return scaler*((tileSize/2) - y*tileSize + 0.5f) + transform.position.y - MAGIC_CONSTANT;
+        float offset = tileSize * scaler;
+        return scaler*((tileSize/2) - y*tileSize + 0.5f) + transform.position.y - offset;
     }
 
     /// <summary>
@@ -95,8 +100,11 @@ public class PlayerGrid : MonoBehaviour
     /// </summary>
     /// <param name="first"></param>
     /// <param name="second"></param>
-    public void SwapTiles(Vector2Int first, Vector2Int second){
+    /// <param name="playSound">if sound should by played</param>
+    public void SwapTiles(Vector2Int first, Vector2Int second, bool playSound){
         if(CanGetTileAtPosition(first) && CanGetTileAtPosition(second)){
+            if(playSound)
+                pipesAudioManager.PlaySFX(pipesAudioManager.move);
             grid[first].SwapUnits(grid[second]);
             grid[first].occupiedUnit.transform.position = getPos(first.x, first.y);
             grid[second].occupiedUnit.transform.position = getPos(second.x, second.y);
@@ -114,7 +122,7 @@ public class PlayerGrid : MonoBehaviour
                 while(i < shufflingConstant){
                     Vector2Int nvec = new Vector2Int(random.Next(1, fieldSize - 1), random.Next(1, fieldSize - 1));
                     if(CanGetTileAtPosition(ovec) && CanGetTileAtPosition(nvec)){
-                        SwapTiles(ovec, nvec);
+                        SwapTiles(ovec, nvec, false);
                         break;
                     }
                     i++;
@@ -123,6 +131,10 @@ public class PlayerGrid : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// sets the grid background sprite color
+    /// </summary>
+    /// <param name="color"></param>
     public void setSpriteRendererColor(Color color){
         spriteRenderer.color = color;
     }

@@ -18,6 +18,9 @@ public class RoundPipe : BasePipe
         inOutDir();
     }
 
+    /// <summary>
+    /// sets correct outDir and inDir depanding on the rotation
+    /// </summary>
     private void inOutDir(){
         switch(rotation){
             case 0f:

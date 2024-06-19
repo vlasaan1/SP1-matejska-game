@@ -2,16 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Transactions;
 using TMPro;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 
+/// <summary>
+/// Class that handles "liquid flow in the game and the game flow proccess itself"
+/// </summary>
 public class FillingLogic : MonoBehaviour
 {
+    [Header("--------------- Settings --------------")]
     [SerializeField] float firstWaitingTime = 8f;
     [SerializeField] float waitingTime = 4f;
     [SerializeField] float speedWaitingTime = 0.25f;
+    [Header("--------------- Managers --------------")]
     [SerializeField] PlayerGrid playerGrid;
     [SerializeField] GameMaster gameMaster;
     [SerializeField] Minigame minigame;
+    [SerializeField] PipesAudioManager pipesAudioManager;
     private bool finishState = false;
 
     /// <summary>
@@ -33,6 +40,7 @@ public class FillingLogic : MonoBehaviour
     /// <returns></returns>
     private IEnumerator fillingHelper(BaseUnit previous, BaseUnit current){
         int i = 0;
+        pipesAudioManager.PlaySFX(pipesAudioManager.flow);
         while(true){
             if(endCheck(current)){
                 finishState = true;
@@ -43,19 +51,16 @@ public class FillingLogic : MonoBehaviour
                 break;
             }
             current.IsMoveable = false;
-            if(i == 0){
-                current.spriteRenderer.color = Color.blue;
-                yield return new WaitForSeconds(firstWaitingTime);
+
+            float startTime = Time.time;
+            float currTime = i == 0 ? firstWaitingTime : waitingTime;
+            current.spriteRenderer.material.SetInt("_isReversed", current.reversedFilling ? 1 : 0);
+            while(startTime + currTime >= Time.time){
+                current.spriteRenderer.material.SetFloat("_HoldPercent", (Time.time - startTime) / currTime);
+                currTime = i == 0 ? firstWaitingTime : waitingTime; // so that i can pres FILL IT whenever i want
+                yield return new WaitForSeconds(0);
             }
-            else{
-                float startTime = Time.time;
-                current.spriteRenderer.material.SetInt("_isReversed", current.reversedFilling ? 1 : 0);
-                while(startTime + waitingTime >= Time.time){
-                    current.spriteRenderer.material.SetFloat("_HoldPercent", (Time.time - startTime) / waitingTime);
-                    yield return new WaitForSeconds(0);
-                }
-                current.spriteRenderer.material.SetFloat("_HoldPercent", 1);
-            }
+            current.spriteRenderer.material.SetFloat("_HoldPercent", 1);
 
             previous = current;
             current = sendSignalToNextPipe(current);
@@ -63,11 +68,11 @@ public class FillingLogic : MonoBehaviour
         }
         
         if(finishState){
-            playerGrid.setSpriteRendererColor(Color.green);
+            playerGrid.setSpriteRendererColor(new Color(137/255f, 209/255f, 116/255f));
             gameMaster.ChangeState(GameMaster.GameState.GoodEnd);
         }
         else{
-            playerGrid.setSpriteRendererColor(Color.red);
+            playerGrid.setSpriteRendererColor(new Color(236/255f, 10/255f, 25/255f));
             gameMaster.ChangeState(GameMaster.GameState.FailEnd);
         }
     }
@@ -106,10 +111,16 @@ public class FillingLogic : MonoBehaviour
     private bool endCheck(BaseUnit current){
         return current is EndPipe;
     }
+     
 
+    /// <summary>
+    /// when pressed FILL IT button, it changes filling speed
+    /// </summary>
     public void setSpeedToFilling(){
-        if(!minigame.isFinished)
+        if(!minigame.isFinished){
             waitingTime = speedWaitingTime;
+            pipesAudioManager.PlaySFX(pipesAudioManager.flow);
+        }
     }
 
 }

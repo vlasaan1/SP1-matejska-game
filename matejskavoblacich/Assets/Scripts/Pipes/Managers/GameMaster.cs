@@ -2,17 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Hadles and sets everything for the game, the main crossroad to all actions that will take place
+/// </summary>
 public class GameMaster : MonoBehaviour
 {
-    public GameState gameState;
+    [Header("---------- Managers -----------")]
     [SerializeField] Minigame minigame;
     [SerializeField] PlayerGrid playerGrid;
     [SerializeField] GeneratingAlgo generatingAlgo;
     [SerializeField] UnitManager unitManager;
     [SerializeField] FillingLogic fillingLogic;
+    [SerializeField] PipesAudioManager pipesAudioManager;
+    [Header("---------- Game Settings -----------")]
+    public GameState gameState;
     [SerializeField] int numberOfBombs = 3;
     [SerializeField] int fieldSize = 6;
+    public int FieldSize{
+        get {return fieldSize;}
+    }
     [SerializeField] int scaler = 5;
+    public int Scaler{
+        get {return scaler;}
+    }
     [SerializeField] bool useSeed = false;
 
     private Dictionary<Vector2, string> board;
@@ -36,14 +48,20 @@ public class GameMaster : MonoBehaviour
     }
 
     private void FailedFunction(){
+        pipesAudioManager.PlaySFX(pipesAudioManager.fail);
         minigame.isFinished = true;
     }
 
     private void SuccessedFunction(){
-        minigame.score = (int) ((minigame.endTime - Time.time) * 100);
+        pipesAudioManager.PlaySFX(pipesAudioManager.success);
+        minigame.score = (int) (minigame.endTime - Time.time);
         minigame.isFinished = true;
     }
 
+    /// <summary>
+    /// Controls the code of the minigame, runs the code depending on the state given as method argument
+    /// </summary>
+    /// <param name="newState">New state of the game that will take the place and start the concrete code</param>
     public void ChangeState(GameState newState){
         gameState = newState;
         switch(newState){

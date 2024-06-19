@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// handles units that will be placed on each tiles
+/// </summary>
 public class UnitManager : MonoBehaviour
 {
     [SerializeField] Minigame minigame;
@@ -85,7 +88,7 @@ public class UnitManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Generetas random PathTile, used for generating straight pipe or round pipe
+    /// Generates random PathTile unit, used for generating straight pipe or round pipe
     /// </summary>
     /// <param name="pos">position in grid</param>
     /// <returns></returns>
