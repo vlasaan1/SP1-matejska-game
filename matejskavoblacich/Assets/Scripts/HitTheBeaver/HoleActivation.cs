@@ -33,7 +33,7 @@ public class HoleActivation : BaseHittable
     //variables used for probability of enemy and beaver spawned
     int enemyMaxNum = 2;
     int beaverMinNum = 2;
-    int beaverMaxNum = 10;
+    //int beaverMaxNum = 10;
     int number = 0;
     //used for generating objects(deciding factor of type)
     [SerializeField] int upperBound = 5; 
