@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 using UnityEditor;
 
 
-public class HoleActivation : BaseHittable
+public class HoleActivation : MonoBehaviour
 {
 
     [SerializeField] Minigame minigame;

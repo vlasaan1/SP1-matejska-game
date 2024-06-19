@@ -14,13 +14,14 @@ public class Menu : MonoBehaviour
     [SerializeField] GameObject clouds;
     MainGameMaster gameMaster;
     int playOnlyOneGameId = -1; //Used to load a single minigame
+
     void Start(){
         gameMaster = FindObjectOfType<MainGameMaster>();
         ShowMenu();
     }
 
     /// <summary>
-    /// Called from Play button
+    /// Called from Play button, Shows number of players selection, hides main menu
     /// </summary>
     public void PlayGame(){
         mainMenu.SetActive(false);
@@ -28,7 +29,7 @@ public class Menu : MonoBehaviour
     }
 
     /// <summary>
-    /// Called from choose number of players, starts minigames with that number of players
+    /// Called from choose number of players, starts minigames with given number of players
     /// </summary>
     public void SetNumberOfPlayers(int numberOfPlayers){
         gameMaster.SetNumberOfPlayers(numberOfPlayers);
@@ -39,17 +40,25 @@ public class Menu : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Transitions to Leaderboard scene
+    /// </summary>
     public void ShowLeaderboard(){
         gameMaster.ChangeState(MainGameMaster.GameState.ShowLeaderboard);
     }
 
+    /// <summary>
+    /// Shows options, hides main menu and cloud edges
+    /// </summary>
     public void ShowOptions(){
         mainMenu.SetActive(false);
         clouds.SetActive(false);
         options.SetActive(true);
     }
 
+    /// <summary>
+    /// Shows main menu, hides everything else
+    /// </summary>
     public void ShowMenu(){
         mainMenu.SetActive(true);
         clouds.SetActive(true);
@@ -58,6 +67,9 @@ public class Menu : MonoBehaviour
         options.SetActive(false);
     }
 
+    /// <summary>
+    /// Quits whole application
+    /// </summary>
     public void QuitGame(){
         Application.Quit();
     }

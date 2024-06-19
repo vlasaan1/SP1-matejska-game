@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Ball logic from basketball minigame
 /// </summary>
-public class Ball : BaseHittable
+public class Ball : MonoBehaviour
 {
     [SerializeField] List<AudioClip> ballSoundClips;
     [SerializeField] List<Sprite> ballSprites;

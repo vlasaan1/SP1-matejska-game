@@ -5,7 +5,7 @@ using UnityEngine;
 using initi.prefabScripts;
 
 
-public class BeaverSpawner : BaseHittable
+public class BeaverSpawner : MonoBehaviour
 {
     [SerializeField] Minigame minigame;
     [SerializeField] float timeBetweenWaves;
