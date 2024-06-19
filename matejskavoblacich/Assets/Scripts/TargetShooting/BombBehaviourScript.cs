@@ -5,6 +5,9 @@ using initi.prefabScripts;
 
 public class BombBehaviourScript : BaseHittable
 {
+    public GameObject explosionPrefab;
+
+    
     // Update is called once per frame
     void Update()
     {
@@ -19,7 +22,8 @@ public class BombBehaviourScript : BaseHittable
     {
         //add score -600 points
         GetComponentInParent<BoothBehaviourScript>().UpdateScore(-800);
-
+        // spawn explosion
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
