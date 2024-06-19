@@ -17,53 +17,56 @@ public class HoleActivation : MonoBehaviour
     [SerializeField] List<GameObject> playerPrefab;
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] public float moveSpeed = 0.5f;
+    float moveSpeedIncrease = 0.5f;
+    float moveSpeedMax = 2.5f;
     [SerializeField] Lives playerhealth;
     float timeTotal;
+    float percentageIncrease = 0.2f;
     float percentage;
 
     GameObject activeBeaver;
     Vector3 startPosition;
     Vector3 endPosition; 
+
     //0-not active , 1-up , 2-down , 3-destroy with points , 4-destroy with points
     public int onShowBeaver = 0;
-
-    //used for probability of enemy
+    //variables used for probability of enemy and beaver spawned
+    int beaverMinNum = 2;
+    //int enemyMaxNum = 2;
+    //int beaverMaxNum = 10;
     int number = 0;
-    int previousEnemies = 0;
-    int previousBeavers = 0;
-    [SerializeField] int upperBound = 5;
-   // [SerializeField] int upperBound = 3;
+    //used for generating objects(deciding factor of type)
+    [SerializeField] int upperBound = 5; 
     private System.Random random;
-    int changed = 0;
-
+    int changed = 0; //track hit
 
     void Awake()
     {
-        moveSpeed = 0.5f;
-        percentage = 0.2f;
-        //timeTotal = 60f;
+        percentage = percentageIncrease;
         timeTotal = minigame.endTime - minigame.startTime;
         startPosition = transform.position + new Vector3(0f, -0.1f, 0f);
         endPosition = startPosition + new Vector3(0f, 1f, 0f);
         random = new System.Random(minigame.seed);
-
     }
-
 
     void Update()
     {
-
-        if(((Time.time-minigame.startTime) > percentage*timeTotal)&&(moveSpeed<2.5f)&&(percentage<100f)){
-            percentage += 0.2f;
-            moveSpeed += 0.3f;
+        //increase speed of object based on percentage time passed
+        if(((Time.time-minigame.startTime) > percentage*timeTotal)&&(moveSpeed<moveSpeedMax)){
+            percentage += percentageIncrease;
+            moveSpeed += moveSpeedIncrease;
         }
+        //if given time passed, end the game
         if(Time.time > minigame.endTime){
             minigame.isFinished = true;
         }
+        //if player lost all lives, end the game
         if(!playerhealth.GetState()){
             minigame.isFinished = true;
         }
+        //if a beaver was generated
         if(onShowBeaver!=0){
+            //based on hit, adjust score
             if(activeBeaver==null && changed==0){
                 onShowBeaver = 0;
                 changed = 1;
@@ -75,7 +78,6 @@ public class HoleActivation : MonoBehaviour
                     //hit - add points
                     minigame.score += 25;
                 }
-                ///
             }
             else if(onShowBeaver==1){
                 FollowPathUp();
@@ -86,12 +88,18 @@ public class HoleActivation : MonoBehaviour
         }
     }
 
-    public void showBeaver(){
+/// <summary>
+/// Instantiates an object in the game in the current hole. Based on generated variable number it is going to be a player or enemy.
+/// </summary>
+/// <param name="previousEnemies"> keeps track of number of enemies generated </param>
+/// <param name="previousBeavers"> keeps track of number of beavers(players balloons) generated </param>
+    public void showBeaver(ref int previousEnemies, ref int previousBeavers){
         onShowBeaver = 1;
         changed = 0;
         number = random.Next(1,upperBound+1);
-        if( ((number<upperBound) || (previousEnemies==3)) && (previousBeavers!=12) ) {
+        if( (number<upperBound)  || (previousBeavers<beaverMinNum)) {
             previousEnemies = 0;
+            number = 1; //when rng needs to be altered
             previousBeavers++;
             activeBeaver = Instantiate(
                 playerPrefab[minigame.playerId],
@@ -103,6 +111,7 @@ public class HoleActivation : MonoBehaviour
         else{
             previousBeavers = 0;
             previousEnemies++;
+            number = upperBound; //when rng needs to be altered especially when altering outcome
             activeBeaver = Instantiate(
                 enemyPrefab,
                 startPosition,
@@ -112,6 +121,9 @@ public class HoleActivation : MonoBehaviour
         }
     }
 
+/// <summary>
+/// Moves object in the hole upwards in a given trajectory.
+/// </summary>
     void  FollowPathUp()
     {
         if (Vector3.Distance(activeBeaver.transform.position, endPosition) > 0.01f)
@@ -126,6 +138,9 @@ public class HoleActivation : MonoBehaviour
         }
     }
     
+/// <summary>
+/// Moves object in the hole downwards in a given trajectory.
+/// </summary>
     void FollowPathDown()
     {
         if (Vector3.Distance(activeBeaver.transform.position, startPosition) > 0.01f)
