@@ -48,6 +48,13 @@ public class Menu : MonoBehaviour
     }
 
     /// <summary>
+    /// Transitions to credits scene
+    /// </summary>
+    public void ShowCredits(){
+        gameMaster.ChangeState(MainGameMaster.GameState.ShowCredits);
+    }
+
+    /// <summary>
     /// Shows options, hides main menu and cloud edges
     /// </summary>
     public void ShowOptions(){
