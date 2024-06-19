@@ -1544,6 +1544,10 @@ PrefabInstance:
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Menu, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 3040356445760788293, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 5159128893046278092, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
       propertyPath: m_Name
       value: Credits
@@ -1605,11 +1609,23 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6916486535830283401, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 6916486535830283401, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
       propertyPath: m_fontSizeBase
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6916486535830283401, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 6916486535830283401, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
       propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6916486535830283401, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
