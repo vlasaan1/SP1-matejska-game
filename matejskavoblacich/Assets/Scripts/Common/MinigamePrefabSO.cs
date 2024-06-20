@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New minigame", menuName = "Minigame Prefab")]
+[CreateAssetMenu(fileName = "New minigame", menuName = "MinigameSO")]
 /// <summary>
 /// Groups minigame prefab with other minigame informations
 /// </summary>
