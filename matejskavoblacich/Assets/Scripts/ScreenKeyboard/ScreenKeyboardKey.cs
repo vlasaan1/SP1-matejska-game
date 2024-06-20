@@ -13,6 +13,7 @@ public class ScreenKeyboardKey : BaseHoldable
 
     private void Awake() {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        minTimeBeforeHold = .7f;
     }
 
     protected override void OnHold(Vector2 hitPosition) {

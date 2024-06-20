@@ -1259,6 +1259,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1650245014}
     m_Modifications:
     - target: {fileID: 2290490504112233897, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
+      propertyPath: minTimeBeforeHold
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2290490504112233897, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 4
       objectReference: {fileID: 0}
@@ -1644,6 +1648,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1650245014}
     m_Modifications:
+    - target: {fileID: 2290490504112233897, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
+      propertyPath: minTimeBeforeHold
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2290490504112233897, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 4
