@@ -1564,7 +1564,7 @@ MonoBehaviour:
   keyboardMenu: {fileID: 184973228}
   text: {fileID: 1838497436}
   backToMenuButton: {fileID: 1612107328}
-  waitTimeBeforeLeaderboardPopup: 4
+  waitTimeBeforeLeaderboardPopup: 6
 --- !u!224 &7689439458269867819
 RectTransform:
   m_ObjectHideFlags: 0

@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareColliderWithHierarchy: 0
-  updateScoreBy: 25
+  updateScoreBy: 5
 --- !u!58 &-4332653029667044455
 CircleCollider2D:
   m_ObjectHideFlags: 0
