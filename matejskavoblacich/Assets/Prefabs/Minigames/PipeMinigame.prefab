@@ -791,7 +791,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1653538056117577576, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2290490504112233897, guid: 41a42a48098bc1d4bb228d5b96e55817, type: 3}
       propertyPath: minTimeBeforeHold
