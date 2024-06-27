@@ -21,7 +21,7 @@ public class BombBehaviourScript : BaseHittable
     public override void Hit(Vector2 hitPosition)
     {
         //add score -600 points
-        GetComponentInParent<BoothBehaviourScript>().UpdateScore(-250);
+        GetComponentInParent<BoothBehaviourScript>().UpdateScore(-200);
         // spawn explosion
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
