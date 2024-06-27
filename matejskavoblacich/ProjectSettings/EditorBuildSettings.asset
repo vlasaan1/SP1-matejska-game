@@ -30,9 +30,6 @@ EditorBuildSettings:
     path: Assets/Scenes/tmp/keyboard.unity
     guid: 587c8b5b2bbd867488d589f6f17bb5bb
   - enabled: 0
-    path: Assets/Scenes/BetterInput.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
     path: Assets/Scenes/tmp/HitTheBeaver.unity
     guid: 39aafd32f3c70b1468dee027d559078d
   m_configObjects: {}
