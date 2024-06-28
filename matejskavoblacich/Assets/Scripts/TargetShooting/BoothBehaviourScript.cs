@@ -59,6 +59,7 @@ public class BoothBehaviourScript : MonoBehaviour
 
     public void UpdateScore(int change){
         minigame.score += change;
+        if(minigame.score<0) minigame.score=0;
         scoreText.text = minigame.score.ToString();
     }
 }
