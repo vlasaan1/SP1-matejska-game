@@ -7,12 +7,12 @@ This project taught us the ability to collaborate and communicate effectively in
 
 Title page: 
 
-![alt text](https://github.com/vlasaan1/Web-Design-website/blob/main/image.png?raw=true)
+![alt text](https://github.com/vlasaan1/SP1-matejska-game/blob/main/image.png?raw=true)
 
 A screenshot of example gameplay of minigame implemented by me:
 
-![alt text](https://github.com/vlasaan1/Web-Design-website/blob/main/image_game_anna.png?raw=true)
+![alt text](https://github.com/vlasaan1/SP1-matejska-game/blob/main/image_game_anna.png?raw=true)
 
 A screenshot of final score display:
 
-![alt text](https://github.com/vlasaan1/Web-Design-website/blob/main/image_score.png?raw=true)
+![alt text](https://github.com/vlasaan1/SP1-matejska-game/blob/main/image_score.png?raw=true)
